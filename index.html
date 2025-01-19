@@ -1,72 +1,96 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-US">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Fortius Technologies</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
-        header {
-            background: #1b98aa;
-            color: #fff;
-            padding: 20px;
-            text-align: center;
-        }
-        nav {
-            background: #ddd;
-            padding: 10px;
-            text-align: center;
-        }
-        nav a {
-            margin: 0 15px;
-            text-decoration: none;
-            color: #333;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
-        .hero {
-            background: #f4f4f4;
-            padding: 50px;
-            text-align: center;
-        }
-        .hero h1 {
-            margin: 0;
-            font-size: 2.5em;
-        }
-        footer {
-            background: #1b98aa;
-            color: #fff;
-            text-align: center;
-            padding: 10px;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Your trusted partner in innovative IT solutions">
+    <title>Example Technologies Inc</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <a href="/" class="logo">
+                <img src="logo.png" alt="Fortius Technologies Logo">
+            </a>
+            <nav class="navigation">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-<header>
-    <h1>Fortius Technologies</h1>
-</header>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Innovative IT Solutions for Your Success</h1>
+            <p>Your trusted partner in technology and innovation.</p>
+            <a href="#contact" class="cta-button">Get Started</a>
+        </div>
+    </section>
 
-<nav>
-    <a href="/">Home</a>
-    <a href="/services">Services</a>
-    <a href="/about">About</a>
-    <a href="/contact">Contact</a>
-</nav>
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2>Our Services</h2>
+            <div class="service-grid">
+                <div class="service-item">
+                    <h3>Consulting</h3>
+                    <p>Expert guidance to optimize your IT infrastructure.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Development</h3>
+                    <p>Custom software solutions tailored to your needs.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Support</h3>
+                    <p>24/7 support to ensure seamless operations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<div class="hero">
-    <h1>Building a Better Future</h1>
-    <p>Your success is our priority.</p>
-</div>
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2>About Us</h2>
+            <p>With over 10 years of experience, we provide personalized IT solutions to help you achieve your goals.</p>
+        </div>
+    </section>
 
-<footer>
-    <p>Fortius Technologies &copy; 2025 | All Rights Reserved</p>
-</footer>
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <form action="#" method="POST">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+                
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </section>
 
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Fortius Technologies Inc. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
 </body>
 </html>
