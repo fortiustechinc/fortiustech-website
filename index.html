@@ -1,96 +1,73 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Your trusted partner in innovative IT solutions">
-    <title>Example Technologies Inc</title>
+    <title>Fortius Technologies Inc</title>
+    <meta name="description" content="Experienced, Personalized IT Consulting">
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="logo.png">
+    <meta property="og:title" content="Fortius Technologies Inc">
+    <meta property="og:description" content="Let us build the infrastructure for your success!">
+    <meta property="og:image" content="hero-image.jpg">
+    <meta property="og:url" content="https://fortius-technologies.com">
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
+    <header>
         <div class="container">
-            <a href="/" class="logo">
+            <div class="logo">
                 <img src="logo.png" alt="Fortius Technologies Logo">
-            </a>
-            <nav class="navigation">
+            </div>
+            <nav>
                 <ul>
                     <li><a href="#home">Home</a></li>
                     <li><a href="#services">Services</a></li>
                     <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container">
-            <h1>Innovative IT Solutions for Your Success</h1>
-            <p>Your trusted partner in technology and innovation.</p>
-            <a href="#contact" class="cta-button">Get Started</a>
-        </div>
-    </section>
+    <main>
+        <section id="home" class="hero">
+            <h1>Experienced, Personalized IT Consulting</h1>
+            <p>Let us build the infrastructure for your success!</p>
+            <a href="#contact" class="cta">Contact Us</a>
+        </section>
 
-    <!-- Services Section -->
-    <section id="services" class="services">
-        <div class="container">
+        <section id="services">
             <h2>Our Services</h2>
-            <div class="service-grid">
-                <div class="service-item">
-                    <h3>Consulting</h3>
-                    <p>Expert guidance to optimize your IT infrastructure.</p>
-                </div>
-                <div class="service-item">
-                    <h3>Development</h3>
-                    <p>Custom software solutions tailored to your needs.</p>
-                </div>
-                <div class="service-item">
-                    <h3>Support</h3>
-                    <p>24/7 support to ensure seamless operations.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+            <p>We offer a range of IT solutions to meet your business needs.</p>
+        </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
+        <section id="about">
             <h2>About Us</h2>
-            <p>With over 10 years of experience, we provide personalized IT solutions to help you achieve your goals.</p>
-        </div>
-    </section>
+            <p>With over 10 years of experience, Fortius Technologies has been a trusted partner for businesses around the globe.</p>
+        </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
+        <section id="contact">
             <h2>Contact Us</h2>
-            <form action="#" method="POST">
-                <label for="name">Name</label>
+            <form action="/submit" method="post">
+                <label for="name">Name:</label>
                 <input type="text" id="name" name="name" required>
-                
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
-                
-                <label for="message">Message</label>
-                <textarea id="message" name="message" rows="5" required></textarea>
-                
-                <button type="submit">Send Message</button>
-            </form>
-        </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 Fortius Technologies Inc. All Rights Reserved.</p>
-        </div>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" required></textarea>
+
+                <button type="submit">Send</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Fortius Technologies Inc. All Rights Reserved.</p>
     </footer>
 
-    <!-- Scripts -->
     <script src="script.js"></script>
 </body>
 </html>
