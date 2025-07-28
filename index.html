@@ -31,11 +31,17 @@
     <meta name="theme-color" content="#1b98aa">
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body id="home">
+    <video autoplay muted loop playsinline id="bg-video">
+        <source src="background.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="video-overlay"></div>
+
     <header>
         <div class="container">
             <img src="logo.png" alt="Fortius Technologies Logo" class="logo">
-            <nav>
+            <nav id="main-nav">
                 <ul>
                     <li><a href="#home">Home</a></li>
                     <li><a href="#services">Services</a></li>
@@ -43,11 +49,16 @@
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </header>
     
     <main>
-        <section id="home" class="hero">
+        <section class="hero">
             <h1>Experienced, Personalized IT Consulting</h1>
             <p>Let us build the infrastructure for your success!</p>
             <a href="#contact" class="cta">Contact Us</a>
@@ -56,11 +67,34 @@
         <section id="services">
             <h2>Our Services</h2>
             <p>We offer a range of IT solutions to meet your business needs.</p>
+            <div class="service-grid">
+                <div class="service-item">
+                    <img src="cloud_logo.png" alt="Cloud Solutions Icon" class="service-icon">
+                    <h3>Cloud Solutions</h3>
+                    <p>Harness the power of cloud computing for scalable, secure, and efficient operations.</p>
+                </div>
+                <div class="service-item">
+                    <img src="cybersecurity_logo.jpg" alt="Cybersecurity Icon" class="service-icon">
+                    <h3>Cybersecurity</h3>
+                    <p>Comprehensive protection for your digital assets against evolving cyber threats.</p>
+                </div>
+                <div class="service-item">
+                    <img src="webdev_logo.webp" alt="Web Development Icon" class="service-icon">
+                    <h3>Web Development</h3>
+                    <p>Crafting modern, responsive, and high-performance websites tailored to your vision.</p>
+                </div>
+                <div class="service-item">
+                    <img src="IT_support_logo.webp" alt="IT Support Icon" class="service-icon">
+                    <h3>IT Support & Managed Services</h3>
+                    <p>Proactive monitoring and expert support to keep your IT infrastructure running smoothly.</p>
+                </div>
+            </div>
         </section>
         
         <section id="about">
             <h2>About Us</h2>
-            <p>With over 10 years of experience, Fortius Technologies has been a trusted partner for businesses around the globe.</p>
+            <p>With over 10 years of experience, Fortius Technologies has been a trusted partner for businesses around the globe, delivering innovative and reliable IT solutions.</p>
+            <p>Our mission is to empower your business with cutting-edge technology and unparalleled service, ensuring your success in the digital landscape.</p>
         </section>
         
         <section id="contact">
@@ -75,7 +109,7 @@
                 <label for="message">Message:</label>
                 <textarea id="message" name="message" required></textarea>
                 
-                <button type="submit">Send</button>
+                <button type="submit">Send Message</button>
             </form>
         </section>
     </main>
@@ -83,5 +117,29 @@
     <footer>
         <p>&copy; 2025 Fortius Technologies Inc. All Rights Reserved.</p>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('mobile-menu');
+            const nav = document.getElementById('main-nav').querySelector('ul');
+
+            if (menuToggle && nav) {
+                menuToggle.addEventListener('click', function() {
+                    nav.classList.toggle('open');
+                    menuToggle.classList.toggle('open');
+                });
+            }
+
+            // Close menu when a navigation link is clicked (for smooth scrolling)
+            nav.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (nav.classList.contains('open')) {
+                        nav.classList.remove('open');
+                        menuToggle.classList.remove('open');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
