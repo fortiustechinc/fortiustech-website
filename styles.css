@@ -11,14 +11,14 @@
     --accent-light: #64ffda; /* Aqua Green */
     --accent-dark: #00838f; /* Darker Cyan */
 
-    --text-dark: #ffffff; /* Dark blue-grey for body text on light background */
-    --text-light: #000000; /* Light text (e.g., for buttons on accent color) */
-    --text-muted: #7f8c8d; /* Muted grey for secondary text */
+    --text-dark: #ffffff; 
+    --text-light: #f4f7f6;
 
-    --bg-main: #000000; /* Light grey/off-white for overall background */
-    --bg-section: #ffffff; /* Pure white for section backgrounds */
-    --bg-overlay: rgba(0, 0, 0, 0.6); /* Lighter semi-transparent overlay for background video */
-    --bg-light-header: rgba(0, 0, 0, 0.8); /* Light header background with transparency */
+    /* Change background colors to black/dark */
+    --bg-main: #000000; 
+    --bg-accent: #1a1a1a;
+    --bg-overlay: rgba(0, 0, 0, 0.6); /* This creates the dark tint on the video */
+    --bg-light-header: rgba(0, 0, 0, 0.8);
 
 
     --shadow-sm: rgba(0, 0, 0, 0.08);
@@ -230,12 +230,10 @@ header nav ul li a:hover::after {
     flex-direction: column;
     justify-content: center;
     align-items: flex-end; /* Pushes text to the right side */
-    padding: 0 10%;
-    text-align: right;    /* Aligns text to the right */
-    
-    /* THE KEY CHANGES: */
-    background: transparent; /* Removes the white box */
-    color: #ffffff;         /* Makes text white to stand out on video */
+    padding: 0 10%;       /* Keeps text away from the very edge */
+    text-align: right;    /* Aligns text lines to the right */
+    background: transparent; /* Ensures the white box is gone */
+    color: #ffffff;
     position: relative;
     z-index: 2;
 }
