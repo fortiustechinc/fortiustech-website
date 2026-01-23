@@ -810,3 +810,18 @@ input:-webkit-autofill:focus {
     0% { top: 8px; opacity: 1; }
     100% { top: 25px; opacity: 0; }
 }
+/* Styling for standalone pages (About, Services, Contact) */
+.sub-page {
+    background-color: #000000 !important; /* Forces solid black background */
+}
+
+/* Specifically moves the Hero text to the right for sub-pages */
+.hero.right-align {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Pushes content to the right side */
+    text-align: right;    /* Aligns the text lines to the right */
+    padding-right: 10%;   /* Adds a professional gap from the edge */
+    background: transparent;
+    height: 60vh;         /* Shorter height for sub-pages so content is higher up */
+}
