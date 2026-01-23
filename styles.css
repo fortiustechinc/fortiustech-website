@@ -136,10 +136,13 @@ header .container {
 }
 
 header .logo {
-    max-width: 140px;
-    height: auto;
-    filter: drop-shadow(0 0 5px rgba(0,0,0,0.2)); /* Lighter shadow for logo on light background */
-    transition: transform var(--transition-speed) ease;
+    max-width: 140px; /* Line 139 */
+    height: auto;     /* Line 140 */
+    
+    /* ADD THESE TO FIX THE LOOK */
+    background: transparent; 
+    display: block;
+    mix-blend-mode: multiply; /* This can help hide a white background on a dark header */
 }
 
 header .logo:hover {
@@ -229,35 +232,25 @@ header nav ul li a:hover::after {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-end; /* Pushes text to the right side */
-    padding: 0 10%;       /* Keeps text away from the very edge */
-    text-align: right;    /* Aligns text lines to the right */
-    background: transparent; /* Ensures the white box is gone */
-    color: #ffffff;
+    /* Pushes text to the right side */
+    align-items: flex-end; 
+    text-align: right;
+    padding: 0 8%;
+    background: transparent;
     position: relative;
     z-index: 2;
 }
 
 /* Multi-shade text for H1 from logo colors */
 .hero h1 {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 800; /* Make text bolder */
-    line-height: 1.2;
-    margin-bottom: 1.5rem;
-    
-    /* Apply gradient for multi-shade effect from logo colors */
-    background-image: linear-gradient(90deg, var(--logo-gradient-color-1), var(--logo-gradient-color-2), var(--logo-gradient-color-3), var(--logo-gradient-color-4), var(--logo-gradient-color-5));
+    font-size: 4rem;
+    font-weight: 800;
+    /* Subtle professional gradient: Light Blue to Silver */
+    background: linear-gradient(135deg, #ffffff 0%, #a5c7d0 100%);
     -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent; /* Hide original text color to show gradient */
-    
-    /* Add subtle text shadow for depth, visible over gradient */
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2); /* Lighter shadow for better contrast on light background */
-    
-    animation: slideInUp 1.2s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
-    opacity: 0;
-    position: relative;
-    z-index: 2;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 20px;
+    line-height: 1.1;
 }
 
 .hero p {
@@ -764,4 +757,56 @@ footer p {
     form {
         padding: 2rem 1rem;
     }
+}
+
+/* Force form fields to stay white when typing/selected */
+input:focus, 
+textarea:focus {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    border: 2px solid var(--primary-color) !important;
+    outline: none;
+}
+
+/* Fix for Chrome autofill turning fields black/yellow */
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus {
+    -webkit-text-fill-color: #000000 !important;
+    -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+}
+
+.mouse {
+    width: 25px;
+    height: 40px;
+    border: 2px solid #ffffff;
+    border-radius: 20px;
+    position: relative;
+}
+
+.mouse::before {
+    content: '';
+    width: 4px;
+    height: 8px;
+    background-color: #ffffff;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 8px;
+    border-radius: 2px;
+    animation: scrollWheel 2s infinite;
+}
+
+@keyframes scrollWheel {
+    0% { top: 8px; opacity: 1; }
+    100% { top: 25px; opacity: 0; }
 }
