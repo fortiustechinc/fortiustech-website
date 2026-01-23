@@ -225,19 +225,18 @@ header nav ul li a:hover::after {
 
 /* Hero Section */
 .hero {
-    height: calc(100vh - var(--header-height));
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* Pushes text to the right side so it doesn't cover the video center */
-    align-items: flex-end; 
-    color: var(--text-dark);
-    /* Aligns text lines to the right */
-    text-align: right; 
-    /* Adds space from the right edge */
-    padding: 0 10%; 
+    align-items: flex-end; /* Pushes text to the right side */
+    padding: 0 10%;
+    text-align: right;    /* Aligns text to the right */
+    
+    /* THE KEY CHANGES: */
+    background: transparent; /* Removes the white box */
+    color: #ffffff;         /* Makes text white to stand out on video */
     position: relative;
-    overflow: hidden;
     z-index: 2;
 }
 
