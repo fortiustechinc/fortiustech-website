@@ -75,8 +75,9 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: var(--bg-overlay); /* Lighter semi-transparent overlay for readability */
-    z-index: -1; /* Place above video, but below content */
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+    pointer-events: none; /* Add this line here */
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -498,13 +499,15 @@ form input,
 form textarea {
     margin-bottom: 2rem;
     padding: 1.3rem;
-    border: 1px solid rgba(0,0,0,0.2); /* Dark border for inputs */
+    border: 1px solid rgba(0,0,0,0.2); 
     border-radius: 10px;
     font-size: 1.1rem;
     transition: all 0.3s ease;
-    background-color: var(--bg-main); /* Slightly darker light for input fields */
-    color: var(--text-dark); /* Dark text for input values */
+    background-color: #ffffff; /* Updated */
+    color: #000000;            /* Updated */
     box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+    position: relative;        /* Added */
+    z-index: 10;               /* Added */
 }
 
 form input:focus,
