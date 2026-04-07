@@ -1,77 +1,370 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - Fortius Technologies Inc</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body class="sub-page">
-    <header>
-        <div class="container">
-            <a href="index.html">
-                <img src="logo.png" alt="Fortius Technologies Logo" class="logo">
-            </a>
-            <nav id="main-nav">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </nav>
-            <div class="menu-toggle" id="mobile-menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </header>
-    
-    <main>
-        <section class="hero right-align">
-            <h1>Contact Us</h1>
-            <p>Ready to build your infrastructure? Reach out today.</p>
-        </section>
-        
-        <section id="contact" class="container" style="padding: 50px 20px;">
-            <div class="contact-container">
-                <div class="contact-form">
-                    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-                        <div class="form-group">
-                            <label for="name">Name:</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email:</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message:</label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="cta">Send Message</button>
-                    </form>
-                </div>
-            </div>
-        </section>
-    </main>
-    
-    <footer>
-        <p>&copy; 2026 Fortius Technologies Inc. All Rights Reserved.</p>
-    </footer>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us — Fortius Technologies</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+.page-hero {
+  padding: 10rem 4rem 6rem;
+  background: var(--bg2);
+  border-bottom: 0.5px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.page-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 50% 60% at 20% 50%, rgba(79,142,247,0.06) 0%, transparent 70%),
+              radial-gradient(ellipse 40% 50% at 80% 70%, rgba(201,168,76,0.05) 0%, transparent 60%);
+}
+.page-hero-content { max-width: 1100px; margin: 0 auto; position: relative; }
+.page-hero h1 {
+  font-family: var(--ff-head);
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+  max-width: 600px;
+  margin-bottom: 1.25rem;
+}
+.page-hero p { color: var(--text2); font-size: 1.15rem; max-width: 480px; line-height: 1.7; }
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const menuToggle = document.getElementById('mobile-menu');
-            const nav = document.getElementById('main-nav').querySelector('ul');
-            if (menuToggle && nav) {
-                menuToggle.addEventListener('click', () => {
-                    nav.classList.toggle('open');
-                    menuToggle.classList.toggle('open');
-                });
-            }
-        });
-    </script>
+/* CONTACT LAYOUT */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 5rem;
+  align-items: start;
+}
+.contact-left h2 {
+  font-family: var(--ff-head);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+}
+.contact-left > p { color: var(--text2); font-size: 14px; line-height: 1.7; margin-bottom: 2.5rem; }
+
+.contact-info-list { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2.5rem; }
+.contact-info-item {
+  display: flex; align-items: flex-start; gap: 1rem;
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: 10px;
+  padding: 1.25rem;
+  transition: border-color 0.2s;
+}
+.contact-info-item:hover { border-color: var(--border2); }
+.contact-info-item a { color: var(--text); text-decoration: none; }
+.contact-info-item a:hover { color: var(--accent2); }
+.ci-icon {
+  width: 38px; height: 38px; flex-shrink: 0;
+  border-radius: 8px;
+  background: var(--surface2);
+  border: 0.5px solid var(--border2);
+  display: flex; align-items: center; justify-content: center;
+}
+.ci-icon svg { width: 17px; height: 17px; }
+.ci-label { font-size: 11px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 3px; }
+.ci-value { font-size: 14px; color: var(--text); font-weight: 400; }
+
+.response-note {
+  background: var(--accent-dim);
+  border: 0.5px solid rgba(79,142,247,0.25);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  font-size: 13px;
+  color: var(--text2);
+  display: flex; align-items: flex-start; gap: 10px;
+}
+.response-note svg { width: 16px; height: 16px; color: var(--accent); flex-shrink: 0; margin-top: 1px; }
+
+/* FORM */
+.contact-form {
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: 16px;
+  padding: 2.5rem;
+}
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+.form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 1.25rem; }
+.form-group:last-of-type { margin-bottom: 0; }
+label { font-size: 13px; color: var(--text2); font-weight: 400; }
+label span { color: var(--accent); }
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+select,
+textarea {
+  background: var(--bg);
+  border: 0.5px solid var(--border2);
+  border-radius: 8px;
+  color: var(--text);
+  font-family: var(--ff-body);
+  font-size: 15px;
+  padding: 12px 16px;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.2s;
+  -webkit-appearance: none;
+}
+input::placeholder, textarea::placeholder { color: var(--text3); }
+input:focus, select:focus, textarea:focus { border-color: var(--accent); }
+select { cursor: pointer; }
+select option { background: var(--bg2); }
+textarea { resize: vertical; min-height: 120px; }
+
+.form-submit { width: 100%; margin-top: 1.5rem; justify-content: center; font-size: 16px; padding: 15px; }
+
+.form-success {
+  display: none;
+  text-align: center;
+  padding: 3rem 2rem;
+}
+.success-icon {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: rgba(16,185,129,0.12);
+  border: 0.5px solid rgba(16,185,129,0.3);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 1.5rem;
+}
+.success-icon svg { width: 24px; height: 24px; }
+.form-success h3 { font-family: var(--ff-head); font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
+.form-success p { color: var(--text2); font-size: 14px; }
+
+/* WHAT TO EXPECT */
+.expect-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+.expect-card {
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: 12px;
+  padding: 1.75rem;
+}
+.expect-step {
+  font-family: var(--ff-head);
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--border2);
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+.expect-card h4 { font-family: var(--ff-head); font-size: 15px; font-weight: 600; margin-bottom: 0.5rem; }
+.expect-card p { font-size: 13px; color: var(--text2); line-height: 1.6; }
+
+@media (max-width: 900px) {
+  .page-hero { padding: 8rem 1.5rem 4rem; }
+  .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .form-row { grid-template-columns: 1fr; }
+  .expect-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="https://www.fortius.cloud/logo.png" alt="Fortius Technologies">
+    <span>Fortius Technologies</span>
+  </a>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="about.html">About</a>
+    <a href="contact.html" class="active nav-cta">Contact Us</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-content">
+    <span class="label">Contact</span>
+    <h1>Let's start with a conversation.</h1>
+    <p>No pressure, no commitments. Tell us about your business and we'll explore how we can help.</p>
+  </div>
+</div>
+
+<!-- CONTACT SECTION -->
+<section class="section">
+  <div class="section-inner">
+    <div class="contact-grid">
+      <!-- LEFT: Info -->
+      <div class="contact-left">
+        <h2>Get in touch</h2>
+        <p>Whether you have a specific project in mind or just want to understand your options, we're happy to talk. Expect a response within one business day.</p>
+
+        <div class="contact-info-list">
+          <div class="contact-info-item">
+            <div class="ci-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#4f8ef7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+              </svg>
+            </div>
+            <div>
+              <div class="ci-label">Email</div>
+              <div class="ci-value"><a href="mailto:info@fortius.cloud">info@fortius.cloud</a></div>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="ci-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+              </svg>
+            </div>
+            <div>
+              <div class="ci-label">Location</div>
+              <div class="ci-value">United States</div>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="ci-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#4f8ef7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+              </svg>
+            </div>
+            <div>
+              <div class="ci-label">Response Time</div>
+              <div class="ci-value">Within 1 business day</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="response-note">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/>
+          </svg>
+          <span>First-time clients: we offer a complimentary 30-minute discovery call to understand your needs before any proposal or commitment.</span>
+        </div>
+      </div>
+
+      <!-- RIGHT: Form -->
+      <div class="contact-form" id="contactFormWrap">
+        <div id="formBody">
+          <div style="margin-bottom: 1.75rem;">
+            <div style="font-family: var(--ff-head); font-size: 1.1rem; font-weight: 600; margin-bottom: 4px;">Send us a message</div>
+            <div style="font-size: 13px; color: var(--text3);">We'll reply within one business day.</div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">First name <span>*</span></label>
+              <input type="text" id="fname" placeholder="Jane" required>
+            </div>
+            <div class="form-group">
+              <label for="lname">Last name <span>*</span></label>
+              <input type="text" id="lname" placeholder="Smith" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Work email <span>*</span></label>
+            <input type="email" id="email" placeholder="jane@company.com" required>
+          </div>
+
+          <div class="form-group">
+            <label for="company">Company name</label>
+            <input type="text" id="company" placeholder="Acme Corp">
+          </div>
+
+          <div class="form-group">
+            <label for="service">Service of interest</label>
+            <select id="service">
+              <option value="" disabled selected>Select a service…</option>
+              <option>Cloud Solutions</option>
+              <option>Cybersecurity</option>
+              <option>Web Development</option>
+              <option>IT Support & Managed Services</option>
+              <option>Not sure yet — need guidance</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Tell us about your project <span>*</span></label>
+            <textarea id="message" placeholder="What are you working on? What problems are you trying to solve? Any relevant context helps." rows="5" required></textarea>
+          </div>
+
+          <button class="btn-primary form-submit" id="submitBtn" onclick="handleSubmit(event)">
+            Send Message →
+          </button>
+        </div>
+
+        <div class="form-success" id="formSuccess">
+          <div class="success-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+          <h3>Message received.</h3>
+          <p>Thanks for reaching out! We'll review your message and get back to you within one business day.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT TO EXPECT -->
+<section class="section" style="background: var(--bg2);">
+  <div class="section-inner">
+    <span class="label">What Happens Next</span>
+    <h2 style="font-family: var(--ff-head); font-size: clamp(1.8rem,3vw,2.4rem); font-weight: 700; letter-spacing: -0.03em; margin-bottom: 3rem; max-width: 480px; line-height: 1.2;">
+      A clear, simple process from first contact to engagement
+    </h2>
+    <div class="expect-grid">
+      <div class="expect-card">
+        <div class="expect-step">01</div>
+        <h4>We review your message</h4>
+        <p>A senior consultant reads your inquiry and identifies the right person to respond — not an automated system or junior screener.</p>
+      </div>
+      <div class="expect-card">
+        <div class="expect-step">02</div>
+        <h4>Discovery call</h4>
+        <p>We schedule a 30-minute call to understand your business, current state, and goals in depth before suggesting anything.</p>
+      </div>
+      <div class="expect-card">
+        <div class="expect-step">03</div>
+        <h4>Tailored proposal</h4>
+        <p>Based on what we learn, we prepare a scoped proposal with clear deliverables, timeline, and pricing — no vague estimates.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-left">
+    <img src="https://www.fortius.cloud/logo.png" alt="Fortius Technologies">
+    <span>Fortius Technologies</span>
+  </div>
+  <nav class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <span class="footer-copy">© 2026 Fortius Technologies Inc. All Rights Reserved.</span>
+</footer>
+
+<script>
+document.getElementById('hamburger').addEventListener('click', () => {
+  document.getElementById('navLinks').classList.toggle('open');
+});
+
+function handleSubmit(e) {
+  e.preventDefault();
+  const fname = document.getElementById('fname').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const message = document.getElementById('message').value.trim();
+  if (!fname || !email || !message) {
+    alert('Please fill in all required fields.');
+    return;
+  }
+  document.getElementById('formBody').style.display = 'none';
+  document.getElementById('formSuccess').style.display = 'block';
+}
+</script>
 </body>
 </html>
