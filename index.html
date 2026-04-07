@@ -6,98 +6,197 @@
 <title>Fortius Technologies — Expert IT Consulting</title>
 <link rel="stylesheet" href="shared.css">
 <style>
-/* HERO */
+/* ── NAV LOGO ── make it large and prominent */
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2.5rem;
+  height: 80px;
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(8,10,14,0.85);
+  backdrop-filter: blur(14px);
+  border-bottom: 0.5px solid rgba(255,255,255,0.07);
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.nav-logo img {
+  height: 52px;   /* bigger logo */
+  width: auto;
+  display: block;
+}
+
+.nav-logo span {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+/* ── HERO WITH VIDEO BG ── */
 .hero {
   min-height: 100vh;
-  display: flex; align-items: center;
-  padding: 0 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   position: relative;
   overflow: hidden;
+  padding: 0 2rem;
 }
-.hero-bg {
-  position: absolute; inset: 0;
+
+/* Video fills the full hero */
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+}
+
+/* Dark gradient overlay so text remains legible */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
   background:
-    radial-gradient(ellipse 60% 50% at 70% 40%, rgba(79,142,247,0.08) 0%, transparent 70%),
-    radial-gradient(ellipse 40% 40% at 20% 70%, rgba(201,168,76,0.05) 0%, transparent 60%);
+    linear-gradient(to bottom,
+      rgba(8,10,14,0.55) 0%,
+      rgba(8,10,14,0.45) 50%,
+      rgba(8,10,14,0.70) 100%);
+  z-index: 1;
 }
-.hero-grid {
-  position: absolute; inset: 0;
-  background-image:
-    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-  background-size: 60px 60px;
-  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+
+/* Subtle vignette on sides */
+.hero-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 100% 100% at 50% 50%,
+    transparent 40%,
+    rgba(8,10,14,0.6) 100%);
+  z-index: 2;
 }
+
 .hero-content {
-  position: relative; z-index: 1;
-  max-width: 1100px; margin: 0 auto; width: 100%;
+  position: relative;
+  z-index: 3;
+  max-width: 820px;
   padding: 8rem 0 6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
+
 .hero-badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: var(--accent-dim);
-  border: 0.5px solid rgba(79,142,247,0.3);
-  padding: 6px 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(79,142,247,0.15);
+  border: 0.5px solid rgba(79,142,247,0.4);
+  padding: 6px 18px;
   border-radius: 100px;
   font-size: 12px;
   font-weight: 500;
-  color: var(--accent2);
-  letter-spacing: 0.04em;
-  margin-bottom: 2.5rem;
-  animation: fadeUp 0.6s ease both;
+  color: #7db3fa;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  animation: fadeUp 0.7s ease both;
 }
-.hero-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse 2s infinite; }
+
+.hero-badge::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #4f8ef7;
+  animation: pulse 2s infinite;
+}
+
 @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
-@keyframes fadeUp { from { opacity:0; transform: translateY(20px); } to { opacity:1; transform: translateY(0); } }
+
+@keyframes fadeUp {
+  from { opacity:0; transform: translateY(24px); }
+  to   { opacity:1; transform: translateY(0); }
+}
 
 .hero h1 {
   font-family: var(--ff-head);
-  font-size: clamp(2.8rem, 6vw, 5rem);
+  font-size: clamp(2.6rem, 6vw, 5rem);
   font-weight: 800;
   line-height: 1.05;
   letter-spacing: -0.03em;
-  color: var(--text);
+  color: #ffffff;
   margin-bottom: 1.5rem;
-  animation: fadeUp 0.6s 0.1s ease both;
+  animation: fadeUp 0.7s 0.1s ease both;
+  text-shadow: 0 2px 24px rgba(0,0,0,0.4);
 }
+
 .hero h1 em {
   font-style: normal;
-  background: linear-gradient(135deg, var(--accent2) 0%, var(--gold) 100%);
+  background: linear-gradient(135deg, #7db3fa 0%, #c9a84c 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
 .hero-sub {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   font-weight: 300;
-  color: var(--text2);
+  color: rgba(255,255,255,0.78);
   max-width: 560px;
-  line-height: 1.65;
-  margin-bottom: 3rem;
-  animation: fadeUp 0.6s 0.2s ease both;
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+  animation: fadeUp 0.7s 0.2s ease both;
 }
+
 .hero-actions {
-  display: flex; align-items: center; gap: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
   flex-wrap: wrap;
-  animation: fadeUp 0.6s 0.3s ease both;
+  animation: fadeUp 0.7s 0.3s ease both;
 }
+
 .hero-stats {
-  display: flex; gap: 3.5rem;
-  margin-top: 5rem;
-  padding-top: 3rem;
-  border-top: 0.5px solid var(--border);
-  animation: fadeUp 0.6s 0.4s ease both;
+  display: flex;
+  gap: 3rem;
+  margin-top: 4.5rem;
+  padding-top: 2.5rem;
+  border-top: 0.5px solid rgba(255,255,255,0.15);
+  animation: fadeUp 0.7s 0.4s ease both;
+  flex-wrap: wrap;
+  justify-content: center;
 }
+
 .stat-num {
   font-family: var(--ff-head);
-  font-size: 2rem;
+  font-size: 1.4rem;
   font-weight: 700;
-  color: var(--text);
+  color: #ffffff;
   letter-spacing: -0.02em;
+  text-align: center;
 }
-.stat-label { font-size: 13px; color: var(--text3); margin-top: 2px; }
 
-/* SERVICES PREVIEW */
+.stat-label {
+  font-size: 12px;
+  color: rgba(255,255,255,0.55);
+  margin-top: 3px;
+  text-align: center;
+}
+
+/* ── SERVICES PREVIEW ── */
 .services-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -107,6 +206,7 @@
   border-radius: 16px;
   overflow: hidden;
 }
+
 .service-tile {
   background: var(--bg2);
   padding: 2.5rem;
@@ -114,7 +214,9 @@
   text-decoration: none;
   display: block;
 }
+
 .service-tile:hover { background: var(--surface); }
+
 .service-icon {
   width: 48px; height: 48px;
   border-radius: 10px;
@@ -123,7 +225,9 @@
   margin-bottom: 1.5rem;
   background: var(--surface);
 }
+
 .service-icon svg { width: 22px; height: 22px; }
+
 .service-tile h3 {
   font-family: var(--ff-head);
   font-size: 1.1rem;
@@ -131,12 +235,19 @@
   color: var(--text);
   margin-bottom: 0.6rem;
 }
+
 .service-tile p { font-size: 14px; color: var(--text2); line-height: 1.6; }
-.tile-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--accent); margin-top: 1.25rem; text-decoration: none; transition: gap 0.2s; }
+
+.tile-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 13px; color: var(--accent); margin-top: 1.25rem;
+  text-decoration: none; transition: gap 0.2s;
+}
 .tile-link:hover { gap: 10px; }
 
-/* WHY SECTION */
+/* ── WHY SECTION ── */
 .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+
 .why-left h2 {
   font-family: var(--ff-head);
   font-size: clamp(2rem, 4vw, 3rem);
@@ -145,8 +256,11 @@
   line-height: 1.15;
   margin-bottom: 1.5rem;
 }
+
 .why-left p { color: var(--text2); font-size: 1rem; line-height: 1.8; margin-bottom: 2rem; }
+
 .pillars { display: flex; flex-direction: column; gap: 1rem; }
+
 .pillar {
   display: flex; align-items: flex-start; gap: 1rem;
   padding: 1.25rem 1.5rem;
@@ -154,12 +268,14 @@
   border: 0.5px solid var(--border);
   border-radius: 10px;
 }
+
 .pillar-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); margin-top: 7px; flex-shrink: 0; }
 .pillar h4 { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 3px; }
 .pillar p { font-size: 13px; color: var(--text2); }
 
-/* PROCESS */
+/* ── PROCESS ── */
 .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; position: relative; }
+
 .process-steps::before {
   content: '';
   position: absolute;
@@ -167,7 +283,9 @@
   height: 0.5px;
   background: linear-gradient(90deg, transparent, var(--border2) 20%, var(--border2) 80%, transparent);
 }
+
 .step { text-align: center; position: relative; }
+
 .step-num {
   width: 56px; height: 56px;
   border-radius: 50%;
@@ -181,10 +299,11 @@
   margin: 0 auto 1.25rem;
   position: relative; z-index: 1;
 }
+
 .step h4 { font-family: var(--ff-head); font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 0.5rem; }
 .step p { font-size: 13px; color: var(--text2); }
 
-/* CTA BAND */
+/* ── CTA BAND ── */
 .cta-band {
   background: var(--surface);
   border-top: 0.5px solid var(--border);
@@ -194,11 +313,13 @@
   position: relative;
   overflow: hidden;
 }
+
 .cta-band::before {
   content: '';
   position: absolute; inset: 0;
   background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(79,142,247,0.06) 0%, transparent 70%);
 }
+
 .cta-band h2 {
   font-family: var(--ff-head);
   font-size: clamp(2rem, 4vw, 3.2rem);
@@ -207,12 +328,14 @@
   margin-bottom: 1rem;
   position: relative;
 }
+
 .cta-band p { color: var(--text2); font-size: 1.1rem; margin-bottom: 2.5rem; position: relative; }
 .cta-actions { display: flex; justify-content: center; gap: 1rem; position: relative; }
 
+/* ── RESPONSIVE ── */
 @media (max-width: 900px) {
   .hero { padding: 0 1.5rem; }
-  .hero-stats { gap: 2rem; flex-wrap: wrap; }
+  .hero-stats { gap: 2rem; }
   .services-grid { grid-template-columns: 1fr; }
   .why-grid { grid-template-columns: 1fr; }
   .process-steps { grid-template-columns: repeat(2,1fr); }
@@ -220,13 +343,20 @@
   .cta-band { padding: 4rem 1.5rem; }
   .cta-actions { flex-direction: column; align-items: center; }
 }
+
+@media (max-width: 600px) {
+  nav { padding: 0 1.25rem; height: 68px; }
+  .nav-logo img { height: 40px; }
+  .hero-stats { gap: 1.5rem; }
+}
 </style>
 </head>
 <body>
 
+<!-- NAV: logo is prominent at the top left -->
 <nav>
   <a href="index.html" class="nav-logo">
-    <img src="https://www.fortius.cloud/logo.png" alt="Fortius Technologies">
+    <img src="https://www.fortius.cloud/logo.png" alt="Fortius Technologies Logo">
     <span>Fortius Technologies</span>
   </a>
   <div class="nav-links" id="navLinks">
@@ -240,22 +370,33 @@
   </button>
 </nav>
 
-<!-- HERO -->
+<!-- HERO: full-screen video background -->
 <section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-grid"></div>
+  <!-- Background video (same file already in the repo) -->
+  <video class="hero-video" autoplay muted loop playsinline preload="auto">
+    <source src="background.mp4" type="video/mp4">
+  </video>
+
+  <!-- Darkening overlays -->
+  <div class="hero-overlay"></div>
+  <div class="hero-vignette"></div>
+
   <div class="hero-content">
     <div class="hero-badge">Strategic Technology Partner</div>
+
     <h1>Infrastructure built<br>for <em>your success.</em></h1>
+
     <p class="hero-sub">Fortius Technologies delivers experienced, personalized IT consulting — cloud, security, and development — tailored to your business from day one.</p>
+
     <div class="hero-actions">
       <a href="contact.html" class="btn-primary">Start a Conversation →</a>
       <a href="services.html" class="btn-outline">Explore Services</a>
     </div>
+
     <div class="hero-stats">
       <div>
         <div class="stat-num">Cloud</div>
-        <div class="stat-label">Infrastructure & Migration</div>
+        <div class="stat-label">Infrastructure &amp; Migration</div>
       </div>
       <div>
         <div class="stat-num">Security</div>
@@ -267,7 +408,7 @@
       </div>
       <div>
         <div class="stat-num">IT Ops</div>
-        <div class="stat-label">Managed Services & Support</div>
+        <div class="stat-label">Managed Services &amp; Support</div>
       </div>
     </div>
   </div>
@@ -317,7 +458,7 @@
             <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
           </svg>
         </div>
-        <h3>IT Support & Managed Services</h3>
+        <h3>IT Support &amp; Managed Services</h3>
         <p>Proactive monitoring, expert helpdesk, and strategic oversight to keep your infrastructure running at peak performance.</p>
         <span class="tile-link">Learn more →</span>
       </a>
@@ -426,9 +567,9 @@
 </footer>
 
 <script>
-document.getElementById('hamburger').addEventListener('click', () => {
-  document.getElementById('navLinks').classList.toggle('open');
-});
+  document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
 </script>
 </body>
 </html>
