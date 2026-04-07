@@ -1,84 +1,376 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Services - Fortius Technologies Inc</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body class="sub-page">
-    <header>
-        <div class="container">
-            <a href="index.html">
-                <img src="logo.png" alt="Fortius Technologies Logo" class="logo">
-            </a>
-            <nav id="main-nav">
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </nav>
-            <div class="menu-toggle" id="mobile-menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </header>
-    
-    <main>
-        <section class="hero right-align">
-            <h1>Experienced, Personalized IT Consulting</h1>
-            <p>Let us build the infrastructure for your success!</p>
-            <a href="contact.html" class="cta">Contact Us</a>
-        </section>
-        
-        <section id="services">
-            <h2>Our Services</h2>
-            <p>We offer a range of IT solutions to meet your business needs.</p>
-            <div class="service-grid">
-                <div class="service-item">
-                    <img src="cloud_logo.png" alt="Cloud Solutions" class="service-icon">
-                    <h3>Cloud Solutions</h3>
-                    <p>Harness the power of cloud computing for scalable, secure, and efficient operations.</p>
-                </div>
-                <div class="service-item">
-                    <img src="cybersecurity_logo.jpg" alt="Cybersecurity" class="service-icon">
-                    <h3>Cybersecurity</h3>
-                    <p>Comprehensive protection for your digital assets against evolving cyber threats.</p>
-                </div>
-                <div class="service-item">
-                    <img src="webdev_logo.webp" alt="Web Development" class="service-icon">
-                    <h3>Web Development</h3>
-                    <p>Crafting modern, responsive, and high-performance websites tailored to your vision.</p>
-                </div>
-                <div class="service-item">
-                    <img src="IT_support_logo.webp" alt="IT Support" class="service-icon">
-                    <h3>IT Support & Managed Services</h3>
-                    <p>Proactive monitoring and expert support to keep your IT infrastructure running smoothly.</p>
-                </div>
-            </div>
-        </section>
-    </main>
-    
-    <footer>
-        <p>&copy; 2026 Fortius Technologies Inc. All Rights Reserved.</p>
-    </footer>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Services — Fortius Technologies</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+.page-hero {
+  padding: 10rem 4rem 6rem;
+  background: var(--bg2);
+  border-bottom: 0.5px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.page-hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 50% 60% at 80% 50%, rgba(79,142,247,0.06) 0%, transparent 70%);
+}
+.page-hero-content { max-width: 1100px; margin: 0 auto; position: relative; }
+.page-hero h1 {
+  font-family: var(--ff-head);
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+  max-width: 600px;
+  margin-bottom: 1.25rem;
+}
+.page-hero p { color: var(--text2); font-size: 1.15rem; max-width: 520px; line-height: 1.7; }
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const menuToggle = document.getElementById('mobile-menu');
-            const nav = document.getElementById('main-nav').querySelector('ul');
-            if (menuToggle && nav) {
-                menuToggle.addEventListener('click', () => {
-                    nav.classList.toggle('open');
-                    menuToggle.classList.toggle('open');
-                });
-            }
-        });
-    </script>
+/* SERVICE DETAIL CARDS */
+.service-detail {
+  display: grid;
+  grid-template-columns: 1fr 1.8fr;
+  gap: 4rem;
+  padding: 5rem 0;
+  border-bottom: 0.5px solid var(--border);
+  align-items: start;
+}
+.service-detail:last-of-type { border-bottom: none; }
+.service-detail-label {
+  position: sticky; top: 100px;
+}
+.service-num {
+  font-family: var(--ff-head);
+  font-size: 5rem;
+  font-weight: 800;
+  color: var(--border2);
+  line-height: 1;
+  margin-bottom: 1rem;
+  letter-spacing: -0.04em;
+}
+.service-detail-label h2 {
+  font-family: var(--ff-head);
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+.service-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 100px;
+  border: 0.5px solid rgba(79,142,247,0.4);
+  color: var(--accent2);
+  background: var(--accent-dim);
+}
+.service-detail-body p {
+  color: var(--text2);
+  font-size: 1rem;
+  line-height: 1.8;
+  margin-bottom: 2rem;
+}
+.features-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.feature-item {
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: 8px;
+  padding: 1.25rem;
+  transition: border-color 0.2s;
+}
+.feature-item:hover { border-color: var(--border2); }
+.feature-check {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--accent-dim);
+  border: 0.5px solid rgba(79,142,247,0.35);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 0.75rem;
+}
+.feature-check svg { width: 12px; height: 12px; }
+.feature-item h4 { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
+.feature-item p { font-size: 12px; color: var(--text3); line-height: 1.5; margin: 0; }
+
+/* GOLD SERVICE TAG */
+.service-tag-gold {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 100px;
+  border: 0.5px solid rgba(201,168,76,0.4);
+  color: var(--gold);
+  background: var(--gold-dim);
+}
+
+/* PRICING HINT */
+.pricing-note {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+}
+.pricing-note svg { width: 18px; height: 18px; flex-shrink: 0; color: var(--accent); }
+.pricing-note p { font-size: 13px; color: var(--text2); margin: 0; }
+
+/* CTA BAND */
+.cta-band {
+  background: var(--surface);
+  border-top: 0.5px solid var(--border);
+  padding: 6rem 4rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cta-band::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(79,142,247,0.06) 0%, transparent 70%);
+}
+.cta-band h2 { font-family: var(--ff-head); font-size: clamp(2rem,4vw,3.2rem); font-weight: 700; letter-spacing: -0.03em; margin-bottom: 1rem; position: relative; }
+.cta-band p { color: var(--text2); font-size: 1.1rem; margin-bottom: 2.5rem; position: relative; }
+.cta-actions { display: flex; justify-content: center; gap: 1rem; position: relative; }
+
+@media (max-width: 900px) {
+  .page-hero { padding: 8rem 1.5rem 4rem; }
+  .service-detail { grid-template-columns: 1fr; gap: 2rem; padding: 3.5rem 0; }
+  .service-detail-label { position: static; }
+  .service-num { font-size: 3rem; }
+  .features-grid { grid-template-columns: 1fr; }
+  .cta-band { padding: 4rem 1.5rem; }
+  .cta-actions { flex-direction: column; align-items: center; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="https://www.fortius.cloud/logo.png" alt="Fortius Technologies">
+    <span>Fortius Technologies</span>
+  </a>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html">Home</a>
+    <a href="services.html" class="active">Services</a>
+    <a href="about.html">About</a>
+    <a href="contact.html" class="nav-cta">Contact Us</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-content">
+    <span class="label">Services</span>
+    <h1>IT solutions built around your business.</h1>
+    <p>From cloud infrastructure to cybersecurity, web development to managed support — we bring senior expertise to every engagement.</p>
+  </div>
+</div>
+
+<!-- SERVICE DETAILS -->
+<section class="section" style="padding-top: 3rem; padding-bottom: 3rem;">
+  <div class="section-inner">
+
+    <!-- Cloud -->
+    <div class="service-detail">
+      <div class="service-detail-label">
+        <div class="service-num">01</div>
+        <span class="service-tag">Cloud Solutions</span>
+        <h2 style="margin-top: 1.25rem;">Cloud Infrastructure & Migration</h2>
+      </div>
+      <div class="service-detail-body">
+        <p>Harness the power of cloud computing for scalable, secure, and efficient operations. Whether you're starting from scratch or migrating legacy systems, we architect and deliver cloud environments built for performance and cost efficiency.</p>
+        <div class="features-grid">
+          <div class="feature-item">
+            <div class="feature-check"><svg viewBox="0 0 12 12" fill="none" stroke="#4f8ef7" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>
+            <h4>Cloud Architecture Design</h4>
+            <p>AWS, Azure, and GCP solutions tailored to your workload requirements</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-check"><svg viewBox="0 0 12 12" fill="none" stroke="#4f8ef7" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>
+            <h4>Migration & Lift-and-Shift</h4>
+            <p>Seamless migration from on-premise to cloud with minimal downtime</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-check"><svg viewBox="0 0 12 12" fill="none" stroke="#4f8ef7" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>
+            <h4>Cost Optimization</h4>
+            <p>Right-sizing, reserved instances, and spend analysis to control cloud costs</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-check"><svg viewBox="0 0 12 12" fill="none" stroke="#4f8ef7" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>
+            <h4>DevOps & Automation</h4>
+            <p>CI/CD pipelines, infrastructure-as-code, and deployment automation</p>
+          </div>
+        </div>
+        <div class="pricing-note">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <p>Engagements are scoped after a discovery call. We'll recommend the right cloud path for your specific needs and budget.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cybersecurity -->
+    <div class="service-detail">
+      <div class="service-detail-label">
+        <div class="service-num">02</div>
+        <span class="service-tag-gold">Cybersecurity</span>
+        <h2 style="margin-top: 1.25rem;">Threat Protection & Risk Management</h2>
+      </div>
+      <div class="service-detail-body">
+        <p>The threat landscape evolves daily. Our cybersecurity practice provides comprehensive protection for your digital assets — from proactive risk assessments to real-time monitoring and incident response planning.</p>
+        <div class="features-grid">
+          <div class="feature-item">
+            <div class="feature-check"><svg viewBox="0 0 12 12" fill="none" stroke="#c9a84c" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>
+            <h4>Security Assessments</h4>
+            <p>Vulnerability scanning, penetration testing, and gap analysis against frameworks</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-check"><svg viewBox="0 0 12 12" fill="none" stroke="#c9a84c" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>
+            <h4>Threat Monitoring</h4>
+            <p>24/7 endpoint detection and response with real-time alerting and triage</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-check"><svg viewBox="0 0 12 12" fill="none" stroke="#c9a84c" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>
+            <h4>Compliance Readiness</h4>
+            <p>HIPAA, SOC 2, NIST, and industry-specific compliance advisory</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-check"><svg viewBox="0 0 12 12" fill="none" stroke="#c9a84c" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>
+            <h4>Incident Response</h4>
+            <p>Playbooks, tabletop exercises, and active response when threats materialize</p>
+          </div>
+        </div>
+        <div class="pricing-note">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <p>Available as a one-time assessment or an ongoing retainer. We'll help you determine the right level of coverage for your risk profile.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Web Dev -->
+    <div class="service-detail">
+      <div class="service-detail-label">
+        <div class="service-num">03</div>
+        <span class="service-tag">Web Development</span>
+        <h2 style="margin-top: 1.25rem;">Modern Web Design & Development</h2>
+      </div>
+      <div class="service-detail-body">
+        <p>Your digital presence matters. We design and build websites that are fast, responsive, and purpose-built to represent your brand and serve your customers — from marketing sites to custom web applications.</p>
+        <div class="features-grid">
+          <div class="feature-item">
+            <div class="feature-check"><svg viewBox="0 0 12 12" fill="none" stroke="#4f8ef7" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>
+            <h4>Custom Website Design</h4>
+            <p>Tailored UX/UI design built around your brand identity and user goals</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-check"><svg viewBox="0 0 12 12" fill="none" stroke="#4f8ef7" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>
+            <h4>Responsive & Accessible</h4>
+            <p>Mobile-first builds optimized for all devices and accessibility standards</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-check"><svg viewBox="0 0 12 12" fill="none" stroke="#4f8ef7" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>
+            <h4>Performance Optimization</h4>
+            <p>Core Web Vitals tuning, CDN setup, and page speed best practices</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-check"><svg viewBox="0 0 12 12" fill="none" stroke="#4f8ef7" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>
+            <h4>Web Applications</h4>
+            <p>Custom portals, dashboards, and internal tools built to spec</p>
+          </div>
+        </div>
+        <div class="pricing-note">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <p>Projects are scoped by complexity, feature set, and timeline. Contact us for a no-obligation project estimate.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- IT Support -->
+    <div class="service-detail">
+      <div class="service-detail-label">
+        <div class="service-num">04</div>
+        <span class="service-tag-gold">Managed Services</span>
+        <h2 style="margin-top: 1.25rem;">IT Support & Managed Services</h2>
+      </div>
+      <div class="service-detail-body">
+        <p>Don't let infrastructure issues slow your business down. Our managed services practice provides proactive monitoring, expert helpdesk support, and strategic IT planning so you can focus on what matters.</p>
+        <div class="features-grid">
+          <div class="feature-item">
+            <div class="feature-check"><svg viewBox="0 0 12 12" fill="none" stroke="#c9a84c" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>
+            <h4>Proactive Monitoring</h4>
+            <p>24/7 infrastructure monitoring with alert triage and automated remediation</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-check"><svg viewBox="0 0 12 12" fill="none" stroke="#c9a84c" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>
+            <h4>Helpdesk Support</h4>
+            <p>Responsive support desk for your team's day-to-day IT issues and requests</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-check"><svg viewBox="0 0 12 12" fill="none" stroke="#c9a84c" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>
+            <h4>Patch & Update Management</h4>
+            <p>Automated patching schedules to keep systems current and vulnerabilities closed</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-check"><svg viewBox="0 0 12 12" fill="none" stroke="#c9a84c" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>
+            <h4>Strategic IT Advisory</h4>
+            <p>Quarterly reviews and technology roadmap planning aligned to your business growth</p>
+          </div>
+        </div>
+        <div class="pricing-note">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <p>Managed services are offered on monthly retainer plans sized to your organization. Let's find the right fit together.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+  <h2>Not sure what you need?</h2>
+  <p>Start with a conversation. We'll help you figure out the right path forward.</p>
+  <div class="cta-actions">
+    <a href="contact.html" class="btn-primary">Talk to an Expert →</a>
+    <a href="about.html" class="btn-outline">Learn About Us</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-left">
+    <img src="https://www.fortius.cloud/logo.png" alt="Fortius Technologies">
+    <span>Fortius Technologies</span>
+  </div>
+  <nav class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <span class="footer-copy">© 2026 Fortius Technologies Inc. All Rights Reserved.</span>
+</footer>
+
+<script>
+document.getElementById('hamburger').addEventListener('click', () => {
+  document.getElementById('navLinks').classList.toggle('open');
+});
+</script>
 </body>
 </html>
