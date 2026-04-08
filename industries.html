@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Industries — Fortius Technologies</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0d0d0d;--ink2:#4a4a4a;--ink3:#888;
+  --cream:#fdf8f2;--cream2:#f5ede0;--cream3:#e6d9c8;
+  --blue:#1a3a6b;--blue2:#2452a0;--blue-soft:#eef4ff;--blue-mid:#c8daf8;
+  --sage:#2d5a3d;--sage-soft:#edf4f0;--sage-mid:#b8dcc8;
+  --dark:#0f0f0f;
+  --serif:'Instrument Serif',Georgia,serif;
+  --sans:'Inter',system-ui,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--cream);color:var(--ink);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+
+/* NAV */
+nav{position:sticky;top:0;left:0;right:0;z-index:9999;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:#fdf8f2;border-bottom:1.5px solid #e6d9c8;box-sizing:border-box;font-family:Inter,system-ui,sans-serif}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;flex-shrink:0}
+.nav-logo svg{display:block;flex-shrink:0}
+.nav-logo-name{font-size:15px;font-weight:700;color:#0d0d0d;white-space:nowrap;font-family:Inter,system-ui,sans-serif}
+.nav-links{display:flex;align-items:center;gap:32px;flex-shrink:0}
+.nav-links a{font-size:13px;font-weight:400;color:#555;text-decoration:none;font-family:Inter,system-ui,sans-serif;transition:color .15s}
+.nav-links a:hover{color:#0d0d0d}
+.nav-links a.active{color:#0d0d0d;font-weight:600}
+.nav-actions{display:flex;align-items:center;flex-shrink:0}
+.btn-cta{font-size:13px;font-weight:600;color:#fff;background:#1a3a6b;text-decoration:none;padding:10px 22px;border-radius:100px;font-family:Inter,system-ui,sans-serif;white-space:nowrap;display:inline-block}
+.btn-cta:hover{background:#2452a0}
+.ham{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:8px}
+.ham span{display:block;width:22px;height:2px;background:#0d0d0d;border-radius:2px}
+.mob-nav{display:none;position:sticky;top:72px;left:0;right:0;background:#fdf8f2;padding:20px 32px;border-bottom:1px solid #e6d9c8;flex-direction:column;gap:18px;z-index:9998}
+.mob-nav.open{display:flex}
+.mob-nav a{font-size:16px;color:#0d0d0d;text-decoration:none;font-family:Inter,system-ui,sans-serif}
+@media(max-width:900px){nav{padding:0 20px}.nav-links,.nav-actions{display:none}.ham{display:flex}}
+
+/* PAGE HERO */
+.page-hero{
+  background:var(--blue-soft);
+  border-bottom:1.5px solid var(--blue-mid);
+  padding:6rem 3.5rem 5rem;
+  position:relative;overflow:hidden;
+}
+.page-hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 55% 70% at 80% 40%,rgba(36,82,160,.08) 0%,transparent 65%),
+             radial-gradient(ellipse 40% 50% at 10% 80%,rgba(45,90,61,.05) 0%,transparent 60%);
+  pointer-events:none;
+}
+.page-hero::after{
+  content:'';position:absolute;inset:0;
+  background-image:linear-gradient(rgba(26,58,107,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(26,58,107,.04) 1px,transparent 1px);
+  background-size:52px 52px;pointer-events:none;
+}
+.ph-inner{max-width:1280px;margin:0 auto;position:relative;z-index:1}
+.ph-tag{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--blue2);margin-bottom:1.5rem;display:flex;align-items:center;gap:10px}
+.ph-tag span{width:24px;height:1.5px;background:var(--blue2)}
+.page-hero h1{font-family:var(--serif);font-size:clamp(2.8rem,5.5vw,5rem);font-weight:400;line-height:1.08;letter-spacing:-.025em;max-width:760px;margin-bottom:1.5rem}
+.page-hero h1 em{font-style:italic;color:var(--blue)}
+.page-hero p{font-size:1.1rem;font-weight:300;color:var(--ink2);max-width:560px;line-height:1.8}
+
+/* INDUSTRY FILTER TABS */
+.filter-bar{
+  background:#fff;
+  border-bottom:1px solid var(--cream3);
+  padding:0 3.5rem;
+  display:flex;gap:0;overflow-x:auto;
+}
+.filter-bar::-webkit-scrollbar{display:none}
+.filter-btn{
+  font-size:13px;font-weight:500;
+  color:var(--ink3);
+  background:none;border:none;
+  padding:1.25rem 1.5rem;
+  cursor:pointer;white-space:nowrap;
+  border-bottom:2px solid transparent;
+  transition:color .2s,border-color .2s;
+  font-family:var(--sans);
+}
+.filter-btn:hover{color:var(--blue)}
+.filter-btn.active{color:var(--blue);border-bottom-color:var(--blue);font-weight:600}
+
+/* INDUSTRY GRID */
+.industries-section{padding:5rem 3.5rem;max-width:1280px;margin:0 auto}
+.industries-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+
+.industry-card{
+  background:#fff;
+  border:1.5px solid var(--cream3);
+  border-radius:14px;
+  padding:2.25rem;
+  text-decoration:none;color:inherit;
+  display:flex;flex-direction:column;
+  transition:border-color .25s,transform .25s,box-shadow .25s;
+  cursor:pointer;
+}
+.industry-card:hover{
+  border-color:var(--blue-mid);
+  transform:translateY(-4px);
+  box-shadow:0 12px 40px rgba(26,58,107,.1);
+}
+.industry-card.sage:hover{border-color:var(--sage-mid);box-shadow:0 12px 40px rgba(45,90,61,.1)}
+
+.card-icon{
+  width:52px;height:52px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:1.5rem;flex-shrink:0;
+}
+.card-icon svg{width:26px;height:26px}
+
+.card-num{font-family:var(--serif);font-style:italic;font-size:.85rem;color:var(--ink3);margin-bottom:.5rem}
+.card-title{font-family:var(--serif);font-size:1.35rem;font-weight:400;color:var(--ink);letter-spacing:-.01em;margin-bottom:.75rem;line-height:1.25}
+.card-desc{font-size:13.5px;color:var(--ink2);line-height:1.7;flex:1}
+.card-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.25rem}
+.card-tag{font-size:11px;font-weight:500;padding:4px 10px;border-radius:100px;letter-spacing:.03em}
+.card-link{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:500;color:var(--blue);margin-top:1.5rem;transition:gap .2s}
+.industry-card:hover .card-link{gap:10px}
+.card-link svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* STATS BAND */
+.stats-band{
+  background:var(--blue);
+  padding:5rem 3.5rem;
+}
+.stats-inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.sb-stat{padding:0 2rem;border-right:1px solid rgba(255,255,255,.15);text-align:center}
+.sb-stat:first-child{padding-left:0}
+.sb-stat:last-child{border-right:none}
+.sb-val{font-family:var(--serif);font-size:3rem;font-weight:400;color:#fff;line-height:1;margin-bottom:.4rem}
+.sb-lbl{font-size:13px;color:rgba(255,255,255,.55);line-height:1.5}
+
+/* FEATURED DETAIL — click to expand */
+.industry-detail{
+  display:none;
+  background:var(--blue-soft);
+  border:1.5px solid var(--blue-mid);
+  border-radius:14px;
+  padding:2.5rem;
+  grid-column:1/-1;
+  margin-top:.5rem;
+  animation:fadeIn .25s ease;
+}
+.industry-detail.open{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.detail-label{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--blue2);margin-bottom:.75rem}
+.detail-title{font-family:var(--serif);font-size:2rem;font-weight:400;letter-spacing:-.02em;line-height:1.2;margin-bottom:1.25rem}
+.detail-title em{font-style:italic;color:var(--blue)}
+.detail-desc{font-size:15px;color:var(--ink2);line-height:1.8;margin-bottom:1.5rem}
+.detail-close{font-size:13px;font-weight:500;color:var(--ink3);background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:6px;padding:0;font-family:var(--sans)}
+.detail-close:hover{color:var(--ink)}
+.detail-services{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+.detail-services li{display:flex;align-items:center;gap:.75rem;font-size:14px;color:var(--ink2)}
+.detail-services li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--blue2);flex-shrink:0}
+.detail-cta{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:#fff;background:var(--blue);text-decoration:none;padding:13px 28px;border-radius:100px;margin-top:2rem;transition:background .2s}
+.detail-cta:hover{background:var(--blue2)}
+.detail-cta svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* APPROACH SECTION */
+.approach{padding:7rem 3.5rem;background:var(--cream2)}
+.approach-inner{max-width:1280px;margin:0 auto}
+.s-lbl{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:.6rem}
+.s-title{font-family:var(--serif);font-size:clamp(2rem,3.5vw,2.8rem);font-weight:400;line-height:1.15;letter-spacing:-.02em;margin-bottom:3rem}
+.s-title em{font-style:italic;color:var(--blue)}
+.approach-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.approach-card{background:#fff;border:1px solid var(--cream3);border-radius:12px;padding:2rem}
+.ap-n{font-family:var(--serif);font-size:2.5rem;font-weight:400;color:rgba(26,58,107,.1);line-height:1;margin-bottom:1rem}
+.approach-card h4{font-family:var(--serif);font-size:1.15rem;font-weight:400;margin-bottom:.6rem;letter-spacing:-.01em}
+.approach-card p{font-size:13.5px;color:var(--ink2);line-height:1.65}
+
+/* CTA */
+.cta-section{background:var(--dark);padding:7rem 3.5rem;text-align:center}
+.cta-inner{max-width:660px;margin:0 auto}
+.cta-inner h2{font-family:var(--serif);font-size:clamp(2.4rem,5vw,3.8rem);font-weight:400;color:#fff;letter-spacing:-.025em;line-height:1.1;margin-bottom:1.25rem}
+.cta-inner h2 em{font-style:italic;color:var(--blue-mid)}
+.cta-inner p{font-size:1rem;color:rgba(255,255,255,.45);margin-bottom:2.5rem;line-height:1.75}
+.cta-btns{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap}
+.btn-white{font-size:14px;font-weight:600;color:var(--ink);background:#fff;text-decoration:none;padding:13px 28px;border-radius:100px}
+.btn-white:hover{opacity:.88}
+.btn-woutline{font-size:14px;color:#fff;text-decoration:none;padding:12px 26px;border-radius:100px;border:1px solid rgba(255,255,255,.3)}
+.btn-woutline:hover{border-color:rgba(255,255,255,.7)}
+
+/* FOOTER */
+footer{background:var(--cream);border-top:1px solid var(--cream3);padding:2.5rem 3.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.25rem}
+.ft-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.ft-logo svg{display:block}
+.ft-logo span{font-size:13px;font-weight:500;color:var(--ink)}
+.ft-links{display:flex;gap:2rem}
+.ft-links a{font-size:13px;color:var(--ink3);text-decoration:none;transition:color .2s}
+.ft-links a:hover{color:var(--ink)}
+.ft-copy{font-size:12px;color:var(--ink3)}
+
+@media(max-width:960px){
+  .page-hero{padding:4rem 1.5rem 3rem}
+  .filter-bar{padding:0 1.5rem}
+  .industries-section{padding:3.5rem 1.5rem}
+  .industries-grid{grid-template-columns:1fr}
+  .industry-detail.open{grid-template-columns:1fr}
+  .stats-band{padding:3.5rem 1.5rem}
+  .stats-inner{grid-template-columns:1fr 1fr;gap:2.5rem}
+  .sb-stat{border-right:none;padding:0}
+  .approach{padding:4rem 1.5rem}
+  .approach-grid{grid-template-columns:1fr}
+  .cta-section{padding:4rem 1.5rem}
+  footer{padding:2rem 1.5rem;flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/">
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="6" fill="#1a3a6b"/><path d="M8 10h16M8 16h10M8 22h13" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/></svg>
+    <span class="nav-logo-name">Fortius Technologies</span>
+  </a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/services.html">Services</a>
+    <a href="/industries.html" class="active">Industries</a>
+    <a href="/about.html">About</a>
+    <a href="/contact.html">Contact</a>
+  </div>
+  <div class="nav-actions">
+    <a href="/contact.html" class="btn-cta">Get in Touch</a>
+  </div>
+  <button class="ham" id="ham" onclick="document.getElementById('mob').classList.toggle('open')"><span></span><span></span><span></span></button>
+</nav>
+<div class="mob-nav" id="mob">
+  <a href="/">Home</a>
+  <a href="/services.html">Services</a>
+  <a href="/industries.html">Industries</a>
+  <a href="/about.html">About</a>
+  <a href="/contact.html">Contact</a>
+  <a href="/contact.html" class="btn-cta" style="width:fit-content">Get in Touch</a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="ph-inner">
+    <div class="ph-tag"><span></span>Industries</div>
+    <h1>Technology expertise built<br>for <em>your industry.</em></h1>
+    <p>Every sector has its own pressures, regulations, and technology challenges. We bring deep domain knowledge alongside our IT expertise — so our solutions fit the way your business actually works.</p>
+  </div>
+</div>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <button class="filter-btn active" onclick="filterCards('all', this)">All Industries</button>
+  <button class="filter-btn" onclick="filterCards('healthcare', this)">Healthcare</button>
+  <button class="filter-btn" onclick="filterCards('financial', this)">Financial Services</button>
+  <button class="filter-btn" onclick="filterCards('technology', this)">Technology</button>
+  <button class="filter-btn" onclick="filterCards('manufacturing', this)">Manufacturing</button>
+  <button class="filter-btn" onclick="filterCards('government', this)">Government</button>
+  <button class="filter-btn" onclick="filterCards('education', this)">Education</button>
+</div>
+
+<!-- INDUSTRIES GRID -->
+<section class="industries-section">
+  <div class="industries-grid" id="grid">
+
+    <!-- Healthcare -->
+    <div class="industry-card" data-cat="healthcare" onclick="toggleDetail('healthcare')">
+      <div class="card-icon" style="background:#edf4f0;"><svg viewBox="0 0 26 26" fill="none" stroke="#2d5a3d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2a11 11 0 1 0 0 22A11 11 0 0 0 13 2z"/><path d="M13 8v10M8 13h10"/></svg></div>
+      <div class="card-num">01</div>
+      <div class="card-title">Healthcare & Life Sciences</div>
+      <div class="card-desc">From EHR integrations to HIPAA-compliant cloud infrastructure, we help healthcare organizations modernize safely — protecting patient data while improving operational efficiency.</div>
+      <div class="card-tags">
+        <span class="card-tag" style="background:#edf4f0;color:#2d5a3d">HIPAA Compliance</span>
+        <span class="card-tag" style="background:#edf4f0;color:#2d5a3d">EHR Integration</span>
+        <span class="card-tag" style="background:#edf4f0;color:#2d5a3d">Cloud Migration</span>
+      </div>
+      <div class="card-link">Explore <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div>
+    </div>
+
+    <!-- Detail panel: Healthcare -->
+    <div class="industry-detail" id="detail-healthcare">
+      <div>
+        <div class="detail-label">Healthcare & Life Sciences</div>
+        <h2 class="detail-title">Technology that protects patients and <em>powers care.</em></h2>
+        <p class="detail-desc">Healthcare organizations face unique pressures — strict regulatory requirements, complex legacy systems, and the constant need to protect sensitive patient data while delivering better outcomes. We bring compliance-first thinking to every engagement.</p>
+        <a href="/contact.html" class="detail-cta">Talk to a Healthcare Expert <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
+      <div>
+        <div class="detail-label">What We Do</div>
+        <ul class="detail-services">
+          <li>HIPAA-compliant cloud infrastructure design & migration</li>
+          <li>EHR/EMR system integration and data interoperability</li>
+          <li>Cybersecurity assessments and HIPAA risk analysis</li>
+          <li>Patient portal and telehealth application development</li>
+          <li>Managed IT services for clinical environments</li>
+          <li>Disaster recovery and business continuity planning</li>
+        </ul>
+      </div>
+      <button class="detail-close" onclick="closeDetail('healthcare')">✕ Close</button>
+    </div>
+
+    <!-- Financial Services -->
+    <div class="industry-card" data-cat="financial" onclick="toggleDetail('financial')">
+      <div class="card-icon" style="background:#eef4ff;"><svg viewBox="0 0 26 26" fill="none" stroke="#1a3a6b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="22" height="15" rx="2"/><path d="M16 11a3 3 0 0 0-6 0v8"/><path d="M2 11h22"/></svg></div>
+      <div class="card-num">02</div>
+      <div class="card-title">Financial Services & Banking</div>
+      <div class="card-desc">We help financial institutions modernize legacy infrastructure, strengthen cybersecurity posture, and build compliant digital products — from fintech startups to regional banks and insurance firms.</div>
+      <div class="card-tags">
+        <span class="card-tag" style="background:#eef4ff;color:#2452a0">SOC 2</span>
+        <span class="card-tag" style="background:#eef4ff;color:#2452a0">PCI-DSS</span>
+        <span class="card-tag" style="background:#eef4ff;color:#2452a0">Core Banking</span>
+      </div>
+      <div class="card-link">Explore <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div>
+    </div>
+
+    <div class="industry-detail" id="detail-financial">
+      <div>
+        <div class="detail-label">Financial Services & Banking</div>
+        <h2 class="detail-title">Secure, compliant, and built for <em>modern finance.</em></h2>
+        <p class="detail-desc">Financial institutions operate under intense scrutiny. We bring enterprise-grade security thinking and deep compliance knowledge to every engagement — helping you modernize without exposing your organization to risk.</p>
+        <a href="/contact.html" class="detail-cta">Talk to a Finance Expert <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
+      <div>
+        <div class="detail-label">What We Do</div>
+        <ul class="detail-services">
+          <li>SOC 2, PCI-DSS, and regulatory compliance advisory</li>
+          <li>Core banking and legacy system modernization</li>
+          <li>Cybersecurity threat detection and fraud prevention</li>
+          <li>Cloud migration for financial workloads</li>
+          <li>Fintech application development and API integration</li>
+          <li>Zero trust security architecture implementation</li>
+        </ul>
+      </div>
+      <button class="detail-close" onclick="closeDetail('financial')">✕ Close</button>
+    </div>
+
+    <!-- Technology -->
+    <div class="industry-card" data-cat="technology" onclick="toggleDetail('technology')">
+      <div class="card-icon" style="background:#eef4ff;"><svg viewBox="0 0 26 26" fill="none" stroke="#2452a0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 8 4 4 22 4 22 8"/><line x1="13" y1="4" x2="13" y2="22"/><rect x="4" y="8" width="8" height="8" rx="1"/></svg></div>
+      <div class="card-num">03</div>
+      <div class="card-title">Technology & SaaS Companies</div>
+      <div class="card-desc">Fast-growing tech companies need infrastructure that scales with them. We help SaaS companies and tech firms build resilient platforms, implement DevOps practices, and maintain the security posture that enterprise customers demand.</div>
+      <div class="card-tags">
+        <span class="card-tag" style="background:#eef4ff;color:#2452a0">DevOps</span>
+        <span class="card-tag" style="background:#eef4ff;color:#2452a0">Kubernetes</span>
+        <span class="card-tag" style="background:#eef4ff;color:#2452a0">SaaS Architecture</span>
+      </div>
+      <div class="card-link">Explore <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div>
+    </div>
+
+    <div class="industry-detail" id="detail-technology">
+      <div>
+        <div class="detail-label">Technology & SaaS Companies</div>
+        <h2 class="detail-title">Infrastructure and security built to <em>scale fast.</em></h2>
+        <p class="detail-desc">When you're growing quickly, the last thing you want is infrastructure holding you back — or a security incident derailing your momentum. We embed with tech teams to build the foundations that let you move fast without breaking things.</p>
+        <a href="/contact.html" class="detail-cta">Talk to a Tech Expert <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
+      <div>
+        <div class="detail-label">What We Do</div>
+        <ul class="detail-services">
+          <li>Cloud architecture and AWS/Azure/GCP optimization</li>
+          <li>CI/CD pipelines and DevOps automation</li>
+          <li>Security-by-design for SaaS platforms</li>
+          <li>Kubernetes and container infrastructure</li>
+          <li>SOC 2 readiness and compliance automation</li>
+          <li>Performance engineering and cost optimization</li>
+        </ul>
+      </div>
+      <button class="detail-close" onclick="closeDetail('technology')">✕ Close</button>
+    </div>
+
+    <!-- Manufacturing -->
+    <div class="industry-card" data-cat="manufacturing" onclick="toggleDetail('manufacturing')">
+      <div class="card-icon" style="background:#fdf0ec;"><svg viewBox="0 0 26 26" fill="none" stroke="#7a2e1a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="14" width="6" height="8" rx="1"/><rect x="10" y="8" width="6" height="14" rx="1"/><rect x="18" y="4" width="6" height="18" rx="1"/></svg></div>
+      <div class="card-num">04</div>
+      <div class="card-title">Manufacturing & Industrial</div>
+      <div class="card-desc">Manufacturing organizations face unique IT challenges — connecting OT and IT systems, managing distributed plant environments, and maintaining operational continuity while modernizing aging infrastructure.</div>
+      <div class="card-tags">
+        <span class="card-tag" style="background:#fdf0ec;color:#7a2e1a">OT/IT Convergence</span>
+        <span class="card-tag" style="background:#fdf0ec;color:#7a2e1a">IIoT</span>
+        <span class="card-tag" style="background:#fdf0ec;color:#7a2e1a">ERP Integration</span>
+      </div>
+      <div class="card-link">Explore <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div>
+    </div>
+
+    <div class="industry-detail" id="detail-manufacturing">
+      <div>
+        <div class="detail-label">Manufacturing & Industrial</div>
+        <h2 class="detail-title">Connecting the plant floor to the <em>digital enterprise.</em></h2>
+        <p class="detail-desc">Modern manufacturing demands technology that connects operations across facilities, provides real-time visibility, and does so without exposing operational technology to cyber threats. We understand the intersection of IT and OT.</p>
+        <a href="/contact.html" class="detail-cta">Talk to a Manufacturing Expert <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
+      <div>
+        <div class="detail-label">What We Do</div>
+        <ul class="detail-services">
+          <li>OT/IT network segmentation and security</li>
+          <li>ERP system integration and data migration</li>
+          <li>IIoT platform implementation and monitoring</li>
+          <li>Managed IT services for multi-site operations</li>
+          <li>Operational technology cybersecurity assessments</li>
+          <li>Business continuity and disaster recovery planning</li>
+        </ul>
+      </div>
+      <button class="detail-close" onclick="closeDetail('manufacturing')">✕ Close</button>
+    </div>
+
+    <!-- Government -->
+    <div class="industry-card" data-cat="government" onclick="toggleDetail('government')">
+      <div class="card-icon" style="background:#eef4ff;"><svg viewBox="0 0 26 26" fill="none" stroke="#1a3a6b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 22h20M4 22V10M22 22V10M12 2l10 8H2l10-8z"/><rect x="9" y="14" width="8" height="8"/></svg></div>
+      <div class="card-num">05</div>
+      <div class="card-title">Government & Public Sector</div>
+      <div class="card-desc">Public sector organizations require rigorous security, strict compliance, and long-term reliability. We help government agencies modernize citizen-facing services, strengthen cybersecurity, and migrate to compliant cloud environments.</div>
+      <div class="card-tags">
+        <span class="card-tag" style="background:#eef4ff;color:#2452a0">FedRAMP</span>
+        <span class="card-tag" style="background:#eef4ff;color:#2452a0">FISMA</span>
+        <span class="card-tag" style="background:#eef4ff;color:#2452a0">Gov Cloud</span>
+      </div>
+      <div class="card-link">Explore <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div>
+    </div>
+
+    <div class="industry-detail" id="detail-government">
+      <div>
+        <div class="detail-label">Government & Public Sector</div>
+        <h2 class="detail-title">Secure modernization for <em>public trust.</em></h2>
+        <p class="detail-desc">Government agencies are under pressure to modernize legacy systems, improve citizen experiences, and maintain impeccable security — all while operating within strict procurement and compliance frameworks. We know how to navigate this environment.</p>
+        <a href="/contact.html" class="detail-cta">Talk to a Public Sector Expert <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
+      <div>
+        <div class="detail-label">What We Do</div>
+        <ul class="detail-services">
+          <li>FedRAMP and FISMA compliance advisory</li>
+          <li>Government cloud (AWS GovCloud, Azure Government) migration</li>
+          <li>Citizen-facing web and mobile application development</li>
+          <li>Zero trust network architecture implementation</li>
+          <li>Legacy system modernization and data migration</li>
+          <li>Cybersecurity incident response and recovery</li>
+        </ul>
+      </div>
+      <button class="detail-close" onclick="closeDetail('government')">✕ Close</button>
+    </div>
+
+    <!-- Education -->
+    <div class="industry-card" data-cat="education" onclick="toggleDetail('education')">
+      <div class="card-icon" style="background:#edf4f0;"><svg viewBox="0 0 26 26" fill="none" stroke="#2d5a3d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 10l11-7 11 7-11 7-11-7z"/><path d="M6 12.5v6c0 1.5 3 3 7 3s7-1.5 7-3v-6"/></svg></div>
+      <div class="card-num">06</div>
+      <div class="card-title">Education & Higher Ed</div>
+      <div class="card-desc">Educational institutions need reliable, secure, and accessible technology for students, faculty, and administrators — on campus and remote. We help schools and universities build modern digital learning environments that don't break budgets.</div>
+      <div class="card-tags">
+        <span class="card-tag" style="background:#edf4f0;color:#2d5a3d">FERPA</span>
+        <span class="card-tag" style="background:#edf4f0;color:#2d5a3d">LMS Integration</span>
+        <span class="card-tag" style="background:#edf4f0;color:#2d5a3d">EdTech</span>
+      </div>
+      <div class="card-link">Explore <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div>
+    </div>
+
+    <div class="industry-detail" id="detail-education">
+      <div>
+        <div class="detail-label">Education & Higher Ed</div>
+        <h2 class="detail-title">Technology that empowers learning at <em>every level.</em></h2>
+        <p class="detail-desc">From K-12 districts to large research universities, education technology needs to be reliable, inclusive, and secure. We help institutions build the digital infrastructure that supports modern learning — without overwhelming IT teams or budgets.</p>
+        <a href="/contact.html" class="detail-cta">Talk to an Education Expert <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
+      <div>
+        <div class="detail-label">What We Do</div>
+        <ul class="detail-services">
+          <li>FERPA-compliant cloud infrastructure and data governance</li>
+          <li>LMS integration and EdTech platform development</li>
+          <li>Campus network design and wireless infrastructure</li>
+          <li>Managed IT helpdesk for faculty and students</li>
+          <li>Cybersecurity awareness training and incident response</li>
+          <li>Student portal and administrative application development</li>
+        </ul>
+      </div>
+      <button class="detail-close" onclick="closeDetail('education')">✕ Close</button>
+    </div>
+
+    <!-- Professional Services -->
+    <div class="industry-card" data-cat="technology" onclick="toggleDetail('professional')">
+      <div class="card-icon" style="background:#f5ede0;"><svg viewBox="0 0 26 26" fill="none" stroke="#7a5c1a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="13" cy="8" r="4"/><path d="M5 22c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div>
+      <div class="card-num">07</div>
+      <div class="card-title">Professional Services</div>
+      <div class="card-desc">Law firms, consulting practices, and accounting firms handle sensitive client data daily. We help professional services organizations build secure, reliable IT infrastructure that meets client expectations and industry standards.</div>
+      <div class="card-tags">
+        <span class="card-tag" style="background:#f5ede0;color:#7a5c1a">Data Privacy</span>
+        <span class="card-tag" style="background:#f5ede0;color:#7a5c1a">Secure Collab</span>
+        <span class="card-tag" style="background:#f5ede0;color:#7a5c1a">Remote Work</span>
+      </div>
+      <div class="card-link">Explore <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div>
+    </div>
+
+    <div class="industry-detail" id="detail-professional">
+      <div>
+        <div class="detail-label">Professional Services</div>
+        <h2 class="detail-title">IT that protects your clients and <em>your reputation.</em></h2>
+        <p class="detail-desc">Professional service firms depend on confidentiality and trust. A data breach or technology failure isn't just an IT problem — it's a client relationship problem. We build IT environments that protect sensitive information and keep your teams productive.</p>
+        <a href="/contact.html" class="detail-cta">Talk to an Expert <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
+      <div>
+        <div class="detail-label">What We Do</div>
+        <ul class="detail-services">
+          <li>Secure document management and collaboration platforms</li>
+          <li>Remote and hybrid work infrastructure design</li>
+          <li>Endpoint security and data loss prevention</li>
+          <li>IT support and managed services for lean IT teams</li>
+          <li>Client portal and extranet development</li>
+          <li>Business continuity and backup solutions</li>
+        </ul>
+      </div>
+      <button class="detail-close" onclick="closeDetail('professional')">✕ Close</button>
+    </div>
+
+    <!-- Retail & E-commerce -->
+    <div class="industry-card" data-cat="technology" onclick="toggleDetail('retail')">
+      <div class="card-icon" style="background:#eef4ff;"><svg viewBox="0 0 26 26" fill="none" stroke="#2452a0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="23" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
+      <div class="card-num">08</div>
+      <div class="card-title">Retail & E-commerce</div>
+      <div class="card-desc">Retail businesses need IT that scales during peak seasons, secures payment data, and powers seamless omnichannel experiences. We help retailers build the technology backbone that keeps customers coming back.</div>
+      <div class="card-tags">
+        <span class="card-tag" style="background:#eef4ff;color:#2452a0">PCI-DSS</span>
+        <span class="card-tag" style="background:#eef4ff;color:#2452a0">Omnichannel</span>
+        <span class="card-tag" style="background:#eef4ff;color:#2452a0">Scalable Cloud</span>
+      </div>
+      <div class="card-link">Explore <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div>
+    </div>
+
+    <div class="industry-detail" id="detail-retail">
+      <div>
+        <div class="detail-label">Retail & E-commerce</div>
+        <h2 class="detail-title">Technology built for peak performance and <em>happy customers.</em></h2>
+        <p class="detail-desc">From inventory management to payment security, retail technology touches every part of the customer experience. We help retailers build platforms that scale reliably, protect payment data, and give customers the seamless experience they expect.</p>
+        <a href="/contact.html" class="detail-cta">Talk to a Retail Expert <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
+      <div>
+        <div class="detail-label">What We Do</div>
+        <ul class="detail-services">
+          <li>PCI-DSS compliant payment infrastructure</li>
+          <li>E-commerce platform development and optimization</li>
+          <li>Cloud auto-scaling for seasonal traffic spikes</li>
+          <li>Inventory and ERP system integration</li>
+          <li>Cybersecurity and fraud prevention</li>
+          <li>Omnichannel digital experience development</li>
+        </ul>
+      </div>
+      <button class="detail-close" onclick="closeDetail('retail')">✕ Close</button>
+    </div>
+
+    <!-- Non-profit -->
+    <div class="industry-card" data-cat="government" onclick="toggleDetail('nonprofit')">
+      <div class="card-icon" style="background:#edf4f0;"><svg viewBox="0 0 26 26" fill="none" stroke="#2d5a3d" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+      <div class="card-num">09</div>
+      <div class="card-title">Non-profit & Mission-Driven</div>
+      <div class="card-desc">Non-profits deserve enterprise-quality technology without enterprise pricing. We offer right-sized IT solutions for mission-driven organizations — helping you stretch every dollar while protecting donor data and supporting your programs.</div>
+      <div class="card-tags">
+        <span class="card-tag" style="background:#edf4f0;color:#2d5a3d">Donor Data</span>
+        <span class="card-tag" style="background:#edf4f0;color:#2d5a3d">Cloud Savings</span>
+        <span class="card-tag" style="background:#edf4f0;color:#2d5a3d">Secure Ops</span>
+      </div>
+      <div class="card-link">Explore <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div>
+    </div>
+
+    <div class="industry-detail" id="detail-nonprofit">
+      <div>
+        <div class="detail-label">Non-profit & Mission-Driven</div>
+        <h2 class="detail-title">More impact. <em>Less overhead.</em></h2>
+        <p class="detail-desc">Your mission matters too much to let technology slow it down. We help non-profits build efficient, secure IT environments — taking advantage of non-profit cloud credits, optimized licensing, and right-sized solutions that don't waste precious resources.</p>
+        <a href="/contact.html" class="detail-cta">Talk to an Expert <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </div>
+      <div>
+        <div class="detail-label">What We Do</div>
+        <ul class="detail-services">
+          <li>Non-profit cloud credit setup (AWS, Microsoft, Google)</li>
+          <li>Donor management system integration and security</li>
+          <li>Secure remote work infrastructure for distributed teams</li>
+          <li>Website and donor portal development</li>
+          <li>Managed IT services on non-profit budgets</li>
+          <li>Data backup and business continuity planning</li>
+        </ul>
+      </div>
+      <button class="detail-close" onclick="closeDetail('nonprofit')">✕ Close</button>
+    </div>
+
+  </div><!-- /grid -->
+</section>
+
+<!-- STATS BAND -->
+<div class="stats-band">
+  <div class="stats-inner">
+    <div class="sb-stat"><div class="sb-val">9+</div><div class="sb-lbl">Industries we serve with dedicated expertise</div></div>
+    <div class="sb-stat"><div class="sb-val">100%</div><div class="sb-lbl">Senior-led engagements, every time</div></div>
+    <div class="sb-stat"><div class="sb-val">4</div><div class="sb-lbl">Core service practices across every industry</div></div>
+    <div class="sb-stat"><div class="sb-val">Security-<br>First</div><div class="sb-lbl">Built into every engagement by default</div></div>
+  </div>
+</div>
+
+<!-- APPROACH -->
+<section class="approach">
+  <div class="approach-inner">
+    <div class="s-lbl">Our Approach</div>
+    <h2 class="s-title">Industry knowledge meets <em>technology depth.</em></h2>
+    <div class="approach-grid">
+      <div class="approach-card">
+        <div class="ap-n">01</div>
+        <h4>We speak your language</h4>
+        <p>We don't just know IT — we understand the regulatory landscape, operational pressures, and competitive dynamics of the industries we serve. That means faster ramp-up and more relevant recommendations.</p>
+      </div>
+      <div class="approach-card">
+        <div class="ap-n">02</div>
+        <h4>Compliance is built in</h4>
+        <p>Whether it's HIPAA, PCI-DSS, FERPA, or FedRAMP, compliance is never an afterthought. We design every solution with your regulatory requirements in mind from day one — not retrofitted at the end.</p>
+      </div>
+      <div class="approach-card">
+        <div class="ap-n">03</div>
+        <h4>Right-sized for you</h4>
+        <p>We don't apply enterprise templates to mid-market challenges. Every engagement is scoped to your actual size, budget, and growth trajectory — so you get exactly what you need, nothing you don't.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <h2>Your industry. <em>Our expertise.</em></h2>
+    <p>Tell us about your business and we'll show you exactly how we can help — with honesty and without jargon.</p>
+    <div class="cta-btns">
+      <a href="/contact.html" class="btn-white">Get in Touch</a>
+      <a href="/services.html" class="btn-woutline">View Services</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <a class="ft-logo" href="/">
+    <svg width="28" height="28" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="6" fill="#1a3a6b"/><path d="M8 10h16M8 16h10M8 22h13" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/></svg>
+    <span>Fortius Technologies</span>
+  </a>
+  <nav class="ft-links">
+    <a href="/">Home</a>
+    <a href="/services.html">Services</a>
+    <a href="/industries.html">Industries</a>
+    <a href="/about.html">About</a>
+    <a href="/contact.html">Contact</a>
+  </nav>
+  <span class="ft-copy">© 2026 Fortius Technologies Inc. All Rights Reserved.</span>
+</footer>
+
+<script>
+// Filter cards by category
+function filterCards(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.industry-card').forEach(card => {
+    if (cat === 'all' || card.dataset.cat === cat) {
+      card.style.display = '';
+    } else {
+      card.style.display = 'none';
+      // Close any open details for hidden cards
+    }
+  });
+  // Close all open details when filtering
+  document.querySelectorAll('.industry-detail').forEach(d => d.classList.remove('open'));
+}
+
+// Toggle industry detail panel
+function toggleDetail(id) {
+  const detail = document.getElementById('detail-' + id);
+  const isOpen = detail.classList.contains('open');
+  // Close all
+  document.querySelectorAll('.industry-detail').forEach(d => d.classList.remove('open'));
+  // Open this one if it was closed
+  if (!isOpen) {
+    detail.classList.add('open');
+    // Scroll to the detail panel
+    setTimeout(() => detail.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+  }
+}
+
+function closeDetail(id) {
+  document.getElementById('detail-' + id).classList.remove('open');
+}
+</script>
+</body>
+</html>

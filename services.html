@@ -22,23 +22,22 @@
 html{scroll-behavior:smooth}
 body{font-family:var(--sans);background:var(--cream);color:var(--ink);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
 
-nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 3.5rem;background:rgba(250,249,247,0.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,0.07)}
-.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
-.nav-logo img{height:32px}
-.nav-logo-name{font-size:14px;font-weight:600;color:var(--ink);letter-spacing:-.01em}
-.nav-links{display:flex;gap:2.5rem}
-.nav-links a{font-size:13px;color:var(--ink2);text-decoration:none;transition:color .2s}
-.nav-links a:hover,.nav-links a.active{color:var(--ink)}
-.nav-actions{display:flex;gap:.75rem;align-items:center}
-.btn-ghost{font-size:13px;color:var(--ink);text-decoration:none;padding:8px 18px;border:1px solid rgba(0,0,0,0.2);border-radius:100px;transition:all .2s;white-space:nowrap}
-.btn-ghost:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
-.btn-solid{font-size:13px;font-weight:500;color:#fff;background:var(--blue);text-decoration:none;padding:8px 20px;border-radius:100px;transition:opacity .2s;white-space:nowrap}
-.btn-solid:hover{opacity:.75}
+/* NAV */
+nav{position:sticky;top:0;left:0;right:0;z-index:9999;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:#fdf8f2;border-bottom:1.5px solid #e6d9c8;box-sizing:border-box;font-family:Inter,system-ui,sans-serif}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;flex-shrink:0}
+.nav-logo svg{display:block;flex-shrink:0}
+.nav-logo-name{font-size:15px;font-weight:700;color:#0d0d0d;white-space:nowrap;font-family:Inter,system-ui,sans-serif}
+.nav-links{display:flex;align-items:center;gap:32px;flex-shrink:0}
+.nav-links a{font-size:13px;font-weight:400;color:#555;text-decoration:none;font-family:Inter,system-ui,sans-serif;transition:color .15s}
+.nav-links a:hover{color:#0d0d0d}
+.nav-actions{display:flex;align-items:center;flex-shrink:0}
+.btn-cta{font-size:13px;font-weight:600;color:#fff;background:#1a3a6b;text-decoration:none;padding:10px 22px;border-radius:100px;font-family:Inter,system-ui,sans-serif;white-space:nowrap;display:inline-block}
+.btn-cta:hover{background:#2452a0}
 .ham{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:8px}
-.ham span{display:block;width:22px;height:1.5px;background:var(--ink)}
-.mob-nav{display:none;position:fixed;top:var(--nav-h);left:0;right:0;background:var(--cream);padding:1.5rem 2rem;border-bottom:1px solid var(--cream3);flex-direction:column;gap:1.25rem;z-index:199}
+.ham span{display:block;width:22px;height:2px;background:#0d0d0d;border-radius:2px}
+.mob-nav{display:none;position:sticky;top:72px;left:0;right:0;background:#fdf8f2;padding:20px 32px;border-bottom:1px solid #e6d9c8;flex-direction:column;gap:18px;z-index:9998}
 .mob-nav.open{display:flex}
-.mob-nav a{font-size:16px;color:var(--ink);text-decoration:none}
+.mob-nav a{font-size:16px;color:#0d0d0d;text-decoration:none;font-family:Inter,system-ui,sans-serif}
 
 /* PAGE HERO — padding-top:nav-h pushes content below fixed nav */
 .page-hero{
@@ -101,9 +100,6 @@ footer{background:var(--cream);border-top:1px solid var(--cream3);padding:2.5rem
 .ft-copy{font-size:12px;color:var(--ink3)}
 
 @media(max-width:960px){
-  nav{padding:0 1.5rem}
-  .nav-links,.nav-actions .btn-ghost{display:none}
-  .ham{display:flex}
   .ph-inner{padding:3rem 1.5rem 3.5rem}
   .svc-section{padding:0 1.5rem}
   .svc-block{grid-template-columns:1fr;gap:2.5rem;padding:4rem 0}
@@ -117,8 +113,30 @@ footer{background:var(--cream);border-top:1px solid var(--cream3);padding:2.5rem
 </head>
 <body>
 <nav>
-  <a class="nav-logo" href="/"><img src="logo.png" alt="Fortius"><span class="nav-logo-name">Fortius Technologies</span></a>
-  <div class="nav-links"><a href="/">Home</a><a href="/services.html" class="active">Services</a><a href="/about.html">About</a><a href="/contact.html">Contact</a></div>
+  <a class="nav-logo" href="/">
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="6" fill="#1a3a6b"/><path d="M8 10h16M8 16h10M8 22h13" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/></svg>
+    <span class="nav-logo-name">Fortius Technologies</span>
+  </a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/services.html" style="color:#0d0d0d;font-weight:600">Services</a>
+    <a href="/about.html">About</a>
+    <a href="/contact.html">Contact</a>
+  </div>
+  <div class="nav-actions">
+    <a href="/contact.html" class="btn-cta">Get in Touch</a>
+  </div>
+  <button class="ham" id="ham" onclick="document.getElementById('mob').classList.toggle('open')"><span></span><span></span><span></span></button>
+</nav>
+<div class="mob-nav" id="mob">
+  <a href="/">Home</a>
+  <a href="/services.html" style="color:#0d0d0d;font-weight:600">Services</a>
+  <a href="/about.html">About</a>
+  <a href="/contact.html">Contact</a>
+  <a href="/contact.html" class="btn-cta" style="width:fit-content">Get in Touch</a>
+</div>
+
+
   <div class="nav-actions"><a href="/services.html" class="btn-ghost">Our Services</a><a href="/contact.html" class="btn-solid">Get in Touch</a></div>
   <button class="ham" id="ham"><span></span><span></span><span></span></button>
 </nav>
@@ -128,7 +146,7 @@ footer{background:var(--cream);border-top:1px solid var(--cream3);padding:2.5rem
   <div class="ph-inner">
     <div class="ph-tag"><span></span>Services</div>
     <h1>IT solutions built around<br><em>your business.</em></h1>
-    <p>From cloud infrastructure to cybersecurity, web development to managed support — senior expertise applied to every engagement, every time.</p>
+    <p>From cloud infrastructure to cybersecurity, AI automation to managed support — senior expertise applied to every engagement, every time.</p>
   </div>
 </div>
 
@@ -178,7 +196,7 @@ footer{background:var(--cream);border-top:1px solid var(--cream3);padding:2.5rem
   <div class="svc-block" id="webdev">
     <div class="svc-left">
       <div class="svc-left-num">03</div>
-      <div class="svc-left-tag">Web Development</div>
+      <div class="svc-left-tag">AI & Automation</div>
       <h2>Modern Design & Development</h2>
       <p>Your digital presence matters. We design and build websites that are fast, responsive, and purpose-built to represent your brand — from marketing sites to complex web applications.</p>
       <a href="/contact.html" class="svc-cta">Start a Project <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
@@ -227,7 +245,7 @@ footer{background:var(--cream);border-top:1px solid var(--cream3);padding:2.5rem
 </section>
 
 <footer>
-  <a class="ft-logo" href="/"><img src="logo.png" alt="Fortius"><span>Fortius Technologies</span></a>
+  <a class="ft-logo" href="/"><img src="https://www.fortius.cloud/logo.png" alt="Fortius" onerror="this.style.display='none'"><span>Fortius Technologies</span></a>
   <nav class="ft-links"><a href="/services.html">Services</a><a href="/about.html">About</a><a href="/contact.html">Contact</a></nav>
   <span class="ft-copy">© 2026 Fortius Technologies Inc. All Rights Reserved.</span>
 </footer>
