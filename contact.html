@@ -124,12 +124,12 @@ footer{background:var(--cream);border-top:1px solid var(--cream3);padding:2.5rem
 </head>
 <body>
 <nav>
-  <a class="nav-logo" href="index.html"><img src="https://www.fortius.cloud/logo.png" alt="Fortius"><span class="nav-logo-name">Fortius Technologies</span></a>
-  <div class="nav-links"><a href="services.html">Services</a><a href="about.html">About</a><a href="contact.html" class="active">Contact</a></div>
-  <div class="nav-actions"><a href="services.html" class="btn-ghost">Our Services</a><a href="contact.html" class="btn-solid">Get in Touch</a></div>
+  <a class="nav-logo" href="/"><img src="logo.png" alt="Fortius"><span class="nav-logo-name">Fortius Technologies</span></a>
+  <div class="nav-links"><a href="/">Home</a><a href="/services.html">Services</a><a href="/about.html">About</a><a href="/contact.html" class="active">Contact</a></div>
+  <div class="nav-actions"><a href="/services.html" class="btn-ghost">Our Services</a><a href="/contact.html" class="btn-solid">Get in Touch</a></div>
   <button class="ham" id="ham"><span></span><span></span><span></span></button>
 </nav>
-<div class="mob-nav" id="mob"><a href="services.html">Services</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="contact.html" class="btn-solid" style="width:fit-content;padding:11px 24px">Get in Touch</a></div>
+<div class="mob-nav" id="mob"><a href="/">Home</a><a href="/services.html">Services</a><a href="/about.html">About</a><a href="/contact.html">Contact</a><a href="/contact.html" class="btn-solid" style="width:fit-content;padding:11px 24px">Get in Touch</a></div>
 
 <div class="page-hero">
   <div class="ph-inner">
@@ -181,7 +181,7 @@ footer{background:var(--cream);border-top:1px solid var(--cream3);padding:2.5rem
   </div>
 </div>
 
-<footer><a class="ft-logo" href="index.html"><img src="https://www.fortius.cloud/logo.png" alt="Fortius"><span>Fortius Technologies</span></a><nav class="ft-links"><a href="services.html">Services</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav><span class="ft-copy">© 2026 Fortius Technologies Inc. All Rights Reserved.</span></footer>
+<footer><a class="ft-logo" href="/"><img src="logo.png" alt="Fortius"><span>Fortius Technologies</span></a><nav class="ft-links"><a href="/services.html">Services</a><a href="/about.html">About</a><a href="/contact.html">Contact</a></nav><span class="ft-copy">© 2026 Fortius Technologies Inc. All Rights Reserved.</span></footer>
 <script>
 document.getElementById('ham').addEventListener('click',()=>document.getElementById('mob').classList.toggle('open'));
 function handleSubmit(e){e.preventDefault();if(!document.getElementById('fn').value.trim()||!document.getElementById('em').value.trim()||!document.getElementById('msg').value.trim()){alert('Please fill in all required fields.');return}document.getElementById('formBody').style.display='none';document.getElementById('formSuccess').style.display='block'}
