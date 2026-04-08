@@ -1,180 +1,236 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Our Services — Fortius Technologies Inc</title>
-  <link rel="stylesheet" href="styles.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services — Fortius Technologies</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0d0d0d;--ink2:#4a4a4a;--ink3:#888;
+  --paper:#faf9f7;--paper2:#f3f0e8;--paper3:#e8e0d0;
+  --blue-tint:#eef4ff;--blue-mid:#dbeafe;--blue-str:#1d4ed8;
+  --blue:#1a3a6b;--blue2:#2452a0;--blue-soft:#eef4ff;--blue-mid:#c8daf8;
+  --sage:#2d5a3d;--sage-soft:#edf4f0;--sage-mid:#b8dcc8;
+  --dark:#0f0f0f;--dark2:#191919;
+  --serif:'Instrument Serif',Georgia,serif;
+  --sans:'Inter',system-ui,sans-serif;
+  --nav-h:80px;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--cream);color:var(--ink);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 3.5rem;background:rgba(250,249,247,0.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,0.07)}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo img{height:32px}
+.nav-logo-name{font-size:14px;font-weight:600;color:var(--ink);letter-spacing:-.01em}
+.nav-links{display:flex;gap:2.5rem}
+.nav-links a{font-size:13px;color:var(--ink2);text-decoration:none;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--ink)}
+.nav-actions{display:flex;gap:.75rem;align-items:center}
+.btn-ghost{font-size:13px;color:var(--ink);text-decoration:none;padding:8px 18px;border:1px solid rgba(0,0,0,0.2);border-radius:100px;transition:all .2s;white-space:nowrap}
+.btn-ghost:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+.btn-solid{font-size:13px;font-weight:500;color:#fff;background:var(--blue);text-decoration:none;padding:8px 20px;border-radius:100px;transition:opacity .2s;white-space:nowrap}
+.btn-solid:hover{opacity:.75}
+.ham{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:8px}
+.ham span{display:block;width:22px;height:1.5px;background:var(--ink)}
+.mob-nav{display:none;position:fixed;top:var(--nav-h);left:0;right:0;background:var(--cream);padding:1.5rem 2rem;border-bottom:1px solid var(--cream3);flex-direction:column;gap:1.25rem;z-index:199}
+.mob-nav.open{display:flex}
+.mob-nav a{font-size:16px;color:var(--ink);text-decoration:none}
+
+/* PAGE HERO — padding-top:nav-h pushes content below fixed nav */
+.page-hero{
+  padding-top:var(--nav-h);
+  background:linear-gradient(135deg,#eef4ff 0%,#faf9f7 50%,#fff8f0 100%);
+  border-bottom:1px solid rgba(0,0,0,0.07);
+}
+.ph-inner{max-width:1280px;margin:0 auto;padding:4.5rem 3.5rem 5rem}
+.ph-tag{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--blue2);margin-bottom:1.5rem;display:flex;align-items:center;gap:10px}
+.ph-tag span{width:24px;height:1px;background:var(--ink3)}
+.page-hero h1{font-family:var(--serif);font-size:clamp(2.8rem,5.5vw,5rem);font-weight:400;line-height:1.08;letter-spacing:-.025em;max-width:760px;margin-bottom:1.5rem}
+.page-hero h1 em{font-style:italic}
+.page-hero p{font-size:1.05rem;font-weight:300;color:var(--ink2);max-width:500px;line-height:1.8}
+
+/* SERVICE BLOCKS */
+.svc-section{max-width:1280px;margin:0 auto;padding:0 3.5rem}
+.svc-block{display:grid;grid-template-columns:320px 1fr;gap:5rem;padding:6rem 0;border-bottom:1px solid rgba(0,0,0,0.09)}
+.svc-block:last-child{border-bottom:none}
+.svc-left{position:sticky;top:calc(var(--nav-h) + 2rem);height:fit-content}
+.svc-left-num{font-family:var(--serif);font-size:5rem;font-weight:400;color:rgba(0,0,0,.07);line-height:1;margin-bottom:1rem}
+.svc-left-tag{display:inline-block;font-size:11px;font-weight:500;letter-spacing:.09em;text-transform:uppercase;color:var(--blue-str);border:1px solid rgba(29,78,216,.25);background:var(--blue-tint);border-radius:100px;padding:5px 14px;margin-bottom:1.25rem}
+.svc-left h2{font-family:var(--serif);font-size:1.8rem;font-weight:400;line-height:1.2;letter-spacing:-.015em;margin-bottom:1.25rem}
+.svc-left p{font-size:14px;color:var(--ink2);line-height:1.75;margin-bottom:1.5rem}
+.svc-cta{font-size:13px;font-weight:500;color:var(--ink);text-decoration:none;display:inline-flex;align-items:center;gap:6px;padding:9px 20px;border:1px solid rgba(0,0,0,.2);border-radius:100px;transition:all .2s}
+.svc-cta:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+.svc-cta svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+/* Feature grid */
+.feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(0,0,0,.08);border:1px solid rgba(0,0,0,.08);border-radius:12px;overflow:hidden;margin-bottom:1.5rem}
+.feat-item{background:var(--paper);padding:2rem;transition:background .2s}
+.feat-item:hover{background:var(--blue-tint)}
+.feat-item h4{font-family:var(--serif);font-size:1.1rem;font-weight:400;margin-bottom:.6rem;letter-spacing:-.01em}
+.feat-item p{font-size:13px;color:var(--ink2);line-height:1.65}
+.info-note{background:var(--blue-tint);border:1px solid rgba(29,78,216,.12);border-radius:8px;padding:1.25rem 1.5rem;display:flex;align-items:flex-start;gap:.875rem}
+.info-note svg{width:16px;height:16px;stroke:var(--ink3);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;margin-top:2px}
+.info-note p{font-size:13px;color:var(--ink2);line-height:1.65}
+
+/* Alternate block backgrounds */
+.svc-block:nth-child(even){background:linear-gradient(135deg,#fffbeb 0%,var(--paper) 100%);margin:0 -3.5rem;padding-left:3.5rem;padding-right:3.5rem}
+
+/* CTA */
+.cta-section{background:var(--blue);padding:7rem 3.5rem;text-align:center}
+.cta-inner{max-width:620px;margin:0 auto}
+.cta-inner h2{font-family:var(--serif);font-size:clamp(2.2rem,4.5vw,3.5rem);font-weight:400;color:#fff;letter-spacing:-.025em;line-height:1.1;margin-bottom:1.25rem}
+.cta-inner h2 em{font-style:italic;color:var(--blue-mid)}
+.cta-inner p{font-size:1rem;color:rgba(255,255,255,.45);margin-bottom:2.5rem;line-height:1.75}
+.cta-btns{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap}
+.btn-white{font-size:14px;font-weight:500;color:var(--ink);background:#fff;text-decoration:none;padding:13px 28px;border-radius:100px;transition:opacity .2s}
+.btn-white:hover{opacity:.85}
+.btn-woutline{font-size:14px;color:#fff;text-decoration:none;padding:12px 26px;border-radius:100px;border:1px solid rgba(255,255,255,.25);transition:border-color .2s}
+.btn-woutline:hover{border-color:rgba(255,255,255,.6)}
+
+footer{background:var(--cream);border-top:1px solid var(--cream3);padding:2.5rem 3.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.25rem}
+.ft-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.ft-logo img{height:24px}
+.ft-logo span{font-size:13px;font-weight:500;color:var(--ink)}
+.ft-links{display:flex;gap:2rem}
+.ft-links a{font-size:13px;color:var(--ink3);text-decoration:none;transition:color .2s}
+.ft-links a:hover{color:var(--ink)}
+.ft-copy{font-size:12px;color:var(--ink3)}
+
+@media(max-width:960px){
+  nav{padding:0 1.5rem}
+  .nav-links,.nav-actions .btn-ghost{display:none}
+  .ham{display:flex}
+  .ph-inner{padding:3rem 1.5rem 3.5rem}
+  .svc-section{padding:0 1.5rem}
+  .svc-block{grid-template-columns:1fr;gap:2.5rem;padding:4rem 0}
+  .svc-block:nth-child(even){margin:0 -1.5rem;padding-left:1.5rem;padding-right:1.5rem}
+  .svc-left{position:static}
+  .feat-grid{grid-template-columns:1fr}
+  .cta-section{padding:5rem 1.5rem}
+  footer{padding:2rem 1.5rem;flex-direction:column;align-items:flex-start}
+}
+</style>
 </head>
 <body>
+<nav>
+  <a class="nav-logo" href="index.html"><img src="https://www.fortius.cloud/logo.png" alt="Fortius"><span class="nav-logo-name">Fortius Technologies</span></a>
+  <div class="nav-links"><a href="services.html" class="active">Services</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
+  <div class="nav-actions"><a href="services.html" class="btn-ghost">Our Services</a><a href="contact.html" class="btn-solid">Get in Touch</a></div>
+  <button class="ham" id="ham"><span></span><span></span><span></span></button>
+</nav>
+<div class="mob-nav" id="mob"><a href="services.html">Services</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="contact.html" class="btn-solid" style="width:fit-content;padding:11px 24px">Get in Touch</a></div>
 
-  <!-- NAV -->
-  <nav>
-    <a href="index.html" class="logo-wrap">
-      <img src="logo.png" alt="Fortius Technologies Logo" />
-      <span class="logo-text">Fortius</span>
-    </a>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="services.html" class="active">Services</a></li>
-      <li><a href="about.html">About</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
-  </nav>
+<div class="page-hero">
+  <div class="ph-inner">
+    <div class="ph-tag"><span></span>Services</div>
+    <h1>IT solutions built around<br><em>your business.</em></h1>
+    <p>From cloud infrastructure to cybersecurity, web development to managed support — senior expertise applied to every engagement, every time.</p>
+  </div>
+</div>
 
-  <main>
-
-    <div class="inner-hero">
-      <h1>Our Services</h1>
-      <p>We offer a range of IT solutions to meet your business needs — from foundational infrastructure to cutting-edge AI capabilities.</p>
+<div class="svc-section">
+  <div class="svc-block" id="cloud">
+    <div class="svc-left">
+      <div class="svc-left-num">01</div>
+      <div class="svc-left-tag">Cloud Solutions</div>
+      <h2>Cloud Infrastructure & Migration</h2>
+      <p>Harness the power of cloud computing for scalable, secure, and efficient operations. We architect and deliver environments built for performance, resilience, and long-term cost efficiency.</p>
+      <a href="contact.html" class="svc-cta">Start a Project <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
     </div>
-
-    <section class="services-section" style="padding-top: 0;">
-
-      <!-- CLOUD -->
-      <div class="service-category">
-        <h3>Cloud Solutions</h3>
-        <div class="cards">
-          <div class="card">
-            <span class="card-icon">☁️</span>
-            <h4>Cloud Migration</h4>
-            <p>Move your infrastructure to AWS, Azure, or Google Cloud with minimal disruption and maximum efficiency.</p>
-          </div>
-          <div class="card">
-            <span class="card-icon">📦</span>
-            <h4>Cloud Architecture</h4>
-            <p>Design scalable, resilient cloud environments built for performance and cost efficiency from day one.</p>
-          </div>
-          <div class="card">
-            <span class="card-icon">🔄</span>
-            <h4>Hybrid &amp; Multi-Cloud</h4>
-            <p>Seamlessly integrate on-premises systems with cloud services across multiple providers.</p>
-          </div>
-        </div>
+    <div>
+      <div class="feat-grid">
+        <div class="feat-item"><h4>Cloud Architecture</h4><p>AWS, Azure, and GCP solutions tailored to your workload, compliance, and team requirements.</p></div>
+        <div class="feat-item"><h4>Migration & Lift-and-Shift</h4><p>Seamless migration from on-premise to cloud with minimal downtime and zero data loss.</p></div>
+        <div class="feat-item"><h4>Cost Optimization</h4><p>Right-sizing, reserved instances, and ongoing spend analysis to control your cloud economics.</p></div>
+        <div class="feat-item"><h4>DevOps & Automation</h4><p>CI/CD pipelines, infrastructure-as-code, and deployment automation that keeps teams moving.</p></div>
+        <div class="feat-item"><h4>Hybrid & Multi-Cloud</h4><p>Connecting on-premise and cloud environments into a unified, secure infrastructure fabric.</p></div>
+        <div class="feat-item"><h4>Disaster Recovery</h4><p>Backup strategies, failover configurations, and RTO/RPO planning so you're never caught off-guard.</p></div>
       </div>
+      <div class="info-note"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><p>Engagements are scoped after a discovery call. We'll recommend the right cloud path for your specific workloads, budget, and compliance requirements — no guesswork.</p></div>
+    </div>
+  </div>
 
-      <!-- CYBERSECURITY -->
-      <div class="service-category">
-        <h3>Cybersecurity</h3>
-        <div class="cards">
-          <div class="card">
-            <span class="card-icon">🔒</span>
-            <h4>Security Assessments</h4>
-            <p>Identify vulnerabilities in your infrastructure before attackers do, with actionable remediation plans.</p>
-          </div>
-          <div class="card">
-            <span class="card-icon">🛡️</span>
-            <h4>Endpoint Protection</h4>
-            <p>Comprehensive protection across all devices — laptops, servers, and mobile endpoints.</p>
-          </div>
-          <div class="card">
-            <span class="card-icon">📋</span>
-            <h4>Compliance &amp; Governance</h4>
-            <p>Meet SOC 2, HIPAA, NIST, and other regulatory requirements with confidence.</p>
-          </div>
-        </div>
+  <div class="svc-block" id="security">
+    <div class="svc-left">
+      <div class="svc-left-num">02</div>
+      <div class="svc-left-tag">Cybersecurity</div>
+      <h2>Threat Protection & Risk Management</h2>
+      <p>The threat landscape evolves daily. Our cybersecurity practice provides comprehensive protection — from proactive risk assessments to real-time monitoring and incident response.</p>
+      <a href="contact.html" class="svc-cta">Start a Project <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    </div>
+    <div>
+      <div class="feat-grid">
+        <div class="feat-item"><h4>Security Assessments</h4><p>Vulnerability scanning, penetration testing, and gap analysis against leading security frameworks.</p></div>
+        <div class="feat-item"><h4>Threat Monitoring</h4><p>24/7 endpoint detection and response with real-time alerting, triage, and remediation guidance.</p></div>
+        <div class="feat-item"><h4>Compliance Readiness</h4><p>HIPAA, SOC 2, NIST, PCI-DSS, and industry-specific compliance advisory and documentation.</p></div>
+        <div class="feat-item"><h4>Incident Response</h4><p>Playbooks, tabletop exercises, and active response capability when threats materialize.</p></div>
+        <div class="feat-item"><h4>Zero Trust Architecture</h4><p>Identity-centric security models that reduce your attack surface and limit lateral movement.</p></div>
+        <div class="feat-item"><h4>Security Awareness</h4><p>Staff training, phishing simulations, and policy frameworks that make humans your strongest layer.</p></div>
       </div>
+      <div class="info-note"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><p>Available as a one-time assessment or ongoing retainer. We'll help you determine the right level of coverage for your risk profile and regulatory environment.</p></div>
+    </div>
+  </div>
 
-      <!-- WEB DEV -->
-      <div class="service-category">
-        <h3>Web Development</h3>
-        <div class="cards">
-          <div class="card">
-            <span class="card-icon">💻</span>
-            <h4>Custom Websites</h4>
-            <p>Modern, responsive websites crafted to reflect your brand and convert your visitors.</p>
-          </div>
-          <div class="card">
-            <span class="card-icon">⚙️</span>
-            <h4>Web Applications</h4>
-            <p>Full-stack web apps built for performance, security, and scale — from MVP to enterprise.</p>
-          </div>
-          <div class="card">
-            <span class="card-icon">🔗</span>
-            <h4>API &amp; Integrations</h4>
-            <p>Connect your systems, third-party tools, and data sources through robust API development.</p>
-          </div>
-        </div>
+  <div class="svc-block" id="webdev">
+    <div class="svc-left">
+      <div class="svc-left-num">03</div>
+      <div class="svc-left-tag">Web Development</div>
+      <h2>Modern Design & Development</h2>
+      <p>Your digital presence matters. We design and build websites that are fast, responsive, and purpose-built to represent your brand — from marketing sites to complex web applications.</p>
+      <a href="contact.html" class="svc-cta">Start a Project <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    </div>
+    <div>
+      <div class="feat-grid">
+        <div class="feat-item"><h4>Custom Website Design</h4><p>Tailored UX/UI design built around your brand identity, customer journey, and conversion goals.</p></div>
+        <div class="feat-item"><h4>Responsive & Accessible</h4><p>Mobile-first builds optimized for all devices, screen sizes, and WCAG accessibility standards.</p></div>
+        <div class="feat-item"><h4>Performance Optimization</h4><p>Core Web Vitals tuning, CDN configuration, and page speed best practices baked in from the start.</p></div>
+        <div class="feat-item"><h4>Web Applications</h4><p>Custom portals, internal dashboards, and client-facing tools built to your exact specification.</p></div>
+        <div class="feat-item"><h4>CMS Integration</h4><p>Headless and traditional CMS setups that let your team manage content without developer help.</p></div>
+        <div class="feat-item"><h4>Ongoing Maintenance</h4><p>Updates, security patches, performance reviews, and feature additions after your site launches.</p></div>
       </div>
+      <div class="info-note"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><p>Projects are scoped by complexity, feature set, and timeline. Contact us for a no-obligation estimate and we'll give you a clear picture of what's involved.</p></div>
+    </div>
+  </div>
 
-      <!-- IT SUPPORT -->
-      <div class="service-category">
-        <h3>IT Support &amp; Managed Services</h3>
-        <div class="cards">
-          <div class="card">
-            <span class="card-icon">🛠️</span>
-            <h4>Help Desk &amp; Support</h4>
-            <p>Responsive, senior-level support for your team — resolving issues fast, every time.</p>
-          </div>
-          <div class="card">
-            <span class="card-icon">📡</span>
-            <h4>Proactive Monitoring</h4>
-            <p>24/7 infrastructure monitoring to catch and resolve issues before they impact your business.</p>
-          </div>
-          <div class="card">
-            <span class="card-icon">📈</span>
-            <h4>IT Strategy &amp; vCIO</h4>
-            <p>Strategic technology guidance and roadmapping — your experienced IT leadership on demand.</p>
-          </div>
-        </div>
+  <div class="svc-block" id="managed">
+    <div class="svc-left">
+      <div class="svc-left-num">04</div>
+      <div class="svc-left-tag">Managed Services</div>
+      <h2>IT Support & Managed Services</h2>
+      <p>Don't let infrastructure issues slow your business down. Proactive monitoring, expert helpdesk support, and strategic IT planning — so you focus on what matters.</p>
+      <a href="contact.html" class="svc-cta">Start a Project <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    </div>
+    <div>
+      <div class="feat-grid">
+        <div class="feat-item"><h4>Proactive Monitoring</h4><p>24/7 infrastructure monitoring with alert triage and automated remediation for common issues.</p></div>
+        <div class="feat-item"><h4>Helpdesk Support</h4><p>Responsive support desk for your team's day-to-day IT issues, requests, and onboarding needs.</p></div>
+        <div class="feat-item"><h4>Patch Management</h4><p>Automated patching schedules that keep systems current and critical vulnerabilities closed.</p></div>
+        <div class="feat-item"><h4>Strategic IT Advisory</h4><p>Quarterly business reviews and technology roadmap planning aligned to your growth trajectory.</p></div>
+        <div class="feat-item"><h4>Vendor Management</h4><p>We coordinate with your software and hardware vendors so you have one point of contact for IT.</p></div>
+        <div class="feat-item"><h4>Business Continuity</h4><p>Backup strategy, recovery planning, and regular testing so disruptions stay small and recoverable.</p></div>
       </div>
+      <div class="info-note"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg><p>Managed services are available on monthly retainer plans sized to your organization. Let's start with a discovery call to find the right fit.</p></div>
+    </div>
+  </div>
+</div>
 
-      <!-- AI SERVICES -->
-      <div class="service-category ai-category">
-        <h3>AI &amp; Intelligent Automation</h3>
-        <div class="cards">
-          <div class="card">
-            <span class="card-icon">🤖</span>
-            <h4>AI Strategy &amp; Consulting</h4>
-            <p>Identify where AI creates real business value and build a clear, practical roadmap to adopt it responsibly.</p>
-          </div>
-          <div class="card">
-            <span class="card-icon">⚡</span>
-            <h4>Workflow Automation</h4>
-            <p>Eliminate repetitive manual tasks with intelligent automation tailored to your specific business processes.</p>
-          </div>
-          <div class="card">
-            <span class="card-icon">📊</span>
-            <h4>Data &amp; Analytics</h4>
-            <p>Transform raw data into clear, actionable insights with modern analytics pipelines and AI-powered dashboards.</p>
-          </div>
-          <div class="card">
-            <span class="card-icon">💬</span>
-            <h4>AI Assistant &amp; Chatbot Deployment</h4>
-            <p>Deploy custom AI assistants for customer support, internal knowledge bases, and employee productivity.</p>
-          </div>
-          <div class="card">
-            <span class="card-icon">🧠</span>
-            <h4>Machine Learning Integration</h4>
-            <p>Embed predictive models and ML capabilities directly into your existing applications and workflows.</p>
-          </div>
-          <div class="card">
-            <span class="card-icon">🔐</span>
-            <h4>Responsible AI &amp; Governance</h4>
-            <p>Ensure your AI systems are secure, unbiased, and compliant — with clear auditing and oversight frameworks.</p>
-          </div>
-        </div>
-      </div>
+<section class="cta-section">
+  <div class="cta-inner">
+    <h2>Not sure what you <em>need?</em></h2>
+    <p>Start with a conversation. We'll help you figure out the right path forward — without pressure or pretense.</p>
+    <div class="cta-btns"><a href="contact.html" class="btn-white">Talk to an Expert</a><a href="about.html" class="btn-woutline">Learn About Us</a></div>
+  </div>
+</section>
 
-    </section>
-  </main>
-
-  <!-- FOOTER -->
-  <footer>
-    <a href="index.html" class="footer-logo">
-      <img src="logo.png" alt="Fortius Technologies" />
-      <span>Fortius Technologies Inc</span>
-    </a>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="services.html">Services</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-    <p class="copy">© 2026 Fortius Technologies Inc. All Rights Reserved.</p>
-  </footer>
-
+<footer>
+  <a class="ft-logo" href="index.html"><img src="https://www.fortius.cloud/logo.png" alt="Fortius"><span>Fortius Technologies</span></a>
+  <nav class="ft-links"><a href="services.html">Services</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav>
+  <span class="ft-copy">© 2026 Fortius Technologies Inc. All Rights Reserved.</span>
+</footer>
+<script>document.getElementById('ham').addEventListener('click',()=>document.getElementById('mob').classList.toggle('open'));</script>
 </body>
 </html>
