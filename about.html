@@ -3,368 +3,205 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About Us — Fortius Technologies</title>
-<link rel="stylesheet" href="shared.css">
+<title>About — Fortius Technologies</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-.page-hero {
-  padding: 10rem 4rem 6rem;
-  background: var(--bg2);
-  border-bottom: 0.5px solid var(--border);
-  position: relative;
-  overflow: hidden;
-}
-.page-hero::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: radial-gradient(ellipse 40% 60% at 90% 30%, rgba(201,168,76,0.06) 0%, transparent 60%),
-              radial-gradient(ellipse 40% 40% at 10% 80%, rgba(79,142,247,0.05) 0%, transparent 60%);
-}
-.page-hero-content { max-width: 1100px; margin: 0 auto; position: relative; }
-.page-hero h1 {
-  font-family: var(--ff-head);
-  font-size: clamp(2.4rem, 5vw, 4rem);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 1.08;
-  max-width: 640px;
-  margin-bottom: 1.25rem;
-}
-.page-hero p { color: var(--text2); font-size: 1.15rem; max-width: 520px; line-height: 1.7; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--ink:#0d0d0d;--ink2:#555;--ink3:#999;--paper:#faf9f7;--paper2:#f3f1ee;--paper3:#e9e5df;--dark:#0f0f0f;--dark2:#191919;--serif:'Instrument Serif',Georgia,serif;--sans:'Inter',system-ui,sans-serif;--nav-h:70px}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
 
-/* MISSION BLOCK */
-.mission-block {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6rem;
-  align-items: center;
-}
-.mission-text h2 {
-  font-family: var(--ff-head);
-  font-size: clamp(2rem, 3.5vw, 2.8rem);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  line-height: 1.15;
-  margin-bottom: 1.5rem;
-}
-.mission-text p { color: var(--text2); line-height: 1.8; margin-bottom: 1.25rem; }
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 3.5rem;background:rgba(250,249,247,0.93);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,0.08)}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo img{height:30px}
+.nav-logo-name{font-size:14px;font-weight:600;color:var(--ink);letter-spacing:-.01em}
+.nav-links{display:flex;gap:2.5rem}
+.nav-links a{font-size:13px;font-weight:400;color:var(--ink2);text-decoration:none;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--ink)}
+.nav-actions{display:flex;gap:.75rem;align-items:center}
+.btn-ghost{font-size:13px;font-weight:400;color:var(--ink);text-decoration:none;padding:8px 18px;border:1px solid rgba(0,0,0,0.2);border-radius:100px;transition:all .2s;white-space:nowrap}
+.btn-ghost:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+.btn-solid{font-size:13px;font-weight:500;color:#fff;background:var(--ink);text-decoration:none;padding:8px 20px;border-radius:100px;transition:opacity .2s;white-space:nowrap}
+.btn-solid:hover{opacity:.75}
+.ham{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:8px}
+.ham span{display:block;width:22px;height:1.5px;background:var(--ink)}
+.mob-nav{display:none;position:fixed;top:var(--nav-h);left:0;right:0;background:var(--paper);padding:1.5rem 2rem;border-bottom:1px solid rgba(0,0,0,0.1);flex-direction:column;gap:1.25rem;z-index:199}
+.mob-nav.open{display:flex}
+.mob-nav a{font-size:16px;color:var(--ink);text-decoration:none}
 
-.mission-visual {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-}
-.mission-card {
-  background: var(--surface);
-  border: 0.5px solid var(--border);
-  border-radius: 12px;
-  padding: 1.75rem 1.5rem;
-}
-.mission-card:first-child {
-  grid-column: span 2;
-  background: var(--surface2);
-  border-color: var(--border2);
-}
-.mc-num {
-  font-family: var(--ff-head);
-  font-size: 2.2rem;
-  font-weight: 700;
-  color: var(--accent);
-  letter-spacing: -0.02em;
-  margin-bottom: 0.25rem;
-}
-.mc-label { font-size: 13px; color: var(--text3); }
-.mc-desc { font-size: 14px; color: var(--text2); margin-top: 0.5rem; line-height: 1.5; }
+/* PAGE HERO */
+.page-hero{padding:calc(var(--nav-h)+5rem) 3.5rem 5rem;background:var(--paper2);border-bottom:1px solid rgba(0,0,0,0.08)}
+.ph-inner{max-width:1280px;margin:0 auto}
+.ph-tag{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:1.5rem;display:flex;align-items:center;gap:10px}
+.ph-tag span{width:24px;height:1px;background:var(--ink3)}
+.page-hero h1{font-family:var(--serif);font-size:clamp(2.8rem,5.5vw,5rem);font-weight:400;line-height:1.08;letter-spacing:-.025em;max-width:800px;margin-bottom:1.5rem}
+.page-hero h1 em{font-style:italic}
+.page-hero p{font-size:1.05rem;font-weight:300;color:var(--ink2);max-width:500px;line-height:1.8}
+
+/* MISSION */
+.mission{padding:7rem 3.5rem;max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:7rem;align-items:center}
+.m-lbl{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:.75rem}
+.m-title{font-family:var(--serif);font-size:clamp(2rem,3.5vw,2.8rem);font-weight:400;line-height:1.15;letter-spacing:-.02em;margin-bottom:1.5rem}
+.m-title em{font-style:italic}
+.mission p{font-size:15px;color:var(--ink2);line-height:1.8;margin-bottom:1.25rem}
+.m-cards{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.m-card{background:var(--paper2);border:1px solid rgba(0,0,0,.08);border-radius:10px;padding:1.75rem}
+.m-card-wide{background:var(--paper2);border:1px solid rgba(0,0,0,.08);border-radius:10px;padding:1.75rem;grid-column:span 2;display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.mc-val{font-family:var(--serif);font-size:2.4rem;font-weight:400;color:var(--ink);line-height:1;margin-bottom:.3rem}
+.mc-lbl{font-size:12px;color:var(--ink3)}
+.mc-desc{font-size:13px;color:var(--ink2);margin-top:.5rem;line-height:1.55}
+
+/* PULL QUOTE */
+.pull-quote{background:var(--dark);padding:6rem 3.5rem}
+.pq-inner{max-width:900px;margin:0 auto;text-align:center}
+.pq-mark{font-family:var(--serif);font-size:8rem;line-height:.7;color:rgba(255,255,255,.06);margin-bottom:1.5rem}
+.pq-text{font-family:var(--serif);font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:400;color:#fff;line-height:1.4;letter-spacing:-.02em;margin-bottom:1.5rem}
+.pq-text em{font-style:italic}
+.pq-src{font-size:13px;color:rgba(255,255,255,.35)}
 
 /* VALUES */
-.values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-.value-card {
-  background: var(--surface);
-  border: 0.5px solid var(--border);
-  border-radius: 12px;
-  padding: 2rem;
-  transition: border-color 0.25s, transform 0.25s;
-}
-.value-card:hover { border-color: var(--border2); transform: translateY(-3px); }
-.value-icon {
-  width: 44px; height: 44px;
-  border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  margin-bottom: 1.25rem;
-  border: 0.5px solid var(--border2);
-  background: var(--surface2);
-}
-.value-icon svg { width: 20px; height: 20px; }
-.value-card h3 { font-family: var(--ff-head); font-size: 16px; font-weight: 600; margin-bottom: 0.6rem; }
-.value-card p { font-size: 14px; color: var(--text2); line-height: 1.65; }
+.values{padding:7rem 3.5rem;background:var(--paper2)}
+.vals-inner{max-width:1280px;margin:0 auto}
+.s-lbl{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:.75rem}
+.s-title{font-family:var(--serif);font-size:clamp(2rem,3.5vw,2.8rem);font-weight:400;line-height:1.15;letter-spacing:-.02em;margin-bottom:3.5rem}
+.s-title em{font-style:italic}
+.val-list{border-top:1px solid rgba(0,0,0,.09)}
+.val-row{display:grid;grid-template-columns:52px 1fr 1.5fr;gap:2.5rem;padding:2.25rem 0;border-bottom:1px solid rgba(0,0,0,.09);align-items:start}
+.val-n{font-family:var(--serif);font-style:italic;font-size:.9rem;color:var(--ink3);padding-top:4px}
+.val-name{font-family:var(--serif);font-size:1.3rem;font-weight:400;letter-spacing:-.01em;padding-top:3px}
+.val-desc{font-size:14px;color:var(--ink2);line-height:1.75}
 
-/* EXPERTISE AREAS */
-.expertise-row {
-  display: flex;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-}
-.expertise-pill {
-  background: var(--surface);
-  border: 0.5px solid var(--border);
-  border-radius: 100px;
-  padding: 10px 20px;
-  font-size: 13px;
-  color: var(--text2);
-  display: flex; align-items: center; gap: 8px;
-  transition: border-color 0.2s, color 0.2s;
-}
-.expertise-pill:hover { border-color: var(--accent); color: var(--text); }
-.expertise-pill::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+/* EXPERTISE */
+.expertise{padding:7rem 3.5rem;max-width:1280px;margin:0 auto}
+.exp-title{font-family:var(--serif);font-size:clamp(2rem,3.5vw,2.8rem);font-weight:400;line-height:1.15;letter-spacing:-.02em;margin-bottom:3rem}
+.exp-title em{font-style:italic}
+.pills{display:flex;flex-wrap:wrap;gap:.75rem}
+.pill{background:var(--paper2);border:1px solid rgba(0,0,0,.1);border-radius:100px;padding:9px 20px;font-size:13px;color:var(--ink2);transition:all .2s;cursor:default}
+.pill:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
 
-/* PHILOSOPHY QUOTE */
-.philosophy {
-  background: var(--surface2);
-  border: 0.5px solid var(--border2);
-  border-radius: 16px;
-  padding: 3.5rem 4rem;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-.philosophy::before {
-  content: '"';
-  position: absolute;
-  top: -0.5rem; left: 3rem;
-  font-family: var(--ff-head);
-  font-size: 10rem;
-  font-weight: 800;
-  color: rgba(79,142,247,0.08);
-  line-height: 1;
-}
-.philosophy blockquote {
-  font-family: var(--ff-head);
-  font-size: clamp(1.4rem, 2.5vw, 2rem);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  line-height: 1.4;
-  color: var(--text);
-  max-width: 700px;
-  margin: 0 auto 1.5rem;
-  position: relative;
-}
-.philosophy cite { font-size: 13px; color: var(--text3); font-style: normal; }
+/* CTA */
+.cta-section{background:var(--dark);padding:7rem 3.5rem;text-align:center}
+.cta-inner{max-width:620px;margin:0 auto}
+.cta-inner h2{font-family:var(--serif);font-size:clamp(2.2rem,4.5vw,3.5rem);font-weight:400;color:#fff;letter-spacing:-.025em;line-height:1.1;margin-bottom:1.25rem}
+.cta-inner h2 em{font-style:italic}
+.cta-inner p{font-size:1rem;color:rgba(255,255,255,.45);margin-bottom:2.5rem;line-height:1.75}
+.cta-btns{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap}
+.btn-white{font-size:14px;font-weight:500;color:var(--ink);background:#fff;text-decoration:none;padding:13px 28px;border-radius:100px;transition:opacity .2s}
+.btn-white:hover{opacity:.85}
+.btn-woutline{font-size:14px;font-weight:400;color:#fff;text-decoration:none;padding:12px 26px;border-radius:100px;border:1px solid rgba(255,255,255,.25);transition:border-color .2s}
+.btn-woutline:hover{border-color:rgba(255,255,255,.6)}
 
-/* CTA BAND */
-.cta-band {
-  background: var(--surface);
-  border-top: 0.5px solid var(--border);
-  padding: 6rem 4rem;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-.cta-band::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(79,142,247,0.06) 0%, transparent 70%);
-}
-.cta-band h2 { font-family: var(--ff-head); font-size: clamp(2rem,4vw,3.2rem); font-weight: 700; letter-spacing: -0.03em; margin-bottom: 1rem; position: relative; }
-.cta-band p { color: var(--text2); font-size: 1.1rem; margin-bottom: 2.5rem; position: relative; }
-.cta-actions { display: flex; justify-content: center; gap: 1rem; position: relative; }
+footer{background:var(--paper);border-top:1px solid rgba(0,0,0,0.09);padding:2.5rem 3.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.25rem}
+.ft-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.ft-logo img{height:24px}
+.ft-logo span{font-size:13px;font-weight:500;color:var(--ink)}
+.ft-links{display:flex;gap:2rem}
+.ft-links a{font-size:13px;color:var(--ink3);text-decoration:none;transition:color .2s}
+.ft-links a:hover{color:var(--ink)}
+.ft-copy{font-size:12px;color:var(--ink3)}
 
-@media (max-width: 900px) {
-  .page-hero { padding: 8rem 1.5rem 4rem; }
-  .mission-block { grid-template-columns: 1fr; gap: 3rem; }
-  .mission-visual { grid-template-columns: 1fr 1fr; }
-  .values-grid { grid-template-columns: 1fr; }
-  .philosophy { padding: 3rem 2rem; }
-  .cta-band { padding: 4rem 1.5rem; }
-  .cta-actions { flex-direction: column; align-items: center; }
+@media(max-width:960px){
+  nav{padding:0 1.5rem}
+  .nav-links,.nav-actions .btn-ghost{display:none}
+  .ham{display:flex}
+  .page-hero{padding:calc(var(--nav-h)+3rem) 1.5rem 3rem}
+  .mission{grid-template-columns:1fr;gap:3rem;padding:5rem 1.5rem}
+  .m-cards{grid-template-columns:1fr}
+  .m-card-wide{grid-column:span 1;grid-template-columns:1fr}
+  .pull-quote{padding:5rem 1.5rem}
+  .values{padding:5rem 1.5rem}
+  .val-row{grid-template-columns:1fr;gap:.5rem;padding:1.75rem 0}
+  .val-n{display:none}
+  .expertise{padding:5rem 1.5rem}
+  .cta-section{padding:5rem 1.5rem}
+  footer{padding:2rem 1.5rem;flex-direction:column;align-items:flex-start}
 }
 </style>
 </head>
 <body>
-
 <nav>
-  <a href="index.html" class="nav-logo">
-    <img src="https://www.fortius.cloud/logo.png" alt="Fortius Technologies">
-    <span>Fortius Technologies</span>
-  </a>
-  <div class="nav-links" id="navLinks">
-    <a href="index.html">Home</a>
-    <a href="services.html">Services</a>
-    <a href="about.html" class="active">About</a>
-    <a href="contact.html" class="nav-cta">Contact Us</a>
-  </div>
-  <button class="hamburger" id="hamburger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
+  <a class="nav-logo" href="index.html"><img src="https://www.fortius.cloud/logo.png" alt="Fortius"><span class="nav-logo-name">Fortius Technologies</span></a>
+  <div class="nav-links"><a href="services.html">Services</a><a href="about.html" class="active">About</a><a href="contact.html">Contact</a></div>
+  <div class="nav-actions"><a href="services.html" class="btn-ghost">Our Services</a><a href="contact.html" class="btn-solid">Get in Touch</a></div>
+  <button class="ham" id="ham"><span></span><span></span><span></span></button>
 </nav>
+<div class="mob-nav" id="mob"><a href="services.html">Services</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="contact.html" class="btn-solid" style="width:fit-content;padding:11px 24px">Get in Touch</a></div>
 
-<!-- PAGE HERO -->
 <div class="page-hero">
-  <div class="page-hero-content">
-    <span class="label">About Us</span>
-    <h1>Your strategic technology partner.</h1>
-    <p>Fortius Technologies was built on a simple premise: businesses deserve senior-level IT expertise without the enterprise overhead. We deliver exactly that.</p>
+  <div class="ph-inner">
+    <div class="ph-tag"><span></span>About Us</div>
+    <h1>Your strategic<br><em>technology partner.</em></h1>
+    <p>Fortius Technologies was built on a simple premise: businesses deserve senior-level IT expertise without the enterprise overhead and impersonal service that usually comes with it.</p>
   </div>
 </div>
 
 <!-- MISSION -->
-<section class="section">
-  <div class="section-inner">
-    <div class="mission-block">
-      <div class="mission-text">
-        <span class="label">Our Mission</span>
-        <h2>Expert IT guidance tailored to your unique business.</h2>
-        <p>We're dedicated to building the infrastructure for your success. With deep experience in cloud architecture, cybersecurity, and software development, we act as a true technology partner — not just a vendor.</p>
-        <p>We believe technology should be an accelerant, not a burden. That means giving you honest recommendations, clear communication, and solutions that actually fit your business — not the other way around.</p>
-        <a href="contact.html" class="btn-outline" style="margin-top: 0.5rem;">Start a Conversation →</a>
-      </div>
-      <div class="mission-visual">
-        <div class="mission-card">
-          <div class="mc-num">10+</div>
-          <div class="mc-label">Years of combined experience</div>
-          <div class="mc-desc">Deep expertise across cloud platforms, cybersecurity frameworks, and enterprise software development</div>
-        </div>
-        <div class="mission-card">
-          <div class="mc-num">4</div>
-          <div class="mc-label">Core service areas</div>
-        </div>
-        <div class="mission-card">
-          <div class="mc-num">100%</div>
-          <div class="mc-label">Senior-led engagements</div>
-        </div>
-      </div>
+<section class="mission">
+  <div class="mission-left">
+    <div class="m-lbl">Our Mission</div>
+    <h2 class="m-title">Expert IT guidance tailored to your <em>unique business.</em></h2>
+    <p>We're dedicated to building the infrastructure for your success. With deep experience in cloud architecture, cybersecurity, and software development, we act as a true technology partner — not just a vendor.</p>
+    <p>We believe technology should be an accelerant, not a burden. That means honest recommendations, clear communication, and solutions that fit your business — not the other way around.</p>
+    <a href="contact.html" class="btn-ghost" style="display:inline-block;margin-top:.75rem">Start a Conversation</a>
+  </div>
+  <div class="m-cards">
+    <div class="m-card-wide">
+      <div><div class="mc-val">100%</div><div class="mc-lbl">Senior-led engagements</div><div class="mc-desc">Every engagement is led by an experienced consultant — not passed to junior staff once scoped.</div></div>
+      <div><div class="mc-val">4</div><div class="mc-lbl">Core service disciplines</div><div class="mc-desc">Cloud, security, web development, and managed IT — the full stack of what modern businesses need.</div></div>
     </div>
+    <div class="m-card"><div class="mc-val">Cloud</div><div class="mc-lbl">AWS · Azure · GCP</div></div>
+    <div class="m-card"><div class="mc-val">Security</div><div class="mc-lbl">Zero Trust · HIPAA · NIST</div></div>
   </div>
 </section>
 
-<!-- PHILOSOPHY QUOTE -->
-<section class="section" style="background: var(--bg2); padding-top: 0; padding-bottom: 0;">
-  <div class="section-inner" style="padding: 5rem 0;">
-    <div class="philosophy">
-      <blockquote>
-        We act as your strategic technology partner, not just another IT vendor pushing solutions.
-      </blockquote>
-      <cite>— Fortius Technologies Inc.</cite>
-    </div>
+<!-- PULL QUOTE -->
+<div class="pull-quote">
+  <div class="pq-inner">
+    <div class="pq-mark">"</div>
+    <p class="pq-text">We act as your strategic technology partner — not just another IT vendor <em>pushing solutions.</em></p>
+    <span class="pq-src">— Fortius Technologies Inc.</span>
   </div>
-</section>
+</div>
 
 <!-- VALUES -->
-<section class="section">
-  <div class="section-inner">
-    <span class="label">What We Stand For</span>
-    <h2 style="font-family: var(--ff-head); font-size: clamp(1.8rem,3.5vw,2.5rem); font-weight: 700; letter-spacing: -0.03em; margin-bottom: 3rem; max-width: 480px; line-height: 1.2;">
-      The principles that guide every engagement
-    </h2>
-    <div class="values-grid">
-      <div class="value-card">
-        <div class="value-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#4f8ef7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-          </svg>
-        </div>
-        <h3>People-first thinking</h3>
-        <p>Every technical decision is made with your team's experience in mind. Technology should serve people, not complicate their lives.</p>
-      </div>
-      <div class="value-card">
-        <div class="value-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-          </svg>
-        </div>
-        <h3>Outcome-driven delivery</h3>
-        <p>We measure success by your results — not hours billed or tickets closed. If it doesn't move the needle for your business, we won't recommend it.</p>
-      </div>
-      <div class="value-card">
-        <div class="value-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#4f8ef7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
-          </svg>
-        </div>
-        <h3>Radical transparency</h3>
-        <p>No hidden complexity, no jargon, no surprises. You'll always know what we're doing, why we're doing it, and what it will cost.</p>
-      </div>
-      <div class="value-card">
-        <div class="value-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-          </svg>
-        </div>
-        <h3>Security by default</h3>
-        <p>Security isn't an add-on — it's baked into everything we build and recommend from day one. We won't cut corners to hit a deadline.</p>
-      </div>
-      <div class="value-card">
-        <div class="value-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#4f8ef7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 19.07a10 10 0 0 1 0-14.14"/>
-          </svg>
-        </div>
-        <h3>Long-term partnership</h3>
-        <p>We're not here for a one-and-done project. We want to be your technology partner as your business evolves and your needs change.</p>
-      </div>
-      <div class="value-card">
-        <div class="value-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>
-          </svg>
-        </div>
-        <h3>Continuous improvement</h3>
-        <p>Technology and threats evolve fast. We stay ahead so you don't have to — bringing new approaches and better solutions as the landscape changes.</p>
-      </div>
+<section class="values">
+  <div class="vals-inner">
+    <div class="s-lbl">What We Stand For</div>
+    <h2 class="s-title">The principles that guide <em>every engagement.</em></h2>
+    <div class="val-list">
+      <div class="val-row"><span class="val-n">01</span><span class="val-name">People-first thinking</span><p class="val-desc">Every technical decision is made with your team's experience in mind. Technology should serve people — not complicate their lives or require specialists to use day-to-day.</p></div>
+      <div class="val-row"><span class="val-n">02</span><span class="val-name">Outcome-driven delivery</span><p class="val-desc">We measure success by your results, not hours billed or tickets closed. If a recommendation doesn't move the needle for your business, we won't make it.</p></div>
+      <div class="val-row"><span class="val-n">03</span><span class="val-name">Radical transparency</span><p class="val-desc">No hidden complexity, no jargon, no surprises. You'll always know what we're doing, why we're doing it, and what it costs — before we start, not after.</p></div>
+      <div class="val-row"><span class="val-n">04</span><span class="val-name">Security by default</span><p class="val-desc">Security isn't an add-on. It's baked into every cloud architecture, every web build, and every IT recommendation from day one. We won't cut corners to hit a deadline.</p></div>
+      <div class="val-row"><span class="val-n">05</span><span class="val-name">Long-term partnership</span><p class="val-desc">Our relationship doesn't end at project delivery. We stay engaged — monitoring, optimizing, and advising — because sustained results require sustained attention and care.</p></div>
+      <div class="val-row"><span class="val-n">06</span><span class="val-name">Continuous improvement</span><p class="val-desc">Technology and threats evolve constantly. We stay ahead so you don't have to — bringing new approaches and better solutions as the landscape around your business changes.</p></div>
     </div>
   </div>
 </section>
 
 <!-- EXPERTISE -->
-<section class="section" style="background: var(--bg2);">
-  <div class="section-inner">
-    <span class="label">Areas of Expertise</span>
-    <h2 style="font-family: var(--ff-head); font-size: clamp(1.6rem,3vw,2.2rem); font-weight: 700; letter-spacing: -0.03em; margin-bottom: 2.5rem; max-width: 480px; line-height: 1.2;">
-      Deep knowledge across the modern technology stack
-    </h2>
-    <div class="expertise-row">
-      <span class="expertise-pill">AWS & Azure</span>
-      <span class="expertise-pill">Google Cloud Platform</span>
-      <span class="expertise-pill">Zero Trust Security</span>
-      <span class="expertise-pill">NIST & HIPAA</span>
-      <span class="expertise-pill">DevOps & CI/CD</span>
-      <span class="expertise-pill">Infrastructure as Code</span>
-      <span class="expertise-pill">React & Next.js</span>
-      <span class="expertise-pill">Kubernetes & Docker</span>
-      <span class="expertise-pill">Endpoint Detection & Response</span>
-      <span class="expertise-pill">Network Architecture</span>
-      <span class="expertise-pill">Vulnerability Management</span>
-      <span class="expertise-pill">Business Continuity</span>
-    </div>
+<section class="expertise">
+  <div class="s-lbl">Areas of Expertise</div>
+  <h2 class="exp-title">Deep knowledge across the <em>modern technology stack.</em></h2>
+  <div class="pills">
+    <span class="pill">AWS</span><span class="pill">Microsoft Azure</span><span class="pill">Google Cloud</span><span class="pill">Zero Trust Security</span><span class="pill">NIST Framework</span><span class="pill">HIPAA Compliance</span><span class="pill">SOC 2</span><span class="pill">DevOps & CI/CD</span><span class="pill">Infrastructure as Code</span><span class="pill">Kubernetes & Docker</span><span class="pill">React & Next.js</span><span class="pill">Endpoint Detection & Response</span><span class="pill">Network Architecture</span><span class="pill">Vulnerability Management</span><span class="pill">Incident Response</span><span class="pill">Business Continuity</span><span class="pill">Hybrid Cloud</span><span class="pill">CMS Integration</span>
   </div>
 </section>
 
-<!-- CTA -->
-<section class="cta-band">
-  <h2>Let's work together.</h2>
-  <p>Tell us about your business and we'll figure out the best way we can help.</p>
-  <div class="cta-actions">
-    <a href="contact.html" class="btn-primary">Get in Touch →</a>
-    <a href="services.html" class="btn-outline">View Our Services</a>
+<section class="cta-section">
+  <div class="cta-inner">
+    <h2>Let's work <em>together.</em></h2>
+    <p>Tell us about your business and we'll figure out the best way we can help — no pressure, no commitments.</p>
+    <div class="cta-btns"><a href="contact.html" class="btn-white">Get in Touch</a><a href="services.html" class="btn-woutline">View Services</a></div>
   </div>
 </section>
 
 <footer>
-  <div class="footer-left">
-    <img src="https://www.fortius.cloud/logo.png" alt="Fortius Technologies">
-    <span>Fortius Technologies</span>
-  </div>
-  <nav class="footer-links">
-    <a href="index.html">Home</a>
-    <a href="services.html">Services</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-  <span class="footer-copy">© 2026 Fortius Technologies Inc. All Rights Reserved.</span>
+  <a class="ft-logo" href="index.html"><img src="https://www.fortius.cloud/logo.png" alt="Fortius"><span>Fortius Technologies</span></a>
+  <nav class="ft-links"><a href="services.html">Services</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav>
+  <span class="ft-copy">© 2026 Fortius Technologies Inc. All Rights Reserved.</span>
 </footer>
-
-<script>
-document.getElementById('hamburger').addEventListener('click', () => {
-  document.getElementById('navLinks').classList.toggle('open');
-});
-</script>
+<script>document.getElementById('ham').addEventListener('click',()=>document.getElementById('mob').classList.toggle('open'));</script>
 </body>
 </html>
