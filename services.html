@@ -6,29 +6,74 @@
 <title>Our Services — Fortius Technologies</title>
 <link rel="stylesheet" href="shared.css">
 <style>
+
+/* Nav override for consistency */
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2.5rem;
+  height: 72px;
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: rgba(8,10,14,0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 0.5px solid rgba(255,255,255,0.08);
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.nav-logo img {
+  height: 48px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.nav-logo span {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+/* Page hero */
 .page-hero {
-  padding: 10rem 4rem 6rem;
+  padding: 9rem 4rem 5rem;
   background: var(--bg2);
   border-bottom: 0.5px solid var(--border);
   position: relative;
   overflow: hidden;
 }
+
 .page-hero::before {
   content: '';
   position: absolute; inset: 0;
   background: radial-gradient(ellipse 50% 60% at 80% 50%, rgba(79,142,247,0.06) 0%, transparent 70%);
 }
+
 .page-hero-content { max-width: 1100px; margin: 0 auto; position: relative; }
+
 .page-hero h1 {
-  font-family: var(--ff-head);
-  font-size: clamp(2.4rem, 5vw, 4rem);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 1.08;
-  max-width: 600px;
-  margin-bottom: 1.25rem;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.18;
+  max-width: 580px;
+  margin-bottom: 1.1rem;
 }
-.page-hero p { color: var(--text2); font-size: 1.15rem; max-width: 520px; line-height: 1.7; }
+
+.page-hero p { color: var(--text2); font-size: 1.05rem; max-width: 500px; line-height: 1.72; }
 
 /* SERVICE DETAIL CARDS */
 .service-detail {
@@ -39,94 +84,128 @@
   border-bottom: 0.5px solid var(--border);
   align-items: start;
 }
+
 .service-detail:last-of-type { border-bottom: none; }
-.service-detail-label {
-  position: sticky; top: 100px;
-}
+
+.service-detail-label { position: sticky; top: 88px; }
+
 .service-num {
-  font-family: var(--ff-head);
-  font-size: 5rem;
-  font-weight: 800;
+  font-family: 'Georgia', serif;
+  font-size: 4.5rem;
+  font-weight: 700;
   color: var(--border2);
   line-height: 1;
   margin-bottom: 1rem;
   letter-spacing: -0.04em;
 }
+
 .service-detail-label h2 {
-  font-family: var(--ff-head);
-  font-size: 1.6rem;
+  font-family: 'Georgia', serif;
+  font-size: 1.45rem;
   font-weight: 700;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
   margin-bottom: 1rem;
+  line-height: 1.25;
 }
+
 .service-tag {
   display: inline-block;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 5px 12px;
-  border-radius: 100px;
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 4px 11px; border-radius: 100px;
   border: 0.5px solid rgba(79,142,247,0.4);
-  color: var(--accent2);
-  background: var(--accent-dim);
+  color: var(--accent2); background: var(--accent-dim);
 }
+
+.service-tag-gold {
+  display: inline-block;
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 4px 11px; border-radius: 100px;
+  border: 0.5px solid rgba(201,168,76,0.4);
+  color: var(--gold); background: var(--gold-dim);
+}
+
+.service-tag-purple {
+  display: inline-block;
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 4px 11px; border-radius: 100px;
+  border: 0.5px solid rgba(139,92,246,0.4);
+  color: #a78bfa; background: rgba(139,92,246,0.08);
+}
+
 .service-detail-body p {
   color: var(--text2);
-  font-size: 1rem;
-  line-height: 1.8;
+  font-size: 0.95rem;
+  line-height: 1.82;
   margin-bottom: 2rem;
 }
+
 .features-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
   margin-bottom: 2rem;
 }
+
 .feature-item {
   background: var(--surface);
   border: 0.5px solid var(--border);
   border-radius: 8px;
-  padding: 1.25rem;
+  padding: 1.2rem;
   transition: border-color 0.2s;
 }
+
 .feature-item:hover { border-color: var(--border2); }
+
 .feature-check {
-  width: 22px; height: 22px;
+  width: 20px; height: 20px;
   border-radius: 50%;
   background: var(--accent-dim);
-  border: 0.5px solid rgba(79,142,247,0.35);
+  border: 0.5px solid rgba(79,142,247,0.3);
   display: flex; align-items: center; justify-content: center;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.65rem;
 }
-.feature-check svg { width: 12px; height: 12px; }
-.feature-item h4 { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
-.feature-item p { font-size: 12px; color: var(--text3); line-height: 1.5; margin: 0; }
 
-/* GOLD SERVICE TAG */
-.service-tag-gold {
-  display: inline-block;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 5px 12px;
-  border-radius: 100px;
-  border: 0.5px solid rgba(201,168,76,0.4);
-  color: var(--gold);
+.feature-check svg { width: 11px; height: 11px; }
+
+.feature-check-gold {
+  width: 20px; height: 20px;
+  border-radius: 50%;
   background: var(--gold-dim);
+  border: 0.5px solid rgba(201,168,76,0.3);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 0.65rem;
 }
 
-/* PRICING HINT */
+.feature-check-gold svg { width: 11px; height: 11px; }
+
+.feature-check-purple {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: rgba(139,92,246,0.1);
+  border: 0.5px solid rgba(139,92,246,0.3);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 0.65rem;
+}
+
+.feature-check-purple svg { width: 11px; height: 11px; }
+
+.feature-item h4 { font-size: 13.5px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
+.feature-item p  { font-size: 12px; color: var(--text3); line-height: 1.5; margin: 0; }
+
+/* Pricing note */
 .pricing-note {
-  display: flex; align-items: center; gap: 12px;
+  display: flex; align-items: center; gap: 11px;
   background: var(--surface);
   border: 0.5px solid var(--border);
   border-radius: 8px;
-  padding: 1rem 1.25rem;
+  padding: 0.9rem 1.1rem;
 }
-.pricing-note svg { width: 18px; height: 18px; flex-shrink: 0; color: var(--accent); }
-.pricing-note p { font-size: 13px; color: var(--text2); margin: 0; }
+
+.pricing-note svg { width: 17px; height: 17px; flex-shrink: 0; color: var(--accent); }
+.pricing-note p  { font-size: 12.5px; color: var(--text2); margin: 0; }
 
 /* CTA BAND */
 .cta-band {
@@ -134,21 +213,30 @@
   border-top: 0.5px solid var(--border);
   padding: 6rem 4rem;
   text-align: center;
-  position: relative;
-  overflow: hidden;
+  position: relative; overflow: hidden;
 }
+
 .cta-band::before {
   content: '';
   position: absolute; inset: 0;
-  background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(79,142,247,0.06) 0%, transparent 70%);
+  background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(79,142,247,0.05) 0%, transparent 70%);
 }
-.cta-band h2 { font-family: var(--ff-head); font-size: clamp(2rem,4vw,3.2rem); font-weight: 700; letter-spacing: -0.03em; margin-bottom: 1rem; position: relative; }
-.cta-band p { color: var(--text2); font-size: 1.1rem; margin-bottom: 2.5rem; position: relative; }
+
+.cta-band h2 {
+  font-family: 'Georgia', serif;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 700; letter-spacing: -0.01em;
+  margin-bottom: 0.9rem; position: relative;
+}
+
+.cta-band p { color: var(--text2); font-size: 1rem; margin-bottom: 2.25rem; position: relative; }
 .cta-actions { display: flex; justify-content: center; gap: 1rem; position: relative; }
 
 @media (max-width: 900px) {
-  .page-hero { padding: 8rem 1.5rem 4rem; }
-  .service-detail { grid-template-columns: 1fr; gap: 2rem; padding: 3.5rem 0; }
+  nav { padding: 0 1.25rem; height: 64px; }
+  .nav-logo img { height: 40px; }
+  .page-hero { padding: 7rem 1.5rem 3.5rem; }
+  .service-detail { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 0; }
   .service-detail-label { position: static; }
   .service-num { font-size: 3rem; }
   .features-grid { grid-template-columns: 1fr; }
@@ -180,7 +268,7 @@
   <div class="page-hero-content">
     <span class="label">Services</span>
     <h1>IT solutions built around your business.</h1>
-    <p>From cloud infrastructure to cybersecurity, web development to managed support — we bring senior expertise to every engagement.</p>
+    <p>From cloud infrastructure to AI integration, cybersecurity to managed support — we bring senior expertise to every engagement.</p>
   </div>
 </div>
 
@@ -188,12 +276,12 @@
 <section class="section" style="padding-top: 3rem; padding-bottom: 3rem;">
   <div class="section-inner">
 
-    <!-- Cloud -->
+    <!-- 01 Cloud -->
     <div class="service-detail">
       <div class="service-detail-label">
         <div class="service-num">01</div>
         <span class="service-tag">Cloud Solutions</span>
-        <h2 style="margin-top: 1.25rem;">Cloud Infrastructure & Migration</h2>
+        <h2 style="margin-top: 1.25rem;">Cloud Infrastructure &amp; Migration</h2>
       </div>
       <div class="service-detail-body">
         <p>Harness the power of cloud computing for scalable, secure, and efficient operations. Whether you're starting from scratch or migrating legacy systems, we architect and deliver cloud environments built for performance and cost efficiency.</p>
@@ -205,7 +293,7 @@
           </div>
           <div class="feature-item">
             <div class="feature-check"><svg viewBox="0 0 12 12" fill="none" stroke="#4f8ef7" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>
-            <h4>Migration & Lift-and-Shift</h4>
+            <h4>Migration &amp; Lift-and-Shift</h4>
             <p>Seamless migration from on-premise to cloud with minimal downtime</p>
           </div>
           <div class="feature-item">
@@ -215,7 +303,7 @@
           </div>
           <div class="feature-item">
             <div class="feature-check"><svg viewBox="0 0 12 12" fill="none" stroke="#4f8ef7" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>
-            <h4>DevOps & Automation</h4>
+            <h4>DevOps &amp; Automation</h4>
             <p>CI/CD pipelines, infrastructure-as-code, and deployment automation</p>
           </div>
         </div>
@@ -226,33 +314,33 @@
       </div>
     </div>
 
-    <!-- Cybersecurity -->
+    <!-- 02 Cybersecurity -->
     <div class="service-detail">
       <div class="service-detail-label">
         <div class="service-num">02</div>
         <span class="service-tag-gold">Cybersecurity</span>
-        <h2 style="margin-top: 1.25rem;">Threat Protection & Risk Management</h2>
+        <h2 style="margin-top: 1.25rem;">Threat Protection &amp; Risk Management</h2>
       </div>
       <div class="service-detail-body">
         <p>The threat landscape evolves daily. Our cybersecurity practice provides comprehensive protection for your digital assets — from proactive risk assessments to real-time monitoring and incident response planning.</p>
         <div class="features-grid">
           <div class="feature-item">
-            <div class="feature-check"><svg viewBox="0 0 12 12" fill="none" stroke="#c9a84c" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>
+            <div class="feature-check-gold"><svg viewBox="0 0 12 12" fill="none" stroke="#c9a84c" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>
             <h4>Security Assessments</h4>
             <p>Vulnerability scanning, penetration testing, and gap analysis against frameworks</p>
           </div>
           <div class="feature-item">
-            <div class="feature-check"><svg viewBox="0 0 12 12" fill="none" stroke="#c9a84c" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>
+            <div class="feature-check-gold"><svg viewBox="0 0 12 12" fill="none" stroke="#c9a84c" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>
             <h4>Threat Monitoring</h4>
             <p>24/7 endpoint detection and response with real-time alerting and triage</p>
           </div>
           <div class="feature-item">
-            <div class="feature-check"><svg viewBox="0 0 12 12" fill="none" stroke="#c9a84c" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>
+            <div class="feature-check-gold"><svg viewBox="0 0 12 12" fill="none" stroke="#c9a84c" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>
             <h4>Compliance Readiness</h4>
             <p>HIPAA, SOC 2, NIST, and industry-specific compliance advisory</p>
           </div>
           <div class="feature-item">
-            <div class="feature-check"><svg viewBox="0 0 12 12" fill="none" stroke="#c9a84c" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>
+            <div class="feature-check-gold"><svg viewBox="0 0 12 12" fill="none" stroke="#c9a84c" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>
             <h4>Incident Response</h4>
             <p>Playbooks, tabletop exercises, and active response when threats materialize</p>
           </div>
@@ -264,12 +352,50 @@
       </div>
     </div>
 
-    <!-- Web Dev -->
+    <!-- 03 AI & Data Analytics (NEW) -->
     <div class="service-detail">
       <div class="service-detail-label">
         <div class="service-num">03</div>
+        <span class="service-tag-purple">AI &amp; Data</span>
+        <h2 style="margin-top: 1.25rem;">AI Integration &amp; Data Analytics</h2>
+      </div>
+      <div class="service-detail-body">
+        <p>Artificial intelligence and data analytics are no longer reserved for large enterprises. We help businesses of all sizes identify the right AI opportunities, integrate intelligent tools into their workflows, and build data pipelines that turn raw information into clear business insight.</p>
+        <div class="features-grid">
+          <div class="feature-item">
+            <div class="feature-check-purple"><svg viewBox="0 0 12 12" fill="none" stroke="#a78bfa" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>
+            <h4>AI Strategy &amp; Roadmap</h4>
+            <p>Identify the highest-impact AI use cases for your business and build an actionable adoption plan</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-check-purple"><svg viewBox="0 0 12 12" fill="none" stroke="#a78bfa" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>
+            <h4>AI Tool Integration</h4>
+            <p>Deploy and integrate large language models, automation agents, and AI-powered SaaS into existing systems</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-check-purple"><svg viewBox="0 0 12 12" fill="none" stroke="#a78bfa" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>
+            <h4>Business Intelligence &amp; Dashboards</h4>
+            <p>Custom BI dashboards and reporting pipelines that surface the metrics that matter most</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-check-purple"><svg viewBox="0 0 12 12" fill="none" stroke="#a78bfa" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>
+            <h4>Data Infrastructure</h4>
+            <p>Data warehousing, ETL pipelines, and cloud-native analytics architecture designed to scale</p>
+          </div>
+        </div>
+        <div class="pricing-note">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <p>We start with an AI readiness assessment to identify the right tools and opportunities for your business before any implementation.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 04 Web Development -->
+    <div class="service-detail">
+      <div class="service-detail-label">
+        <div class="service-num">04</div>
         <span class="service-tag">Web Development</span>
-        <h2 style="margin-top: 1.25rem;">Modern Web Design & Development</h2>
+        <h2 style="margin-top: 1.25rem;">Modern Web Design &amp; Development</h2>
       </div>
       <div class="service-detail-body">
         <p>Your digital presence matters. We design and build websites that are fast, responsive, and purpose-built to represent your brand and serve your customers — from marketing sites to custom web applications.</p>
@@ -281,7 +407,7 @@
           </div>
           <div class="feature-item">
             <div class="feature-check"><svg viewBox="0 0 12 12" fill="none" stroke="#4f8ef7" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>
-            <h4>Responsive & Accessible</h4>
+            <h4>Responsive &amp; Accessible</h4>
             <p>Mobile-first builds optimized for all devices and accessibility standards</p>
           </div>
           <div class="feature-item">
@@ -302,33 +428,71 @@
       </div>
     </div>
 
-    <!-- IT Support -->
+    <!-- 05 Network Infrastructure (NEW) -->
     <div class="service-detail">
       <div class="service-detail-label">
-        <div class="service-num">04</div>
+        <div class="service-num">05</div>
+        <span class="service-tag-gold">Networking</span>
+        <h2 style="margin-top: 1.25rem;">Network Infrastructure &amp; Design</h2>
+      </div>
+      <div class="service-detail-body">
+        <p>A reliable, well-designed network is the backbone of every productive organization. We plan, deploy, and optimize network infrastructure — from small office setups to multi-site enterprise environments — ensuring performance, redundancy, and security at every layer.</p>
+        <div class="features-grid">
+          <div class="feature-item">
+            <div class="feature-check-gold"><svg viewBox="0 0 12 12" fill="none" stroke="#c9a84c" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>
+            <h4>Network Design &amp; Planning</h4>
+            <p>Architecture consulting for LAN, WAN, SD-WAN, and hybrid network environments</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-check-gold"><svg viewBox="0 0 12 12" fill="none" stroke="#c9a84c" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>
+            <h4>Wireless &amp; Wi-Fi Solutions</h4>
+            <p>Enterprise-grade wireless deployments with proper coverage, segmentation, and management</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-check-gold"><svg viewBox="0 0 12 12" fill="none" stroke="#c9a84c" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>
+            <h4>Firewall &amp; Network Security</h4>
+            <p>Next-generation firewall deployment, VPN setup, and network access controls</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-check-gold"><svg viewBox="0 0 12 12" fill="none" stroke="#c9a84c" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>
+            <h4>Network Monitoring &amp; Optimization</h4>
+            <p>Ongoing performance monitoring, traffic analysis, and bandwidth optimization</p>
+          </div>
+        </div>
+        <div class="pricing-note">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <p>Network projects are scoped after a site assessment. We provide detailed recommendations and transparent pricing before any work begins.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 06 IT Support & Managed Services -->
+    <div class="service-detail">
+      <div class="service-detail-label">
+        <div class="service-num">06</div>
         <span class="service-tag-gold">Managed Services</span>
-        <h2 style="margin-top: 1.25rem;">IT Support & Managed Services</h2>
+        <h2 style="margin-top: 1.25rem;">IT Support &amp; Managed Services</h2>
       </div>
       <div class="service-detail-body">
         <p>Don't let infrastructure issues slow your business down. Our managed services practice provides proactive monitoring, expert helpdesk support, and strategic IT planning so you can focus on what matters.</p>
         <div class="features-grid">
           <div class="feature-item">
-            <div class="feature-check"><svg viewBox="0 0 12 12" fill="none" stroke="#c9a84c" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>
+            <div class="feature-check-gold"><svg viewBox="0 0 12 12" fill="none" stroke="#c9a84c" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>
             <h4>Proactive Monitoring</h4>
             <p>24/7 infrastructure monitoring with alert triage and automated remediation</p>
           </div>
           <div class="feature-item">
-            <div class="feature-check"><svg viewBox="0 0 12 12" fill="none" stroke="#c9a84c" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>
+            <div class="feature-check-gold"><svg viewBox="0 0 12 12" fill="none" stroke="#c9a84c" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>
             <h4>Helpdesk Support</h4>
             <p>Responsive support desk for your team's day-to-day IT issues and requests</p>
           </div>
           <div class="feature-item">
-            <div class="feature-check"><svg viewBox="0 0 12 12" fill="none" stroke="#c9a84c" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>
-            <h4>Patch & Update Management</h4>
+            <div class="feature-check-gold"><svg viewBox="0 0 12 12" fill="none" stroke="#c9a84c" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>
+            <h4>Patch &amp; Update Management</h4>
             <p>Automated patching schedules to keep systems current and vulnerabilities closed</p>
           </div>
           <div class="feature-item">
-            <div class="feature-check"><svg viewBox="0 0 12 12" fill="none" stroke="#c9a84c" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>
+            <div class="feature-check-gold"><svg viewBox="0 0 12 12" fill="none" stroke="#c9a84c" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>
             <h4>Strategic IT Advisory</h4>
             <p>Quarterly reviews and technology roadmap planning aligned to your business growth</p>
           </div>
@@ -336,6 +500,44 @@
         <div class="pricing-note">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
           <p>Managed services are offered on monthly retainer plans sized to your organization. Let's find the right fit together.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 07 VoIP & Unified Communications (NEW) -->
+    <div class="service-detail">
+      <div class="service-detail-label">
+        <div class="service-num">07</div>
+        <span class="service-tag">Communications</span>
+        <h2 style="margin-top: 1.25rem;">VoIP &amp; Unified Communications</h2>
+      </div>
+      <div class="service-detail-body">
+        <p>Modern businesses need modern communication tools. We design and deploy VoIP phone systems and unified communications platforms that connect your team — whether they're in the office, remote, or on the go — reliably and cost-effectively.</p>
+        <div class="features-grid">
+          <div class="feature-item">
+            <div class="feature-check"><svg viewBox="0 0 12 12" fill="none" stroke="#4f8ef7" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>
+            <h4>VoIP Phone System Setup</h4>
+            <p>Cloud-based and on-premise VoIP deployments for businesses of any size</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-check"><svg viewBox="0 0 12 12" fill="none" stroke="#4f8ef7" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>
+            <h4>Microsoft Teams &amp; UCaaS</h4>
+            <p>Integration of Teams, Zoom Phone, RingCentral, and other unified communication platforms</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-check"><svg viewBox="0 0 12 12" fill="none" stroke="#4f8ef7" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>
+            <h4>Legacy PBX Migration</h4>
+            <p>Seamless migration from aging PBX systems to modern cloud phone solutions</p>
+          </div>
+          <div class="feature-item">
+            <div class="feature-check"><svg viewBox="0 0 12 12" fill="none" stroke="#4f8ef7" stroke-width="2"><polyline points="2,6 5,9 10,3"/></svg></div>
+            <h4>Collaboration &amp; Video Conferencing</h4>
+            <p>End-to-end collaboration environments including video conferencing room setup and management</p>
+          </div>
+        </div>
+        <div class="pricing-note">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <p>Most VoIP migrations reduce monthly telecom costs significantly. Contact us to explore what's possible for your team.</p>
         </div>
       </div>
     </div>
@@ -368,9 +570,9 @@
 </footer>
 
 <script>
-document.getElementById('hamburger').addEventListener('click', () => {
-  document.getElementById('navLinks').classList.toggle('open');
-});
+  document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
 </script>
 </body>
 </html>
