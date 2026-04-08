@@ -196,5 +196,50 @@ document.getElementById('navLogo').addEventListener('click', function(e) {
 </div>
 
 <footer><a class="ft-logo" href="/"><img src="https://www.fortius.cloud/logo.png" alt="Fortius" onerror="this.style.display='none'"><span>Fortius Technologies</span></a><nav class="ft-links"><a href="/services.html">Services</a><a href="/about.html">About</a><a href="/contact.html">Contact</a></nav><span class="ft-copy">© 2026 Fortius Technologies Inc. All Rights Reserved.</span></footer>
+<script>
+function handleSubmit(e) {
+  e.preventDefault();
+  var fn  = document.getElementById('fn').value.trim();
+  var ln  = document.getElementById('ln').value.trim();
+  var em  = document.getElementById('em').value.trim();
+  var co  = document.getElementById('co').value.trim();
+  var svc = document.getElementById('svc').value;
+  var msg = document.getElementById('msg').value.trim();
+
+  if (!fn || !em || !msg) {
+    alert('Please fill in your first name, email, and message.');
+    return;
+  }
+
+  var btn = document.getElementById('submitBtn');
+  btn.textContent = 'Sending\u2026';
+  btn.disabled = true;
+
+  fetch('https://formspree.io/f/xvzkbalw', {
+    method: 'POST',
+    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      name: fn + (ln ? ' ' + ln : ''),
+      email: em,
+      company: co || '',
+      service: svc || '',
+      message: msg
+    })
+  })
+  .then(function(res) {
+    if (res.ok) {
+      document.getElementById('formBody').style.display = 'none';
+      document.getElementById('formSuccess').style.display = 'block';
+    } else {
+      return res.json().then(function(data) { throw new Error(data.error || 'Submission failed'); });
+    }
+  })
+  .catch(function(err) {
+    btn.textContent = 'Send Message';
+    btn.disabled = false;
+    alert('Something went wrong. Please email us at contact@fortius.cloud');
+  });
+}
+</script>
 </body>
 </html>
