@@ -6,30 +6,76 @@
 <title>Contact Us — Fortius Technologies</title>
 <link rel="stylesheet" href="shared.css">
 <style>
+
+/* Nav override */
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2.5rem;
+  height: 72px;
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: rgba(8,10,14,0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 0.5px solid rgba(255,255,255,0.08);
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.nav-logo img {
+  height: 48px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.nav-logo span {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+/* Page hero */
 .page-hero {
-  padding: 10rem 4rem 6rem;
+  padding: 9rem 4rem 5rem;
   background: var(--bg2);
   border-bottom: 0.5px solid var(--border);
   position: relative;
   overflow: hidden;
 }
+
 .page-hero::before {
   content: '';
   position: absolute; inset: 0;
-  background: radial-gradient(ellipse 50% 60% at 20% 50%, rgba(79,142,247,0.06) 0%, transparent 70%),
-              radial-gradient(ellipse 40% 50% at 80% 70%, rgba(201,168,76,0.05) 0%, transparent 60%);
+  background:
+    radial-gradient(ellipse 50% 60% at 20% 50%, rgba(79,142,247,0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 50% at 80% 70%, rgba(201,168,76,0.05) 0%, transparent 60%);
 }
+
 .page-hero-content { max-width: 1100px; margin: 0 auto; position: relative; }
+
 .page-hero h1 {
-  font-family: var(--ff-head);
-  font-size: clamp(2.4rem, 5vw, 4rem);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 1.08;
-  max-width: 600px;
-  margin-bottom: 1.25rem;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.18;
+  max-width: 580px;
+  margin-bottom: 1.1rem;
 }
-.page-hero p { color: var(--text2); font-size: 1.15rem; max-width: 480px; line-height: 1.7; }
+
+.page-hero p { color: var(--text2); font-size: 1.05rem; max-width: 460px; line-height: 1.72; }
 
 /* CONTACT LAYOUT */
 .contact-grid {
@@ -38,48 +84,57 @@
   gap: 5rem;
   align-items: start;
 }
-.contact-left h2 {
-  font-family: var(--ff-head);
-  font-size: 1.5rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  margin-bottom: 0.75rem;
-}
-.contact-left > p { color: var(--text2); font-size: 14px; line-height: 1.7; margin-bottom: 2.5rem; }
 
-.contact-info-list { display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2.5rem; }
+.contact-left h2 {
+  font-family: 'Georgia', serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.65rem;
+}
+
+.contact-left > p { color: var(--text2); font-size: 13.5px; line-height: 1.72; margin-bottom: 2.25rem; }
+
+.contact-info-list { display: flex; flex-direction: column; gap: 0.9rem; margin-bottom: 2.25rem; }
+
 .contact-info-item {
   display: flex; align-items: flex-start; gap: 1rem;
   background: var(--surface);
   border: 0.5px solid var(--border);
   border-radius: 10px;
-  padding: 1.25rem;
+  padding: 1.15rem 1.25rem;
   transition: border-color 0.2s;
 }
+
 .contact-info-item:hover { border-color: var(--border2); }
+
 .contact-info-item a { color: var(--text); text-decoration: none; }
 .contact-info-item a:hover { color: var(--accent2); }
+
 .ci-icon {
-  width: 38px; height: 38px; flex-shrink: 0;
+  width: 36px; height: 36px; flex-shrink: 0;
   border-radius: 8px;
   background: var(--surface2);
   border: 0.5px solid var(--border2);
   display: flex; align-items: center; justify-content: center;
 }
-.ci-icon svg { width: 17px; height: 17px; }
-.ci-label { font-size: 11px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 3px; }
-.ci-value { font-size: 14px; color: var(--text); font-weight: 400; }
+
+.ci-icon svg { width: 16px; height: 16px; }
+
+.ci-label { font-size: 10.5px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 3px; }
+.ci-value { font-size: 13.5px; color: var(--text); font-weight: 400; line-height: 1.45; }
 
 .response-note {
   background: var(--accent-dim);
-  border: 0.5px solid rgba(79,142,247,0.25);
+  border: 0.5px solid rgba(79,142,247,0.22);
   border-radius: 8px;
-  padding: 1rem 1.25rem;
-  font-size: 13px;
+  padding: 0.9rem 1.1rem;
+  font-size: 12.5px;
   color: var(--text2);
-  display: flex; align-items: flex-start; gap: 10px;
+  display: flex; align-items: flex-start; gap: 9px;
 }
-.response-note svg { width: 16px; height: 16px; color: var(--accent); flex-shrink: 0; margin-top: 1px; }
+
+.response-note svg { width: 15px; height: 15px; color: var(--accent); flex-shrink: 0; margin-top: 1px; }
 
 /* FORM */
 .contact-form {
@@ -88,11 +143,14 @@
   border-radius: 16px;
   padding: 2.5rem;
 }
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
-.form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 1.25rem; }
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+.form-group { display: flex; flex-direction: column; gap: 5px; margin-bottom: 1.1rem; }
 .form-group:last-of-type { margin-bottom: 0; }
-label { font-size: 13px; color: var(--text2); font-weight: 400; }
+
+label { font-size: 12.5px; color: var(--text2); font-weight: 400; }
 label span { color: var(--accent); }
+
 input[type="text"],
 input[type="email"],
 input[type="tel"],
@@ -103,60 +161,89 @@ textarea {
   border-radius: 8px;
   color: var(--text);
   font-family: var(--ff-body);
-  font-size: 15px;
-  padding: 12px 16px;
+  font-size: 14.5px;
+  padding: 11px 14px;
   width: 100%;
   outline: none;
   transition: border-color 0.2s;
   -webkit-appearance: none;
+  box-sizing: border-box;
 }
+
 input::placeholder, textarea::placeholder { color: var(--text3); }
 input:focus, select:focus, textarea:focus { border-color: var(--accent); }
 select { cursor: pointer; }
 select option { background: var(--bg2); }
-textarea { resize: vertical; min-height: 120px; }
+textarea { resize: vertical; min-height: 110px; }
 
-.form-submit { width: 100%; margin-top: 1.5rem; justify-content: center; font-size: 16px; padding: 15px; }
+.form-submit { width: 100%; margin-top: 1.4rem; justify-content: center; font-size: 15px; padding: 14px; }
 
-.form-success {
+/* Status messages */
+.form-status {
   display: none;
   text-align: center;
-  padding: 3rem 2rem;
+  padding: 2.75rem 2rem;
 }
-.success-icon {
-  width: 56px; height: 56px;
+
+.status-icon {
+  width: 52px; height: 52px;
   border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 1.25rem;
+}
+
+.status-icon.success {
   background: rgba(16,185,129,0.12);
   border: 0.5px solid rgba(16,185,129,0.3);
-  display: flex; align-items: center; justify-content: center;
-  margin: 0 auto 1.5rem;
 }
-.success-icon svg { width: 24px; height: 24px; }
-.form-success h3 { font-family: var(--ff-head); font-size: 1.4rem; font-weight: 700; margin-bottom: 0.5rem; }
-.form-success p { color: var(--text2); font-size: 14px; }
+
+.status-icon.error {
+  background: rgba(239,68,68,0.12);
+  border: 0.5px solid rgba(239,68,68,0.3);
+}
+
+.status-icon svg { width: 22px; height: 22px; }
+.form-status h3 { font-family: 'Georgia', serif; font-size: 1.35rem; font-weight: 700; margin-bottom: 0.5rem; }
+.form-status p { color: var(--text2); font-size: 13.5px; }
 
 /* WHAT TO EXPECT */
-.expect-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+.expect-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.4rem; }
+
 .expect-card {
   background: var(--surface);
   border: 0.5px solid var(--border);
   border-radius: 12px;
-  padding: 1.75rem;
+  padding: 1.65rem;
 }
+
 .expect-step {
-  font-family: var(--ff-head);
-  font-size: 2rem;
-  font-weight: 800;
+  font-family: 'Georgia', serif;
+  font-size: 1.85rem;
+  font-weight: 700;
   color: var(--border2);
   line-height: 1;
-  margin-bottom: 1rem;
+  margin-bottom: 0.9rem;
 }
-.expect-card h4 { font-family: var(--ff-head); font-size: 15px; font-weight: 600; margin-bottom: 0.5rem; }
-.expect-card p { font-size: 13px; color: var(--text2); line-height: 1.6; }
+
+.expect-card h4 { font-family: 'Georgia', serif; font-size: 14.5px; font-weight: 700; margin-bottom: 0.45rem; }
+.expect-card p { font-size: 12.5px; color: var(--text2); line-height: 1.62; }
+
+/* Section heading */
+.section-h2 {
+  font-family: 'Georgia', serif;
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 3rem;
+  max-width: 460px;
+  line-height: 1.25;
+}
 
 @media (max-width: 900px) {
-  .page-hero { padding: 8rem 1.5rem 4rem; }
-  .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+  nav { padding: 0 1.25rem; height: 64px; }
+  .nav-logo img { height: 40px; }
+  .page-hero { padding: 7rem 1.5rem 3.5rem; }
+  .contact-grid { grid-template-columns: 1fr; gap: 2.75rem; }
   .form-row { grid-template-columns: 1fr; }
   .expect-grid { grid-template-columns: 1fr; }
 }
@@ -193,12 +280,15 @@ textarea { resize: vertical; min-height: 120px; }
 <section class="section">
   <div class="section-inner">
     <div class="contact-grid">
+
       <!-- LEFT: Info -->
       <div class="contact-left">
         <h2>Get in touch</h2>
         <p>Whether you have a specific project in mind or just want to understand your options, we're happy to talk. Expect a response within one business day.</p>
 
         <div class="contact-info-list">
+
+          <!-- Email -->
           <div class="contact-info-item">
             <div class="ci-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="#4f8ef7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -207,9 +297,11 @@ textarea { resize: vertical; min-height: 120px; }
             </div>
             <div>
               <div class="ci-label">Email</div>
-              <div class="ci-value"><a href="mailto:info@fortius.cloud">info@fortius.cloud</a></div>
+              <div class="ci-value"><a href="mailto:contact@fortius.cloud">contact@fortius.cloud</a></div>
             </div>
           </div>
+
+          <!-- Location with full address -->
           <div class="contact-info-item">
             <div class="ci-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -218,9 +310,14 @@ textarea { resize: vertical; min-height: 120px; }
             </div>
             <div>
               <div class="ci-label">Location</div>
-              <div class="ci-value">United States</div>
+              <div class="ci-value">
+                2300 Valley View Ln, Ste 241<br>
+                Irving, Texas 75062
+              </div>
             </div>
           </div>
+
+          <!-- Response time -->
           <div class="contact-info-item">
             <div class="ci-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="#4f8ef7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -232,6 +329,7 @@ textarea { resize: vertical; min-height: 120px; }
               <div class="ci-value">Within 1 business day</div>
             </div>
           </div>
+
         </div>
 
         <div class="response-note">
@@ -242,66 +340,94 @@ textarea { resize: vertical; min-height: 120px; }
         </div>
       </div>
 
-      <!-- RIGHT: Form -->
+      <!-- RIGHT: Form — sends to contact@fortius.cloud via Formspree -->
       <div class="contact-form" id="contactFormWrap">
+
         <div id="formBody">
-          <div style="margin-bottom: 1.75rem;">
-            <div style="font-family: var(--ff-head); font-size: 1.1rem; font-weight: 600; margin-bottom: 4px;">Send us a message</div>
-            <div style="font-size: 13px; color: var(--text3);">We'll reply within one business day.</div>
+          <div style="margin-bottom: 1.65rem;">
+            <div style="font-family: 'Georgia', serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 4px;">Send us a message</div>
+            <div style="font-size: 12.5px; color: var(--text3);">We'll reply within one business day.</div>
           </div>
 
-          <div class="form-row">
-            <div class="form-group">
-              <label for="fname">First name <span>*</span></label>
-              <input type="text" id="fname" placeholder="Jane" required>
+          <!--
+            IMPORTANT: Replace YOUR_FORM_ID below with your Formspree form ID.
+            1. Go to https://formspree.io and create a free account
+            2. Create a new form and set the destination email to contact@fortius.cloud
+            3. Copy your form ID (e.g. xpwzvkqr) and replace YOUR_FORM_ID
+            Until then the form will use the mailto: fallback below.
+          -->
+          <form id="contactForm" novalidate>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="fname">First name <span>*</span></label>
+                <input type="text" id="fname" name="first_name" placeholder="Jane" required>
+              </div>
+              <div class="form-group">
+                <label for="lname">Last name <span>*</span></label>
+                <input type="text" id="lname" name="last_name" placeholder="Smith" required>
+              </div>
             </div>
+
             <div class="form-group">
-              <label for="lname">Last name <span>*</span></label>
-              <input type="text" id="lname" placeholder="Smith" required>
+              <label for="email">Work email <span>*</span></label>
+              <input type="email" id="email" name="email" placeholder="jane@company.com" required>
             </div>
-          </div>
 
-          <div class="form-group">
-            <label for="email">Work email <span>*</span></label>
-            <input type="email" id="email" placeholder="jane@company.com" required>
-          </div>
+            <div class="form-group">
+              <label for="company">Company name</label>
+              <input type="text" id="company" name="company" placeholder="Acme Corp">
+            </div>
 
-          <div class="form-group">
-            <label for="company">Company name</label>
-            <input type="text" id="company" placeholder="Acme Corp">
-          </div>
+            <div class="form-group">
+              <label for="service">Service of interest</label>
+              <select id="service" name="service">
+                <option value="" disabled selected>Select a service…</option>
+                <option>Cloud Solutions</option>
+                <option>Cybersecurity</option>
+                <option>AI &amp; Data Analytics</option>
+                <option>Web Development</option>
+                <option>Network Infrastructure</option>
+                <option>IT Support &amp; Managed Services</option>
+                <option>VoIP &amp; Unified Communications</option>
+                <option>Not sure yet — need guidance</option>
+              </select>
+            </div>
 
-          <div class="form-group">
-            <label for="service">Service of interest</label>
-            <select id="service">
-              <option value="" disabled selected>Select a service…</option>
-              <option>Cloud Solutions</option>
-              <option>Cybersecurity</option>
-              <option>Web Development</option>
-              <option>IT Support & Managed Services</option>
-              <option>Not sure yet — need guidance</option>
-            </select>
-          </div>
+            <div class="form-group">
+              <label for="message">Tell us about your project <span>*</span></label>
+              <textarea id="message" name="message" placeholder="What are you working on? What problems are you trying to solve? Any relevant context helps." rows="5" required></textarea>
+            </div>
 
-          <div class="form-group">
-            <label for="message">Tell us about your project <span>*</span></label>
-            <textarea id="message" placeholder="What are you working on? What problems are you trying to solve? Any relevant context helps." rows="5" required></textarea>
-          </div>
+            <button type="submit" class="btn-primary form-submit" id="submitBtn">
+              Send Message →
+            </button>
 
-          <button class="btn-primary form-submit" id="submitBtn" onclick="handleSubmit(event)">
-            Send Message →
-          </button>
+          </form>
         </div>
 
-        <div class="form-success" id="formSuccess">
-          <div class="success-icon">
+        <!-- Success state -->
+        <div class="form-status" id="formSuccess">
+          <div class="status-icon success">
             <svg viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="20 6 9 17 4 12"/>
             </svg>
           </div>
           <h3>Message received.</h3>
-          <p>Thanks for reaching out! We'll review your message and get back to you within one business day.</p>
+          <p>Thanks for reaching out! We'll review your message and reply to you within one business day.</p>
         </div>
+
+        <!-- Error state -->
+        <div class="form-status" id="formError">
+          <div class="status-icon error">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+          </div>
+          <h3>Something went wrong.</h3>
+          <p>Please email us directly at <a href="mailto:contact@fortius.cloud" style="color:var(--accent2)">contact@fortius.cloud</a> and we'll get back to you within one business day.</p>
+        </div>
+
       </div>
     </div>
   </div>
@@ -311,9 +437,7 @@ textarea { resize: vertical; min-height: 120px; }
 <section class="section" style="background: var(--bg2);">
   <div class="section-inner">
     <span class="label">What Happens Next</span>
-    <h2 style="font-family: var(--ff-head); font-size: clamp(1.8rem,3vw,2.4rem); font-weight: 700; letter-spacing: -0.03em; margin-bottom: 3rem; max-width: 480px; line-height: 1.2;">
-      A clear, simple process from first contact to engagement
-    </h2>
+    <h2 class="section-h2">A clear, simple process from first contact to engagement</h2>
     <div class="expect-grid">
       <div class="expect-card">
         <div class="expect-step">01</div>
@@ -349,22 +473,96 @@ textarea { resize: vertical; min-height: 120px; }
 </footer>
 
 <script>
-document.getElementById('hamburger').addEventListener('click', () => {
-  document.getElementById('navLinks').classList.toggle('open');
-});
+  document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
 
-function handleSubmit(e) {
-  e.preventDefault();
-  const fname = document.getElementById('fname').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const message = document.getElementById('message').value.trim();
-  if (!fname || !email || !message) {
-    alert('Please fill in all required fields.');
-    return;
+  document.getElementById('contactForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const fname   = document.getElementById('fname').value.trim();
+    const email   = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+
+    if (!fname || !email || !message) {
+      alert('Please fill in all required fields.');
+      return;
+    }
+
+    const btn = document.getElementById('submitBtn');
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+
+    // Collect form data
+    const formData = {
+      first_name: fname,
+      last_name:  document.getElementById('lname').value.trim(),
+      email:      email,
+      company:    document.getElementById('company').value.trim(),
+      service:    document.getElementById('service').value,
+      message:    message,
+    };
+
+    /*
+     * EMAIL DELIVERY via Formspree
+     * ─────────────────────────────────────────────────────────────
+     * To activate real email delivery to contact@fortius.cloud:
+     *
+     *  1. Visit https://formspree.io  →  Sign up (free tier: 50 submissions/mo)
+     *  2. Create a new form, set destination email to: contact@fortius.cloud
+     *  3. Copy your form endpoint, e.g.:
+     *       https://formspree.io/f/xpwzvkqr
+     *  4. Replace the FORMSPREE_ENDPOINT constant below with that URL
+     *
+     * Until you add the endpoint, form submissions open a mailto: link as fallback.
+     * ─────────────────────────────────────────────────────────────
+     */
+    const FORMSPREE_ENDPOINT = ''; // ← paste your Formspree URL here
+
+    if (FORMSPREE_ENDPOINT) {
+      try {
+        const res = await fetch(FORMSPREE_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(formData),
+        });
+
+        if (res.ok) {
+          showSuccess();
+        } else {
+          showError();
+        }
+      } catch (err) {
+        showError();
+      }
+    } else {
+      // Fallback: open mailto with form data pre-filled
+      const subject = encodeURIComponent('Website Inquiry – ' + formData.service || 'General Inquiry');
+      const body = encodeURIComponent(
+        'Name: ' + formData.first_name + ' ' + formData.last_name + '\n' +
+        'Email: ' + formData.email + '\n' +
+        'Company: ' + (formData.company || 'N/A') + '\n' +
+        'Service: ' + (formData.service || 'Not specified') + '\n\n' +
+        'Message:\n' + formData.message
+      );
+      window.location.href = 'mailto:contact@fortius.cloud?subject=' + subject + '&body=' + body;
+      showSuccess();
+    }
+  });
+
+  function showSuccess() {
+    document.getElementById('formBody').style.display    = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+    document.getElementById('formError').style.display   = 'none';
   }
-  document.getElementById('formBody').style.display = 'none';
-  document.getElementById('formSuccess').style.display = 'block';
-}
+
+  function showError() {
+    const btn = document.getElementById('submitBtn');
+    btn.textContent = 'Send Message →';
+    btn.disabled = false;
+    document.getElementById('formError').style.display = 'block';
+    document.getElementById('formError').scrollIntoView({ behavior: 'smooth' });
+  }
 </script>
 </body>
 </html>
