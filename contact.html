@@ -1,226 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact — Fortius Technologies</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--ink:#0d0d0d;--ink2:#555;--ink3:#999;--paper:#faf9f7;--paper2:#f3f1ee;--paper3:#e9e5df;--dark:#0f0f0f;--dark2:#191919;--serif:'Instrument Serif',Georgia,serif;--sans:'Inter',system-ui,sans-serif;--nav-h:70px}
-html{scroll-behavior:smooth}
-body{font-family:var(--sans);background:var(--paper);color:var(--ink);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
-
-nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 3.5rem;background:rgba(250,249,247,0.93);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,0,0,0.08)}
-.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
-.nav-logo img{height:30px}
-.nav-logo-name{font-size:14px;font-weight:600;color:var(--ink);letter-spacing:-.01em}
-.nav-links{display:flex;gap:2.5rem}
-.nav-links a{font-size:13px;font-weight:400;color:var(--ink2);text-decoration:none;transition:color .2s}
-.nav-links a:hover,.nav-links a.active{color:var(--ink)}
-.nav-actions{display:flex;gap:.75rem;align-items:center}
-.btn-ghost{font-size:13px;font-weight:400;color:var(--ink);text-decoration:none;padding:8px 18px;border:1px solid rgba(0,0,0,0.2);border-radius:100px;transition:all .2s;white-space:nowrap}
-.btn-ghost:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
-.btn-solid{font-size:13px;font-weight:500;color:#fff;background:var(--ink);text-decoration:none;padding:8px 20px;border-radius:100px;transition:opacity .2s;white-space:nowrap}
-.btn-solid:hover{opacity:.75}
-.ham{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:8px}
-.ham span{display:block;width:22px;height:1.5px;background:var(--ink)}
-.mob-nav{display:none;position:fixed;top:var(--nav-h);left:0;right:0;background:var(--paper);padding:1.5rem 2rem;border-bottom:1px solid rgba(0,0,0,0.1);flex-direction:column;gap:1.25rem;z-index:199}
-.mob-nav.open{display:flex}
-.mob-nav a{font-size:16px;color:var(--ink);text-decoration:none}
-
-/* HERO */
-.page-hero{padding:calc(var(--nav-h)+5rem) 3.5rem 5rem;background:var(--paper2);border-bottom:1px solid rgba(0,0,0,0.08)}
-.ph-inner{max-width:1280px;margin:0 auto}
-.ph-tag{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:1.5rem;display:flex;align-items:center;gap:10px}
-.ph-tag span{width:24px;height:1px;background:var(--ink3)}
-.page-hero h1{font-family:var(--serif);font-size:clamp(2.8rem,5.5vw,5rem);font-weight:400;line-height:1.08;letter-spacing:-.025em;max-width:800px;margin-bottom:1.5rem}
-.page-hero h1 em{font-style:italic}
-.page-hero p{font-size:1.05rem;font-weight:300;color:var(--ink2);max-width:480px;line-height:1.8}
-
-/* CONTACT BODY */
-.contact-body{padding:7rem 3.5rem;max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1.4fr;gap:6rem;align-items:start}
-
-/* LEFT */
-.c-left h2{font-family:var(--serif);font-size:1.5rem;font-weight:400;letter-spacing:-.015em;margin-bottom:.75rem}
-.c-left>p{font-size:14px;color:var(--ink2);line-height:1.75;margin-bottom:2.5rem;max-width:340px}
-.contact-items{display:flex;flex-direction:column;gap:1rem;margin-bottom:2.5rem}
-.ci{display:flex;align-items:flex-start;gap:1rem;padding:1.5rem;background:var(--paper2);border:1px solid rgba(0,0,0,.08);border-radius:10px;transition:border-color .2s}
-.ci:hover{border-color:rgba(0,0,0,.18)}
-.ci-icon{width:38px;height:38px;border-radius:8px;background:var(--paper3);border:1px solid rgba(0,0,0,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.ci-icon svg{width:16px;height:16px;stroke:var(--ink2);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.ci-lbl{font-size:11px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:var(--ink3);margin-bottom:3px}
-.ci-val{font-size:14px;color:var(--ink)}
-.ci-val a{color:var(--ink);text-decoration:none}
-.ci-val a:hover{text-decoration:underline}
-
-.discovery-note{background:var(--paper2);border:1px solid rgba(0,0,0,.09);border-radius:10px;padding:1.5rem;display:flex;gap:1rem;align-items:flex-start}
-.dn-icon{font-family:var(--serif);font-size:1.5rem;font-style:italic;color:var(--ink3);line-height:1;flex-shrink:0}
-.dn-text{font-size:13.5px;color:var(--ink2);line-height:1.7}
-.dn-text strong{color:var(--ink);font-weight:500}
-
-/* FORM */
-.c-form-wrap{background:var(--paper2);border:1px solid rgba(0,0,0,.09);border-radius:16px;padding:2.75rem}
-.form-head{margin-bottom:2rem}
-.form-head h3{font-family:var(--serif);font-size:1.4rem;font-weight:400;letter-spacing:-.01em;margin-bottom:.4rem}
-.form-head p{font-size:13px;color:var(--ink3)}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
-.fg{display:flex;flex-direction:column;gap:6px;margin-bottom:1.25rem}
-.fg label{font-size:12.5px;font-weight:500;color:var(--ink2)}
-.fg label span{color:#c0392b}
-input,select,textarea{background:var(--paper);border:1px solid rgba(0,0,0,.14);border-radius:8px;color:var(--ink);font-family:var(--sans);font-size:14.5px;font-weight:300;padding:11px 15px;width:100%;outline:none;transition:border-color .2s;-webkit-appearance:none}
-input::placeholder,textarea::placeholder{color:var(--ink3)}
-input:focus,select:focus,textarea:focus{border-color:var(--ink)}
-textarea{resize:vertical;min-height:120px}
-select{cursor:pointer}
-select option{background:var(--paper)}
-.form-submit{width:100%;margin-top:1.5rem;background:var(--ink);color:#fff;border:none;border-radius:100px;font-family:var(--sans);font-size:14px;font-weight:500;padding:14px 28px;cursor:pointer;transition:opacity .2s}
-.form-submit:hover{opacity:.75}
-.form-success{display:none;text-align:center;padding:3rem 1.5rem}
-.fs-icon{width:52px;height:52px;border-radius:50%;background:rgba(0,0,0,.05);border:1px solid rgba(0,0,0,.1);display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem}
-.fs-icon svg{width:22px;height:22px;stroke:var(--ink);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.form-success h3{font-family:var(--serif);font-size:1.5rem;font-weight:400;margin-bottom:.6rem;letter-spacing:-.01em}
-.form-success p{font-size:13.5px;color:var(--ink2);line-height:1.7}
-
-/* WHAT NEXT */
-.next-section{padding:0 3.5rem 7rem;max-width:1280px;margin:0 auto}
-.ns-lbl{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:.75rem}
-.ns-title{font-family:var(--serif);font-size:clamp(2rem,3.5vw,2.8rem);font-weight:400;line-height:1.15;letter-spacing:-.02em;margin-bottom:3.5rem}
-.ns-title em{font-style:italic}
-.next-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid rgba(0,0,0,.1);border-radius:12px;overflow:hidden}
-.ns{padding:2.5rem 2rem;border-right:1px solid rgba(0,0,0,.1)}
-.ns:last-child{border-right:none}
-.ns-n{font-family:var(--serif);font-size:3rem;font-weight:400;color:rgba(0,0,0,.07);line-height:1;margin-bottom:1.5rem}
-.ns h4{font-family:var(--serif);font-size:1.1rem;font-weight:400;letter-spacing:-.01em;margin-bottom:.6rem}
-.ns p{font-size:13px;color:var(--ink2);line-height:1.65}
-
-footer{background:var(--paper);border-top:1px solid rgba(0,0,0,0.09);padding:2.5rem 3.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.25rem}
-.ft-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
-.ft-logo img{height:24px}
-.ft-logo span{font-size:13px;font-weight:500;color:var(--ink)}
-.ft-links{display:flex;gap:2rem}
-.ft-links a{font-size:13px;color:var(--ink3);text-decoration:none;transition:color .2s}
-.ft-links a:hover{color:var(--ink)}
-.ft-copy{font-size:12px;color:var(--ink3)}
-
-@media(max-width:960px){
-  nav{padding:0 1.5rem}
-  .nav-links,.nav-actions .btn-ghost{display:none}
-  .ham{display:flex}
-  .page-hero{padding:calc(var(--nav-h)+3rem) 1.5rem 3rem}
-  .contact-body{grid-template-columns:1fr;gap:3rem;padding:5rem 1.5rem}
-  .form-row{grid-template-columns:1fr}
-  .next-section{padding:0 1.5rem 5rem}
-  .next-steps{grid-template-columns:1fr}
-  .ns{border-right:none;border-bottom:1px solid rgba(0,0,0,.1)}
-  .ns:last-child{border-bottom:none}
-  footer{padding:2rem 1.5rem;flex-direction:column;align-items:flex-start}
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us — Fortius Technologies Inc</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-<nav>
-  <a class="nav-logo" href="index.html"><img src="https://www.fortius.cloud/logo.png" alt="Fortius"><span class="nav-logo-name">Fortius Technologies</span></a>
-  <div class="nav-links"><a href="services.html">Services</a><a href="about.html">About</a><a href="contact.html" class="active">Contact</a></div>
-  <div class="nav-actions"><a href="services.html" class="btn-ghost">Our Services</a><a href="contact.html" class="btn-solid">Get in Touch</a></div>
-  <button class="ham" id="ham"><span></span><span></span><span></span></button>
-</nav>
-<div class="mob-nav" id="mob"><a href="services.html">Services</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="contact.html" class="btn-solid" style="width:fit-content;padding:11px 24px">Get in Touch</a></div>
 
-<div class="page-hero">
-  <div class="ph-inner">
-    <div class="ph-tag"><span></span>Contact</div>
-    <h1>Let's start with<br>a <em>conversation.</em></h1>
-    <p>No pressure, no commitments. Tell us about your business and we'll explore how Fortius can help — honestly and without jargon.</p>
-  </div>
-</div>
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="logo-wrap">
+      <img src="logo.png" alt="Fortius Technologies Logo" />
+      <span class="logo-text">Fortius</span>
+    </a>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+  </nav>
 
-<div class="contact-body">
-  <!-- LEFT -->
-  <div class="c-left">
-    <h2>Get in touch</h2>
-    <p>Whether you have a specific project in mind or just want to understand your options, we're ready to talk. Expect a response within one business day.</p>
-    <div class="contact-items">
-      <div class="ci">
-        <div class="ci-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-        <div><div class="ci-lbl">Email</div><div class="ci-val"><a href="mailto:info@fortius.cloud">info@fortius.cloud</a></div></div>
+  <main>
+    <div class="contact-wrap">
+
+      <h1>Let's start with a conversation.</h1>
+      <p class="tagline">No pressure, no commitments. Tell us about your business and we'll explore how we can help.</p>
+
+      <div class="contact-meta">
+        <div class="contact-meta-item">
+          <div class="label">Email</div>
+          <div class="value"><a href="mailto:info@fortius.cloud">info@fortius.cloud</a></div>
+        </div>
+        <div class="contact-meta-item">
+          <div class="label">Location</div>
+          <div class="value">United States</div>
+        </div>
+        <div class="contact-meta-item">
+          <div class="label">Response Time</div>
+          <div class="value">Within 1 business day</div>
+        </div>
       </div>
-      <div class="ci">
-        <div class="ci-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-        <div><div class="ci-lbl">Response time</div><div class="ci-val">Within 1 business day</div></div>
+
+      <div class="contact-form">
+        <h2>Send us a message</h2>
+        <p class="form-sub">We'll reply within one business day.</p>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="fname">First name *</label>
+            <input type="text" id="fname" name="fname" required />
+          </div>
+          <div class="form-field">
+            <label for="lname">Last name *</label>
+            <input type="text" id="lname" name="lname" required />
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="email">Work email *</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+
+        <div class="form-field">
+          <label for="company">Company name</label>
+          <input type="text" id="company" name="company" />
+        </div>
+
+        <div class="form-field">
+          <label for="service">Service of interest</label>
+          <select id="service" name="service">
+            <option value="">Select a service…</option>
+            <option>Cloud Solutions</option>
+            <option>Cybersecurity</option>
+            <option>Web Development</option>
+            <option>IT Support &amp; Managed Services</option>
+            <option>AI &amp; Intelligent Automation</option>
+            <option>Not sure yet — need guidance</option>
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label for="message">Tell us about your project *</label>
+          <textarea id="message" name="message" required></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit">Send Message →</button>
       </div>
-      <div class="ci">
-        <div class="ci-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-        <div><div class="ci-lbl">Location</div><div class="ci-val">United States</div></div>
+
+      <!-- PROCESS -->
+      <div class="process">
+        <h2>A clear, simple process from first contact to engagement</h2>
+        <div class="steps">
+          <div class="step">
+            <span class="step-num">01</span>
+            <div>
+              <h4>We review your message</h4>
+              <p>A senior consultant reads your inquiry and identifies the right person to respond — not an automated system or junior screener.</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step-num">02</span>
+            <div>
+              <h4>Discovery call</h4>
+              <p>We schedule a 30-minute call to understand your business, current state, and goals in depth before suggesting anything.</p>
+            </div>
+          </div>
+          <div class="step">
+            <span class="step-num">03</span>
+            <div>
+              <h4>Tailored proposal</h4>
+              <p>Based on what we learn, we prepare a scoped proposal with clear deliverables, timeline, and pricing — no vague estimates.</p>
+            </div>
+          </div>
+        </div>
       </div>
+
     </div>
-    <div class="discovery-note">
-      <div class="dn-icon">"</div>
-      <div class="dn-text"><strong>Free discovery call.</strong> First-time clients get a complimentary 30-minute call to explore their needs before any proposal or commitment.</div>
-    </div>
-  </div>
+  </main>
 
-  <!-- FORM -->
-  <div class="c-form-wrap">
-    <div id="formBody">
-      <div class="form-head">
-        <h3>Send us a message</h3>
-        <p>We'll reply within one business day.</p>
-      </div>
-      <div class="form-row">
-        <div class="fg"><label for="fn">First name <span>*</span></label><input id="fn" type="text" placeholder="Jane" required></div>
-        <div class="fg"><label for="ln">Last name <span>*</span></label><input id="ln" type="text" placeholder="Smith" required></div>
-      </div>
-      <div class="fg"><label for="em">Work email <span>*</span></label><input id="em" type="email" placeholder="jane@company.com" required></div>
-      <div class="fg"><label for="co">Company</label><input id="co" type="text" placeholder="Acme Corp"></div>
-      <div class="fg">
-        <label for="svc">Service of interest</label>
-        <select id="svc">
-          <option value="" disabled selected>Select a service…</option>
-          <option>Cloud Solutions</option>
-          <option>Cybersecurity</option>
-          <option>Web Development</option>
-          <option>IT Support & Managed Services</option>
-          <option>Not sure yet — need guidance</option>
-        </select>
-      </div>
-      <div class="fg"><label for="msg">Tell us about your project <span>*</span></label><textarea id="msg" placeholder="What are you working on? What problems are you trying to solve? Any context helps." rows="5" required></textarea></div>
-      <button class="form-submit" onclick="handleSubmit(event)">Send Message</button>
-    </div>
-    <div class="form-success" id="formSuccess">
-      <div class="fs-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-      <h3>Message received.</h3>
-      <p>Thanks for reaching out. We'll review your message and get back to you within one business day.</p>
-    </div>
-  </div>
-</div>
+  <!-- FOOTER -->
+  <footer>
+    <a href="index.html" class="footer-logo">
+      <img src="logo.png" alt="Fortius Technologies" />
+      <span>Fortius Technologies Inc</span>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <p class="copy">© 2026 Fortius Technologies Inc. All Rights Reserved.</p>
+  </footer>
 
-<!-- WHAT NEXT -->
-<div class="next-section">
-  <div class="ns-lbl">What Happens Next</div>
-  <h2 class="ns-title">A clear process from <em>first contact to engagement.</em></h2>
-  <div class="next-steps">
-    <div class="ns"><div class="ns-n">01</div><h4>We review your message</h4><p>A senior consultant reads your inquiry personally and identifies the right person to respond — no automated routing.</p></div>
-    <div class="ns"><div class="ns-n">02</div><h4>Discovery call</h4><p>A 30-minute call to understand your business, current state, and goals in depth before suggesting anything or submitting a proposal.</p></div>
-    <div class="ns"><div class="ns-n">03</div><h4>Tailored proposal</h4><p>A scoped proposal with clear deliverables, timeline, and transparent pricing. No vague estimates, no hidden costs.</p></div>
-  </div>
-</div>
-
-<footer>
-  <a class="ft-logo" href="index.html"><img src="https://www.fortius.cloud/logo.png" alt="Fortius"><span>Fortius Technologies</span></a>
-  <nav class="ft-links"><a href="services.html">Services</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav>
-  <span class="ft-copy">© 2026 Fortius Technologies Inc. All Rights Reserved.</span>
-</footer>
-
-<script>
-document.getElementById('ham').addEventListener('click',()=>document.getElementById('mob').classList.toggle('open'));
-function handleSubmit(e){
-  e.preventDefault();
-  if(!document.getElementById('fn').value.trim()||!document.getElementById('em').value.trim()||!document.getElementById('msg').value.trim()){alert('Please fill in all required fields.');return}
-  document.getElementById('formBody').style.display='none';
-  document.getElementById('formSuccess').style.display='block';
-}
-</script>
 </body>
 </html>
