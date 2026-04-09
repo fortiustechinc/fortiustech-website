@@ -182,33 +182,53 @@ footer{background:var(--cream);border-top:1px solid var(--cream3);padding:2.5rem
 .ft-copy{font-size:12px;color:var(--ink3)}
 
 @media(max-width:960px){
-  .hero{padding:calc(72px + 3rem) 1.5rem 0;grid-template-columns:1fr;gap:2.5rem}
-  .hero-left{padding-bottom:0}
+  nav{padding:0 20px}
+  .nav-links,.nav-actions{display:none}
+  .burger{display:flex}
+  .hero{padding:calc(72px + 2rem) 1.25rem 0;grid-template-columns:1fr}
+  .hero-left{padding-bottom:2.5rem}
   .hero-right{display:none}
+  .hero h1{font-size:2.6rem}
+  .hero-lead{font-size:.95rem}
+  .hero-btns{flex-direction:column;align-items:flex-start;gap:.875rem}
+  .hero-primary,.hero-secondary{font-size:14px}
   .stats-bar{grid-template-columns:1fr 1fr;margin:0}
+  .stat{padding:1.5rem 1rem}
   .stat:nth-child(2){border-right:none}
   .stat:nth-child(3){border-top:1px solid var(--cream3)}
   .stat:nth-child(4){border-top:1px solid var(--cream3)}
-  .services-section,.process-section,.test-section,.cta-section{padding:5rem 1.5rem}
-  .why-section,.story-section{padding:5rem 1.5rem}
-  .svc-row{grid-template-columns:48px 1fr;gap:.875rem}
+  .stat-val{font-size:1.8rem}
+  .services-section{padding:3.5rem 1.25rem}
+  .s-header{flex-direction:column;align-items:flex-start;gap:1rem;margin-bottom:2rem}
+  .s-note{text-align:left;max-width:100%}
+  .svc-row{grid-template-columns:44px 1fr;gap:.75rem;padding:1.5rem 0}
   .svc-d,.svc-arr{display:none}
-  .why-grid{grid-template-columns:1fr}
-  .story-inner{grid-template-columns:1fr;gap:3rem}
+  .svc-nm{font-size:1.1rem}
+  .why-section{padding:3.5rem 1.25rem}
+  .why-grid{grid-template-columns:1fr;gap:1rem}
+  .story-section{padding:3.5rem 1.25rem}
+  .story-inner{grid-template-columns:1fr;gap:2rem}
+  .story-card-wide{grid-template-columns:1fr 1fr}
+  .process-section{padding:3.5rem 1.25rem}
   .process-grid{grid-template-columns:1fr 1fr}
   .proc-item:nth-child(2){border-right:none}
   .proc-item:nth-child(3){border-top:1px solid rgba(0,0,0,.09)}
   .proc-item:nth-child(4){border-top:1px solid rgba(0,0,0,.09);border-right:none}
-  .test-card{flex:0 0 100%}
-  .s-header{flex-direction:column;align-items:flex-start}
-  .s-note{text-align:left;max-width:100%}
-  footer{padding:2rem 1.5rem;flex-direction:column;align-items:flex-start}
+  .proc-item{padding:1.75rem 1.25rem}
+  .test-section{padding:3.5rem 1.25rem}
+  .test-card{flex:0 0 100%;padding:1.75rem}
+  .t-quote{font-size:1rem}
+  .cta-section{padding:3.5rem 1.25rem}
+  .cta-inner h2{font-size:2rem}
+  .cta-btns{flex-direction:column;align-items:center;gap:.75rem}
+  .btn-white,.btn-woutline{width:100%;text-align:center;padding:14px}
+  footer{padding:1.5rem 1.25rem;flex-direction:column;align-items:flex-start;gap:1rem}
 }
 </style>
 </head>
 <body>
 <nav>
-  <a class="nav-logo" href="/" id="navLogo"><img src="https://www.fortius.cloud/logo.png" alt="Fortius Technologies" style="height:38px;width:auto;display:block"><span class="nav-logo-name">Fortius Technologies</span></a>
+  <a class="nav-logo" href="/"><img src="https://www.fortius.cloud/logo.png" alt="Fortius Technologies"><span class="nav-logo-name">Fortius Technologies</span></a>
   <div class="nav-links">
     <a href="/" style="color:#0d0d0d;font-weight:700">Home</a>
     <a href="/services.html">Services</a>
@@ -216,29 +236,35 @@ footer{background:var(--cream);border-top:1px solid var(--cream3);padding:2.5rem
     <a href="/about.html">About</a>
   </div>
   <div class="nav-actions"><a href="/contact.html" class="btn-cta">Get in Touch</a></div>
+  <button class="burger" id="burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
-<div class="mob-nav" id="mob">
-  <a href="/" style="color:#1a3a6b;font-weight:700">Home</a>
-  <a href="/services.html">Services</a>
-  <a href="/industries.html">Industries</a>
-  <a href="/about.html">About</a>
-  <a href="/contact.html" class="btn-cta" style="width:fit-content">Get in Touch</a>
+<div class="mob-nav" id="mobNav">
+  <a href="/" class="mob-link" style="color:#1a3a6b">Home</a>
+  <a href="/services.html" class="mob-link">Services</a>
+  <a href="/industries.html" class="mob-link">Industries</a>
+  <a href="/about.html" class="mob-link">About</a>
+  <a href="/contact.html" class="mob-cta">Get in Touch</a>
 </div>
 <script>
-// On mobile, logo tap toggles the mobile menu; on desktop it navigates home
-document.getElementById('navLogo').addEventListener('click', function(e) {
-  if (window.innerWidth <= 900) {
-    e.preventDefault();
-    document.getElementById('mob').classList.toggle('open');
-  }
-});
+(function(){
+  var btn = document.getElementById('burger');
+  var menu = document.getElementById('mobNav');
+  btn.addEventListener('click', function(){
+    var open = menu.classList.toggle('open');
+    btn.children[0].style.transform = open ? 'rotate(45deg) translate(5px,5px)' : '';
+    btn.children[1].style.opacity = open ? '0' : '1';
+    btn.children[2].style.transform = open ? 'rotate(-45deg) translate(5px,-5px)' : '';
+  });
+})();
 </script>
 <div class="hero-wrap">
   <div class="hero">
     <div class="hero-left">
       <div class="hero-tag"><span class="hero-tag-line"></span>IT Consulting & Technology Partner</div>
       <h1>Building the infrastructure for <em>your success.</em></h1>
-      <p class="hero-lead">Experienced, personalized IT consulting across cloud, cybersecurity, web development, and managed services — tailored to your business from day one.</p>
+      <p class="hero-lead">Experienced, personalized IT consulting across cloud, cybersecurity, AI & automation, and managed services — tailored to your business from day one.</p>
       <div class="hero-btns">
         <a href="/contact.html" class="hero-primary">Start a Conversation</a>
         <a href="/services.html" class="hero-secondary">Explore Services <svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
